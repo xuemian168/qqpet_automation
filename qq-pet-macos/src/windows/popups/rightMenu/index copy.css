@@ -1,0 +1,145 @@
+#appMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: all 1s;
+  font-size: 14px;
+  background-color: transparent !important;
+}
+
+#app {
+  background-color: transparent !important;
+  height: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  box-shadow: unset !important;
+  border-radius: 10px !important;
+}
+
+.menuMain {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+}
+
+.bk_body {
+  width: 130px;
+}
+.bk_body .head .h_left {
+  width: 20px;
+  height: 7px;
+  background-image: url("../assets/Menu/ditu01.bmp");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.bk_body .head .h_center {
+  height: 7px;
+  background-image: url("../assets/Menu/ditu02.bmp");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.bk_body .head .h_right {
+  width: 20px;
+  height: 7px;
+  background-image: url("../assets/Menu/ditu03.bmp");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.bk_body .center .c_left {
+  width: 12px;
+  height: 19px;
+  background-image: url("../assets/Menu/ditu04.bmp");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.bk_body .center .c_center {
+  height: 19px;
+  background-image: url("../assets/Menu/ditu05.bmp");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.bk_body .center .c_right {
+  width: 21px;
+  height: 19px;
+  background-image: url("../assets/Menu/ditu06.bmp");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+/* //箭头 */
+.bk_body .center.haveChildren .c_right {
+  width: 31px;
+  height: 19px;
+  background-image: url("../assets/Menu/ditu06_jiantou00_2.bmp");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.bk_body .foot .f_left {
+  width: 20px;
+  height: 7px;
+  background-image: url("../assets/Menu/ditu07.bmp");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.bk_body .foot .f_center {
+  height: 7px;
+  background-image: url("../assets/Menu/ditu08.bmp");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.bk_body .foot .f_right {
+  width: 20px;
+  height: 7px;
+  background-image: url("../assets/Menu/ditu09.bmp");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+/* 有消息 */
+.bk_body .center.new > .c_left .c_left_new {
+  width: 21px;
+  height: 19px;
+  background-image: url("../assets/Menu/ditu04_new.bmp");
+}
+.bk_body .center.new > .c_left {
+  width: 20px;
+}
+/* 动态 */
+.bk_body .center.active > .c_left {
+  width: 20px;
+  height: 19px;
+  background-image: url("../assets/Menu/ditu04_2.bmp");
+}
+.bk_body .center.active:active > .c_left {
+  width: 20px;
+  height: 19px;
+  background-image: url("../assets/Menu/ditu04_22.bmp");
+}
+.bk_body .center.active > .c_center {
+  height: 19px;
+  background-image: url("../assets/Menu/ditu05_2.bmp");
+}
+.bk_body .center.active > .c_right {
+  background-image: url("../assets/Menu/ditu06_2.bmp");
+}
+.bk_body .center.active.haveChildren > .c_right {
+  width: 31px;
+  background-image: url("../assets/Menu/ditu06_jiantou01_2.bmp") !important;
+}
+.bk_body .center.active.haveChildren:hover .c_right {
+  background-image: url("../assets/Menu/ditu06_jiantou01_2.bmp") !important;
+}
+/* //子菜单 */
+.sun_bk_body {
+  /* transform: translateX(-100%) translateY(-40%); */
+}
+
+.sun_bk_body .center.active > .c_right_sun {
+  background-image: url("../assets/Menu/ditu06_2.bmp") !important;
+}
+.sun_bk_body .center .c_right {
+  width: 21px;
+  height: 19px;
+  background-image: url("../assets/Menu/ditu06.bmp") !important;
+  background-size: contain;
+  background-repeat: no-repeat;
+}

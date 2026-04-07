@@ -1,0 +1,131 @@
+<div id="appMain">
+  <div class="setting notSelect">
+    <div class="close not_drag focusPress" @click="closeWindow"></div>
+    <div class="leftMenu fcC">
+      <div
+        class="lm_once not_drag focusPress fcc"
+        :class="[activeMenu == index ? 'activeMenu':'']"
+        v-for="(item, index) in leftMenu"
+        :key="index"
+        @click="chooseMenu(index)"
+      >
+        {{item.label}}
+      </div>
+    </div>
+    <div class="rightMenu">
+      <div class="right_title ml16">{{leftMenu[activeMenu]?.label || ''}}</div>
+      <div class="children not_drag">
+        <div
+          class="childrens"
+          v-for="(stem, sndex) in seeChildren"
+          :key="sndex"
+        >
+          <div class="childrenIn fcc radio" v-if="stem.type == 'radio'">
+            <div
+              class="choose focusPress"
+              :class="[sysData[stem.value] ? 'active':'']"
+              @click="setStting(stem)"
+            ></div>
+            <div class="label">{{stem.label}}</div>
+          </div>
+          <div
+            class="childrenIn fccC shortcutKeys"
+            cancel
+            v-if="stem.type == 'shortcutKeys'"
+          >
+            <div class="label f1 w100" cancel>{{stem.label}} ：</div>
+            <div class="shortcutKeysMain fcb" cancel>
+              <div
+                class="shortcutKeysBut focusPress fcc"
+                :class="[isSetKey == (stem.value + '-' + 0) ? 'activeKey':'']"
+                @click="changeShortKeysBut(stem,0)"
+              >
+                {{sysData[stem.value]?.[0] || "''"}}
+              </div>
+              <div cancel>+</div>
+              <div
+                class="shortcutKeysBut focusPress fcc"
+                :class="[isSetKey == (stem.value + '-' + 1) ? 'activeKey':'']"
+                @click="changeShortKeysBut(stem,1)"
+              >
+                {{sysData[stem.value]?.[1] || "''"}}
+              </div>
+              <div
+                class="shortcutKeysTip"
+                :class="[isSetKey?.split && isSetKey.split('-')[0] == stem.value? 'openTip':'']"
+              >
+                ESC-退出选择 ， 可选 ：{{isSetKey?.split &&
+                useKeys[isSetKey.split('-')[1]].join(',')}}
+              </div>
+            </div>
+          </div>
+          <div
+            class="childrenIn fccC slider"
+            v-if="stem.type == 'slider'"
+            :style="{
+            opacity:1
+          }"
+          >
+            <!-- {{ sysData[stem.value]}} -->
+            <div class="label f1 w100" cancel>{{stem.label}}</div>
+            <div class="sliderLine f1 w100 fcc mt8">
+              <div
+                class="sl_down focusPress"
+                @click="setStting(stem,'down')"
+              ></div>
+              <div class="sl_center f1 por">
+                <div
+                  class="sl_center_z"
+                  :style="{
+                  left: 'calc('+ (sysData[stem.value]  * 100)+ '% - (20px * '+sysData[stem.value]+'))'
+                }"
+                >
+                  <div class="slc_z"></div>
+                </div>
+              </div>
+              <div class="sl_up focusPress" @click="setStting(stem,'up')"></div>
+            </div>
+          </div>
+          <div
+            class="childrenIn fcc slider"
+            v-if="stem.type == 'buts' && !stem?.unShow"
+            v-show="!stem.control || sysData[stem.value] != 'cantSee'"
+            :style="{
+            opacity:1
+          }"
+          >
+            <!-- {{ sysData[stem.value]}} -->
+            <div class="label f1 w100 por sliderLabel fcc tc" cancel>
+              {{stem.label}}
+              <div class="sliderButs f1 w100 fcc">
+                <div
+                  class="sliderButs_submit focusPress not_drag"
+                  @click="setStting(stem)"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="childrenIn fC slider" v-if="stem.type == 'see'">
+            <div>{{stem.label}}：</div>
+            <div v-if="stem?.vType == 'html'" v-html="stem.value"></div>
+            <div v-else class="seeValue">{{stem.value}}</div>
+            <div class="seeValues" v-for="(sstem, ssndex) in (stem.values || [])" :key="ssndex">
+              <div v-if="sstem.img">
+                <img class="seeImg" :src="sstem.img" alt="" />
+              </div>
+              <div v-else>{{sstem}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footBUts fcb">
+      <div class="f_cancal"></div>
+      <div
+        class="f_submit focusPress not_drag"
+        :class="[Object.keys(isChangeSysData).length > 0 ? '' : 'unDo-']"
+        @click="saveChange"
+      ></div>
+    </div>
+  </div>
+</div>

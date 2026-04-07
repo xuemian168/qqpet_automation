@@ -1,0 +1,176 @@
+#appMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: all 1s;
+  background: linear-gradient(
+    to top,
+    rgba(237, 247, 255, 0.8),
+    rgba(253, 255, 255, 0.8)
+  );
+  background-color: transparent !important;
+  /* background-image: url("../assets/stateInfo/ditu05.png"); */
+  /* background-size: 100% 100%; */
+  /* background-repeat: no-repeat; */
+  /* opacity: 0.3; */
+  color: #042b4b;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+#app {
+  -webkit-app-region: no-drag !important;
+  background-color: transparent !important;
+}
+
+.head {
+  /* height: 50px; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 5px 0px;
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.5);
+}
+.petFile {
+  height: 23px;
+  width: 70px;
+  background-image: url("../assets/stateInfo/00.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.petFile:hover {
+  background-image: url("../assets/stateInfo/01.png");
+  position: relative;
+  top: 1px;
+}
+.petFile:active {
+  background-image: url("../assets/stateInfo/02.png");
+  position: relative;
+  top: 1px;
+}
+
+.close {
+  height: 17px;
+  width: 17px;
+  background-image: url("../assets/stateInfo/close_normal.png");
+  background-size: 100% 100%;
+  position: relative;
+  background-repeat: no-repeat;
+  top: -3px;
+}
+.close:hover {
+  background-image: url("../assets/stateInfo/close_click.png");
+  top: -2px;
+}
+.close:active {
+  background-image: url("../assets/stateInfo/close_over.png");
+  position: relative;
+  top: 1px;
+}
+
+.main {
+  flex: 1;
+  padding: 0 8px;
+}
+.onceInfo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.onceInfoLine {
+  padding: 0 8px;
+}
+.bones {
+  margin-left: 5px;
+}
+.bones .bone {
+  width: 8px;
+}
+
+/* 贴心宝贝 */
+.foot {
+  border-top: 1px dotted rgba(0, 0, 0, 0.5);
+  padding: 5px 8px 0px;
+}
+.foot .sweetHeart {
+  height: 20px;
+  width: 65px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.openSweetHeart {
+  height: 23px;
+  width: 40px;
+  background-image: url("../assets/stateInfo/kaiqi_over.png");
+  background-size: 100% 100%;
+  position: relative;
+  background-repeat: no-repeat;
+  top: -3px;
+}
+.openSweetHeart:hover {
+  background-image: url("../assets/stateInfo/kaiqi_up.png");
+  top: -2px;
+}
+.openSweetHeart:active {
+  background-image: url("../assets/stateInfo/kaiqi_down.png");
+  position: relative;
+  top: 1px;
+}
+
+.closeSweetHeart {
+  height: 23px;
+  width: 40px;
+  background-image: url("../assets/stateInfo/guanbi_over.png");
+  background-size: 100% 100%;
+  position: relative;
+  background-repeat: no-repeat;
+  top: -3px;
+}
+.closeSweetHeart:hover {
+  background-image: url("../assets/stateInfo/guanbi_up.png");
+  top: -2px;
+}
+.closeSweetHeart:active {
+  background-image: url("../assets/stateInfo/guanbi_down.png");
+  position: relative;
+  top: 1px;
+}
+
+/* 隐藏数字 */
+.hoverNum {
+  opacity: 0;
+}
+.hoverNum:hover {
+  opacity: 1;
+}
+
+.pinkDiamond {
+  height: 28px;
+  width: 25px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* //在线领取按钮 */
+.getOnlineGift {
+  height: 19px;
+  width: 35px;
+  background-image: url("../assets/stateInfo/13.svg");
+  background-size: 100% 100%;
+  position: relative;
+  background-repeat: no-repeat;
+  /* top: -3px; */
+  border-radius: 8px;
+  border: 1px solid rgba(31, 114, 182, 0.3);
+}
+.getOnlineGift:hover {
+  background-image: url("../assets/stateInfo/18.svg");
+  top: -2px;
+}
+.getOnlineGift:active {
+  background-image: url("../assets/stateInfo/21.svg");
+  position: relative;
+  top: 1px;
+}

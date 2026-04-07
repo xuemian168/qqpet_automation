@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetOnline</title>
+  <!-- <script src="../lib/vue/vue.global.js"></script>
+  <script src="../util/move.js"></script>
+  <script src="../util/pet/swfPet.js"></script> -->
+  <!-- <script src="../util/pet/index.js"></script> -->
+  <!-- <script src="../util/pet/GrowUp.js"></script> -->
+  <!-- <script src="../../service/websocket.js"></script>
+  <script src="../js/ruffle/ruffles.js"></script> -->
+  <link rel="stylesheet" href="./index.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../../windows/css/index.css">
+  <style>
+    #move{
+      opacity: 0.5;
+      height: 100%;
+    }
+  </style>
+  <script>
+    var API = {
+  GetCursorPosition: function (obj) {
+    // var myFlashObj = InternetExplorer ? myFlash : document.myFlash;
+    // alert(args);
+    console.log("GetCursorPosition :>> ", obj);
+  },
+  GetCursorPositionHtml: function (x,y) {
+    console.log('GetCursorPositionHtml',x,y)
+    return 123
+  },
+  // GetWindowRect: function (obj) {
+  //   // var myFlashObj = InternetExplorer ? myFlash : document.myFlash;
+  //   // alert(args);
+  //   console.log("GetWindowRect :>> ", obj);
+  // },
+  say: (say) => {
+    console.log("say :>> ", say);
+  },
+  GetMosePosition: (opt) => {
+    let { x, y } = opt;
+    console.log("x,y :>> ", x, y);
+  },
+};
+  </script>
+</head>
+
+<body>
+  <div id="app">
+    <div id="move" class="not_drag" >
+      <embed id="pet" wmode="transparent" swLiveConnect="true"  allowscriptaccess="always" name="pet"
+        class="pet" src="../../assets/Action/MM/Kid/Stand.swf"> </embed>
+      <!-- <div id="pet"> -->
+      <!-- {{nowPosition}}
+        {{position}} -->
+      <!-- {{petInfo.info?.growth}}
+        {{petInfo.info?.hunger}}
+        {{petInfo.info?.clean}}
+        {{petInfo.info?.mood}}
+        {{petInfo.info?.health}}
+        {{petInfo.activeOption?.ill?.name}} -->
+      <!-- </div> -->
+    </div>
+  </div>
+  <!-- <script src="./index.js"></script>
+  http://10.60.1.219:33385/u/assets/floatStyle.png 
+  -->
+</body>
+
+</html>

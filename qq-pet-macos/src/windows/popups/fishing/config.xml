@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<respath></respath>
+	<bgrespath>res\\bg\\1.swf</bgrespath><!--背景路径，不需要加上respath-->
+	<firsttipstime>2012,10,2,21,00</firsttipstime><!--月份要减一-->
+	<vipcaizhai>50</vipcaizhai>
+	<novipcaizhai>20</novipcaizhai>
+	<maxcaizhai>0.6</maxcaizhai>
+	<harvestfish>1000</harvestfish>
+	<canotcaizhai>
+		<item>行行好吧，给俺留点粮食过冬吧。</item>
+		<item>行行好吧，给俺留点粮食过冬吧。</item>
+	</canotcaizhai>
+</data>

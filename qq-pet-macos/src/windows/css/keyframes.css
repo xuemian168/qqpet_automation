@@ -1,0 +1,17 @@
+/* //动画 */
+@keyframes loading {
+  /*  旋转 */
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.iconActive {
+  animation-name: loading;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}

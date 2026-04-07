@@ -1,0 +1,108 @@
+body {
+  margin: 0 !important;
+}
+#app {
+  background-color: transparent !important;
+  /* background-color: rgba(255, 255, 255, 0.1) !important; */
+  height: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  box-shadow: unset !important;
+  border-radius: 10px !important;
+}
+#appMain {
+  cursor: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: transparent !important;
+  transition: all 1s;
+  font-size: 14px;
+}
+#move {
+  /* cursor: pointer; */
+  /* background-color: #fff; */
+  /* opacity: 0.4; */
+  /* padding: 30px; */
+  user-select: none;
+  /* cursor: url("../../assets/img_res/hand/default/normal.cur"), default; */
+  position: relative;
+}
+#pet {
+  /* opacity: 0.2; */
+  cursor: pointer !important;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: all 0.08s !important;
+}
+
+.phantom {
+  /* background-color: rgba(16, 199, 31, 1); */
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+/* //浮动 */
+#float {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.float_once {
+  position: absolute;
+  right: 5px;
+  top: 40px;
+  padding: 5px 10px;
+  background-color: rgba(255, 255, 255, 0);
+  transform: scale(0.8);
+  border-radius: 8px;
+}
+
+/* 效果过程 */
+.myFloat-enter-active,
+.myFloat-leave-active {
+  transition: all 1.5s;
+}
+/* 进场的瞬间与离场的效果添加 */
+.myFloat-enter,
+.myFloat-leave-to {
+  opacity: 0;
+  transform: translateY(-20px) scale(0.5);
+}
+
+/* // 表情 */
+.icon {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 24.95px;
+  height: 21.75px;
+}
+/* 类型 */
+.type {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 46.65px;
+  height: 16.75px;
+}
+/* 数字 */
+.nums {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 9.7px;
+  height: 13.15px;
+}

@@ -1,0 +1,370 @@
+#appMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: all 1s;
+  font-size: 12px;
+}
+
+.viewSwf_heard {
+  height: 40px;
+  width: 100%;
+  padding: 5px 20px 5px 20px;
+}
+.viewSwf_main {
+  flex: 1;
+  height: 0;
+  width: 100%;
+  padding: 20px;
+  overflow: hidden auto;
+  display: flex;
+  position: relative;
+}
+.spin {
+  position: absolute;
+  top: 0;
+  left: 0;
+  flex: 1;
+  /* background-color: rgba(0, 0, 0, 0.3); */
+  width: 100%;
+  height: 100%;
+}
+.viewSwf_mains {
+  flex: 1;
+  /* height: 0; */
+  width: 100%;
+  padding: 0 20px 20px 20px;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  overflow: hidden auto;
+}
+.viewSwf_left {
+  width: 80px;
+  height: 100%;
+  max-width: 150px;
+  line-height: 28px;
+}
+.viewSwf_right {
+  flex: 1;
+  /* width: 0;
+  height: 0; */
+}
+
+.notRouter {
+  line-height: 28px;
+}
+
+.viewSwf_name {
+  flex: 1;
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; */
+  margin-right: 20px;
+  white-space: nowrap;
+  width: 100%;
+  display: flex;
+}
+.avatars {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 5px;
+}
+
+.closeBut {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+}
+
+/* //加 */
+.titleIcon {
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 18px;
+}
+.routerDom {
+  width: 0;
+  white-space: nowrap;
+  overflow: auto hidden;
+  flex: 1;
+  line-height: 28px;
+  user-select: none;
+}
+
+.swf {
+  width: 80px;
+  height: 80px;
+  margin: 5px;
+  user-select: none;
+  border: 1px solid #bbb;
+  margin-bottom: 20px;
+}
+.swfBorder {
+  user-select: none;
+  /* padding-bottom: 20px; */
+  position: relative;
+  margin: 5px;
+  width: 100px;
+  height: 100px;
+}
+.foot {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
+/* .swfBorder::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 1px solid #bbb;
+  position: absolute;
+  bottom: 10px;
+  left: calc(50% - 5px);
+} */
+.names {
+  flex: 1;
+  width: 0;
+  overflow: auto hidden;
+}
+.chooseOnce .swf {
+  border: 1px solid #4662d9;
+  background-color: #fafafa;
+}
+
+.chooseOnce .names {
+  background-color: #4662d9;
+  color: #fff;
+}
+
+.embedIds {
+  user-select: none;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+}
+.chooseOnce .embedIds {
+  border: 1px solid #4662d9;
+}
+
+.viewSwf_main > span {
+  width: 100%;
+}
+
+/* 上传组件 */
+.upload {
+  flex: 1;
+  border: 1px dotted #d9d9d9;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fafafa;
+}
+
+.upload:hover {
+  border-color: #40a9ff;
+}
+
+.upload .up {
+  font-size: 18px;
+}
+.upload .down {
+  font-size: 16px;
+  color: #bbb;
+}
+.upIcon {
+  font-size: 30px;
+  margin: 10px 0;
+}
+
+/* 底部 */
+.pageFoot {
+  width: 100%;
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 分页 */
+.paging {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* flex: 1.5; */
+}
+
+.paginationPageSize,
+.chooseOnePage {
+  position: relative;
+  left: -150px;
+}
+.ant-pagination {
+  position: relative;
+  left: -150px;
+}
+.ant-select-selector {
+  display: none !important;
+}
+
+.tool {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+.seeChoose,
+.edit,
+.doFs {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.inviewSwf_mains {
+  background-color: #fff;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+.closeButs {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+}
+
+.pageFootpopup {
+  background-color: #fff;
+  border-radius: 5px;
+  margin-top: 1px !important;
+  padding-top: 10px;
+  margin-bottom: 5px !important;
+  padding-bottom: 10px;
+}
+.toolPopup {
+  right: 30px;
+  bottom: 30px;
+}
+
+/* 操作文件 */
+.doFs {
+  display: flex;
+}
+
+.choosePath {
+  width: 80%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+.toPath {
+  width: 100%;
+  position: relative;
+}
+
+/* //选择路径 */
+.chooseFolder {
+  width: 100%;
+  height: 400px;
+}
+.folderLeft,
+.folderRight {
+  /* flex: 1; */
+  width: 100%;
+  overflow: hidden auto;
+}
+.folderLeft {
+  flex: 1;
+  height: 80%;
+}
+.folderRight {
+  height: 20%;
+}
+.folderTouters {
+  overflow: hidden auto;
+}
+.notMsgs {
+  color: #aaa;
+}
+
+/* //编辑名字样式 */
+.ant-popover-title {
+  display: none;
+}
+.ant-popover-inner-content {
+  padding: 2px 5px;
+  display: flex;
+  font-size: 12px;
+  user-select: none;
+}
+
+/* 编辑 */
+.editMain {
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.closeButsEdit {
+  right: 40px;
+  top: 40px;
+}
+
+.blok {
+  width: 500px;
+  height: 160px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+.row {
+  width: 100%;
+  display: flex;
+}
+
+.editLabel {
+  width: 80px;
+}
+.editValue {
+  flex: 1;
+  white-space: nowrap;
+  overflow: auto hidden;
+}
+.editButs {
+}
+
+.fullWindowSeePet {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 10;
+}
+.fullWindowSeeBut {
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 20;
+}

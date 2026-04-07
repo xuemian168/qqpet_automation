@@ -1,0 +1,77 @@
+#appMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: all 1s;
+  font-size: 14px;
+  background-color: transparent !important;
+  font-size: 12px;
+}
+
+#app {
+  background-color: transparent !important;
+  height: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  box-shadow: unset !important;
+  border-radius: 10px !important;
+}
+
+.tipBackground {
+  /* background-image: url("../assets/tip/normal/14.svg"); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* //确认按钮 */
+.tipButs {
+  top: -27px;
+}
+.but {
+  height: 25px;
+  white-space: nowrap;
+  padding: 1px 8px;
+}
+.submit {
+  background-image: url("../assets/tip/normal/4.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  max-width: 90%;
+  word-break: break-all;
+  white-space: pre-wrap;
+  min-height: 25px;
+  height: auto;
+  text-align: center;
+}
+
+.submit:hover {
+  background-image: url("../assets/tip/normal/2.svg");
+  top: -1px;
+}
+.submit:active {
+  background-image: url("../assets/tip/normal/6.svg");
+  position: relative;
+  top: 1px;
+}
+
+.tipMain {
+  max-width: 75%;
+  margin-top: 35px;
+  border-radius: 5px;
+  overflow: hidden;
+  transform: all 5s;
+  position: relative;
+  left: 0;
+}
+.t_m_center_img {
+  width: 100%;
+  height: 50%;
+}
+.t_m_c_img {
+  /* width: 100%; */
+  border-radius: 5px;
+  /* height: 100%; */
+}

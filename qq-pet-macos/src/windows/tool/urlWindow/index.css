@@ -1,0 +1,316 @@
+#appMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: all 1s;
+  font-size: 14px;
+  background-color: transparent !important;
+  border-radius: 30px;
+  overflow: hidden;
+  padding: 32px;
+  /* background-color: #ffffff90; */
+}
+#appMain:hover .urls {
+  /* height: auto !important; */
+  /* opacity: 1; */
+  /* transform: translateY(0); */
+}
+#app {
+  background-color: transparent !important;
+  height: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  box-shadow: unset !important;
+  border-radius: 10px !important;
+}
+
+.tipbody {
+  /* width: 800px;
+  height: 600px; */
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.content {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* overflow: hidden; */
+  position: relative;
+  /* opacity: 0.3; */
+}
+.disableContent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  z-index: 999;
+}
+.disableIt {
+  background-color: rgba(255, 0, 0, 0.3) !important;
+}
+.urls {
+  padding-top: 4px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  opacity: 0.2;
+}
+#urlInput {
+  flex: 1;
+}
+.open {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-size: 25px;
+  margin-right: 8px;
+  opacity: 0.5;
+  transform: rotate(0deg);
+  transition: all 0.5s;
+  cursor: pointer;
+}
+.isOpen {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+.urlsFloat {
+  position: absolute;
+  left: 0;
+  bottom: 100%;
+  width: 100%;
+  overflow: hidden auto;
+  max-height: 0px;
+  border-radius: 10px;
+  transition: all 0.5s;
+  pointer-events: none;
+  /* transform: translateY(100%); */
+}
+.showFloat {
+  max-height: 175px;
+}
+.urlsFloats {
+  width: 100%;
+  /* height: 00px; */
+  background-color: #fff;
+  padding: 8px;
+  white-space: nowrap;
+  overflow-x: auto;
+  cursor: pointer;
+  position: relative;
+}
+.deletex {
+  position: absolute;
+  right: 10px;
+  font-size: 18px;
+  padding: 8px;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0.4;
+  width: 30px;
+  height: 30px;
+  top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.deletex:hover {
+  opacity: 0.8;
+}
+.urlsFloats:hover {
+  background-color: rgba(98, 217, 253, 0.483);
+  color: #fff;
+}
+.active.urlsFloats {
+  background-color: rgba(53, 171, 255, 0.923);
+  color: #fff;
+}
+.urls.Set {
+  position: absolute;
+  top: 160px;
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  /* transform: translateY(-70%); */
+  /* height: 0px; */
+  /* overflow: hidden; */
+  /* opacity: 0; */
+}
+.urls:hover {
+  height: auto !important;
+  opacity: 1 !important;
+  /* transform: translateY(0); */
+}
+.urls:hover .urlsFloat {
+  pointer-events: all !important;
+}
+.urls.Set input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #333;
+}
+iframe {
+  border: none;
+  flex: 1;
+  height: 100%;
+  z-index: -1;
+}
+
+.show {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  font-size: 30px;
+  color: #000;
+  background-color: #ffffff5f;
+  border-radius: 60px;
+  border: 1px solid #000;
+  padding: 5px 10px;
+}
+.move {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #333;
+  border-radius: 50%;
+  cursor: move;
+  z-index: 100;
+  border: 1px solid #fff;
+  user-select: none;
+  opacity: 0.6;
+}
+.moveBox {
+  width: 70px;
+  left: 10px;
+  bottom: 10px;
+  background-color: rgba(100, 100, 100, 0.2);
+  height: 70px;
+}
+
+:root {
+  --left: 70px;
+}
+.oppp {
+  position: fixed;
+  bottom: 20px;
+  left: calc(20px + var(--left) * 1);
+  width: 50px;
+  height: 50px;
+  background-color: #333;
+  border-radius: 50%;
+  cursor: crosshair;
+  z-index: 100;
+  user-select: none;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #fff;
+  display: flex;
+  color: #fff;
+}
+
+.disable {
+  position: fixed;
+  bottom: 20px;
+  left: calc(20px + var(--left) * 2);
+  width: 50px;
+  height: 50px;
+  background-color: #333;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 100;
+  user-select: none;
+  color: #fff;
+  align-items: center;
+  border: 1px solid #fff;
+  justify-content: center;
+  display: flex;
+}
+.up {
+  position: fixed;
+  bottom: 20px;
+  left: calc(20px + var(--left) * 3);
+  width: 50px;
+  height: 50px;
+  background-color: #333;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 100;
+  user-select: none;
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #fff;
+  display: flex;
+}
+
+.next {
+  position: fixed;
+  bottom: 20px;
+  left: calc(20px + var(--left) * 4);
+  width: 50px;
+  height: 50px;
+  background-color: #333;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 100;
+  user-select: none;
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #fff;
+  display: flex;
+}
+.upIt,
+.nextIt {
+  opacity: 0.6;
+  cursor: not-allowed !important;
+}
+.close {
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  background-color: #333;
+  color: #ff0000;
+  border-radius: 50%;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  z-index: 100;
+  user-select: none;
+  border: 1px solid #fff;
+}
+.move,
+.oppp,
+.close {
+  z-index: 999999999999999999 !important;
+}
+
+.zw {
+  width: 100%;
+  height: 80px;
+}
+
+.hideBut {
+  opacity: 0.1;
+  transition: all 0.5s;
+}
+.hideBut:hover {
+  opacity: 0.8;
+}

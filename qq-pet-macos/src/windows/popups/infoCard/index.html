@@ -1,0 +1,105 @@
+<div id="appMain" class="notSelect">
+  <div class="close not_drag focusPress" @click="closeWindow"></div>
+  <div class="headImg fcc">
+    <img class="img" :src="imgSrc" alt="" />
+  </div>
+  <div
+    class="pinkDiamondMain fcc not_drag"
+    :title="petInfo?.otherOptions?.pinkDiamond?pinkDiamondMainTtitle: '当前未开头粉钻'"
+    v-if="petInfo?.otherOptions?.pinkDiamondLevel"
+  >
+    <div
+      class="pinkDiamond"
+      :style="{backgroundImage: 'url(../assets/info/'
+    + ((petInfo?.otherOptions?.pinkDiamond ? 'u':'n') + petInfo?.otherOptions?.pinkDiamondLevel) 
+    +'.svg)'}"
+    ></div>
+    <div
+      class="pinkDiamondUP"
+      :class="{pinkDiamondUPs:petInfo?.otherOptions?.pinkDiamond }"
+    >
+      {{petInfo?.otherOptions?.growth}} /
+      {{petInfo?.otherOptions?.growthValue_next}}
+    </div>
+  </div>
+  <div class="name toe fcc">
+    {{petInfo?.info?.host + '家的' + petInfo?.info?.name}}
+  </div>
+
+  <div class="service fcc">
+    <div
+      class="sweetHeart"
+      :style="{backgroundImage: 'url(../assets/stateInfo/'
+        + (petInfo?.otherOptions?.sweetHeart? 'h_up':'h_down') 
+        +'.png)'}"
+    ></div>
+  </div>
+
+  <div class="petName rightRow fcb">
+    <div class="label">宠物昵称：</div>
+    <input
+      v-model="petName"
+      :maxlength="maxlength"
+      class="input not_drag"
+      type="text"
+    />
+    <div
+      class="but not_drag focusPress"
+      @click="changeName(petName,'name')"
+    ></div>
+  </div>
+  <div class="hostName rightRow fcb">
+    <div class="label">主人昵称：</div>
+    <input
+      v-model="host"
+      :maxlength="maxlength"
+      class="input not_drag"
+      type="text"
+    />
+    <div class="but not_drag focusPress" @click="changeName(host,'host')"></div>
+  </div>
+  <div class="sex smallRow">
+    <div class="smallLabel">性别：</div>
+    <div class="smallValue">{{petInfo?.info?.sex}}</div>
+  </div>
+  <div class="birthDay smallRow">
+    <div class="smallLabel">生日：</div>
+    <div class="smallValue">{{petInfo?.info?.birthDay}}</div>
+  </div>
+  <div class="level smallRow">
+    <div class="smallLabel">等级：</div>
+    <div class="smallValue">{{petInfo?.maxInfo?.level}}</div>
+  </div>
+  <div class="yb smallRow">
+    <div class="smallLabel">元宝：</div>
+    <div class="smallValue">{{petInfo?.info?.yb}}</div>
+  </div>
+  <div class="rightRow attributeValue">
+    <div class="label">个人能力</div>
+  </div>
+  <div class="intel smallRow">
+    <div class="smallLabel">智力：</div>
+    <div class="smallValue">{{petInfo?.info?.intel}}</div>
+  </div>
+  <div class="strong smallRow">
+    <div class="smallLabel">武力：</div>
+    <div class="smallValue">{{petInfo?.info?.strong}}</div>
+  </div>
+  <div class="charm smallRow">
+    <div class="smallLabel">魅力：</div>
+    <div class="smallValue">{{petInfo?.info?.charm}}</div>
+  </div>
+  <div class="rightRow educationValue">
+    <div class="label">学历获得</div>
+  </div>
+  <div class="educationInfo smallRow">
+    <div
+      class="smallValue"
+      v-for="(item, key ,index) in (petInfo?.studyValue || [])"
+      :key="index"
+    >
+      <span v-if="index != 0">、</span>
+      {{item}}
+    </div>
+  </div>
+</div>

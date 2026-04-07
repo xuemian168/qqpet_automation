@@ -1,0 +1,509 @@
+:root {
+  --iconSize: 40px;
+  --iconBoxSize: 50px;
+  --childWidth: 100px;
+  --childheight: 30px;
+  --childheightIn: 5px;
+  --transTime: 0.3s;
+  --mainButWidth: 30px;
+  --goodSize: 65px;
+}
+#app {
+  background-color: transparent !important;
+  /* background-color: rgba(255, 255, 255, 0.1) !important; */
+  height: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  box-shadow: unset !important;
+  border-radius: 10px !important;
+  background-color: red !important;
+}
+#appMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: all 1s;
+  background-color: transparent !important;
+  /* background-color: #fff; */
+  font-size: 14px;
+  position: relative;
+  width: 100%;
+  /* opacity: 0.3; */
+  /* position: relative; */
+  height: 100%;
+  /* height: calc(100% - 300px); */
+  /* top: 300px; */
+  /* padding-top: 300px; */
+}
+
+.obliqueHover:hover .m_h_img {
+  transform: rotate(45deg);
+  background-image: url("../assets/control/icons/bk/8.svg");
+}
+.obliqueHover:hover .m_h_name {
+  display: inline-block;
+}
+.obliqueHover:hover .m_h_i_back {
+  width: var(--iconBoxSize);
+  height: var(--iconBoxSize);
+}
+.obliqueHover:hover .m_h_i_bk_6 {
+  opacity: 1;
+}
+.marginLR {
+  margin: 0 10px;
+}
+.activeMenu {
+  padding-top: 40px;
+  position: relative;
+}
+.head_hover_cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  z-index: 999;
+  background-color: transparent;
+}
+.m_head {
+  position: relative;
+  border-radius: 50%;
+  width: var(--iconBoxSize);
+  height: var(--iconBoxSize);
+  /* background-color: #826b54; */
+}
+.m_h_name {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  /* width: 100%; */
+  padding: 2px 5px;
+  /* background-color: #826b54; */
+  background-image: url("../assets/control/icons/bk/12.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  color: #fff;
+  transform: translateY(-100%) translateX(-50%);
+  text-align: center;
+  white-space: nowrap;
+  border-radius: 10px;
+  display: none;
+  font-size: 10px;
+}
+.m_h_i_back {
+  width: var(--iconSize);
+  height: var(--iconSize);
+  overflow: hidden;
+  transition: all var(--transTime);
+  position: relative;
+}
+.m_h_i_bk_6 {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all var(--transTime);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.m_h_img {
+  width: var(--iconSize);
+  height: var(--iconSize);
+  border-radius: 50%;
+  position: relative;
+  background-image: url("../assets/control/icons/bk/2.svg");
+  transition: all var(--transTime);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+/* 二级菜单 */
+.obliqueHover:hover .m_children {
+  max-height: 200px !important;
+}
+.m_children {
+  max-height: 0px;
+  overflow: hidden;
+  width: var(--childWidth);
+  position: absolute;
+  left: 0;
+  top: var(--iconBoxSize);
+  transition: all var(--transTime);
+}
+.m_c_once {
+  white-space: nowrap;
+  /* border-left: 1px solid #826b54; */
+  width: var(--childWidth);
+  height: var(--childheight);
+  position: relative;
+  padding: 12px 0;
+}
+.obliqueHover:hover .smallLine {
+  opacity: 1 !important;
+}
+.smallLine {
+  opacity: 0;
+  width: calc(var(--iconBoxSize) / 4);
+  transition: all var(--transTime);
+  height: calc(var(--iconBoxSize) / 4);
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  overflow: hidden;
+}
+.smallLine::after {
+  content: "";
+  display: inline-block;
+  border-left: 1px solid #826b54;
+  height: 100%;
+  width: 0;
+  transform: rotate(45deg) scaleY(2);
+  position: relative;
+  left: 2px;
+  bottom: 2px;
+}
+.m_c_once.normal::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: calc(-50% + 2.5px);
+  height: 100%;
+  width: 1px;
+  background-color: #826b54;
+}
+
+.m_c_o_bk {
+  width: var(--childWidth);
+  height: calc(var(--childheight) - var(--childheightIn));
+  padding-left: 5px;
+  position: relative;
+}
+.m_c_o_bk:hover .m_c_o_b_point,
+.m_c_o_bk:hover .m_c_o_b_round {
+  background-color: #5a4a3a;
+}
+.m_c_o_b_point {
+  background-color: #826b54;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+.m_c_o_b_round {
+  background-color: #826b54;
+  height: calc(var(--childheight) - var(--childheightIn));
+  width: calc(var(--childheight) - var(--childheightIn));
+  border-radius: 50%;
+  margin-left: 5px;
+  z-index: 2;
+}
+.m_c_o_b_piece {
+  background-color: rgba(95, 76, 57, 0.5);
+  height: calc(var(--childheight) - var(--childheightIn));
+  position: relative;
+  left: calc(var(--childheight) - var(--childheight) * 1.5);
+  padding: 3px 5px;
+  padding-left: calc(var(--childheight) / 2);
+  border-radius: calc(var(--childheight) / 2);
+  color: #fff;
+  z-index: 1;
+}
+
+/* 进行活动 doActive*/
+
+.doActive {
+  position: relative;
+  top: 5px;
+  width: 100%;
+  height: 100%;
+}
+.active {
+  width: 350px;
+  height: 150px;
+  background-image: url("../assets/control/icons/active/2.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.d_head {
+  height: 25px;
+  width: 100%;
+}
+.d_h_img {
+  background-color: #fd8f20;
+  border-radius: 50%;
+  position: relative;
+  left: -1px;
+  width: 30px;
+  height: 30px;
+}
+.d_h_title {
+  color: #fff;
+  padding: 0 0 5px 5px;
+}
+.d_h_close {
+  height: 25px;
+  width: 25px;
+  background-image: url("../assets/control/icons/active/42.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.d_h_close:hover {
+  background-image: url("../assets/control/icons/active/44.svg");
+  top: -1px;
+}
+.d_h_close:active {
+  background-image: url("../assets/control/icons/active/46.svg");
+  position: relative;
+  top: 1px;
+}
+
+.d_main {
+  /* padding: 0 30px; */
+}
+/* //左右按键 */
+.concrol_left {
+  width: var(--mainButWidth);
+}
+.c_r_left,
+.c_r_right {
+  padding: 5px;
+  background-image: url("../assets/control/icons/active/50.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+}
+.c_r_left:hover {
+  background-image: url("../assets/control/icons/active/52.svg");
+  top: -1px;
+}
+.c_r_left:active {
+  background-image: url("../assets/control/icons/active/54.svg");
+  position: relative;
+  top: 1px;
+}
+.c_r_right {
+  background-image: url("../assets/control/icons/active/57.svg");
+}
+.c_r_right:hover {
+  background-image: url("../assets/control/icons/active/59.svg");
+  top: -1px;
+}
+.c_r_right:active {
+  background-image: url("../assets/control/icons/active/61.svg");
+  position: relative;
+  top: 1px;
+}
+.concrol_right {
+  width: var(--mainButWidth);
+}
+
+/* 图片 */
+.c_m_actives {
+  width: var(--goodSize);
+  height: var(--goodSize);
+  background-color: #fff;
+  padding: 3px;
+  margin: 3px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.2);
+}
+.c_m_actives:hover {
+  box-shadow: 0px 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+.c_m_actives:hover .c_m_a_tip {
+  display: inline-block;
+}
+/* // 任务样式  增加高度显示时间等信息 */
+.c_m_a_tip {
+  position: fixed;
+  display: none;
+  background-color: rgba(95, 76, 57, 0.8);
+  color: #fff;
+  z-index: 9999999;
+  border-radius: 10px;
+  padding: 5px;
+  border: 1px solid #774a1d;
+}
+.c_m_a_icon {
+  background-color: #fbb100;
+  width: 100%;
+  height: 100%;
+}
+
+.d_foot {
+  height: 30px;
+  width: 100%;
+  padding: 0 var(--mainButWidth);
+}
+
+/* 看病 */
+.curePet {
+  position: absolute;
+  left: 130px;
+  padding: 2px 3px;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 700;
+}
+/* //浮动提醒框 */
+.activeTip {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+}
+.tipMain {
+  width: 300px;
+  height: 140px;
+  background-image: url("../assets/control/icons/active/151.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: fixed;
+}
+.t_m_head,
+.t_m_foot {
+  flex-direction: row-reverse !important;
+  padding: 5px;
+}
+.t_m_head .t_m_close {
+  height: 25px;
+  width: 25px;
+  background-image: url("../assets/control/icons/active/42.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.t_m_head .t_m_close:hover {
+  background-image: url("../assets/control/icons/active/44.svg");
+  top: -1px;
+}
+.t_m_head .t_m_close:active {
+  background-image: url("../assets/control/icons/active/46.svg");
+  position: relative;
+  top: 1px;
+}
+.t_m_main {
+  overflow: hidden;
+  height: 0;
+}
+.t_m_m_c_icon {
+  width: 50px;
+  height: 50px;
+}
+.t_m_foot .t_m_but {
+  height: 25px;
+  width: 50px;
+  background-image: url("../assets/control/icons/active/115.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.t_m_foot .t_m_but:hover {
+  background-image: url("../assets/control/icons/active/117.svg");
+  top: -1px;
+}
+.t_m_foot .t_m_but:active {
+  background-image: url("../assets/control/icons/active/119.svg");
+  position: relative;
+  top: 1px;
+}
+
+/* //签到样式 */
+.activeTask {
+  width: 350px;
+  height: 150px;
+  background-image: url("../assets/tip/gift/2.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.activeTask .d_h_close {
+  position: relative;
+  top: 3px;
+}
+.activeTask .d_h_img,
+.activeTask .d_h_title {
+  display: none;
+}
+.d_h_iconTitleIcon {
+  width: 55px;
+  height: 14px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  left: 40px;
+  top: 3px;
+}
+
+.rightButsTask {
+  width: 25px;
+  height: 100%;
+}
+
+.rightButsTask .rbt_buts_online {
+  width: 23px;
+  height: 53px;
+  background-image: url("../assets/tip/gift/46.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.rightButsTask .rbt_buts_online.activeTask {
+  background-image: url("../assets/tip/gift/48.svg");
+}
+.rightButsTask .rbt_buts_sgin {
+  width: 23px;
+  height: 53px;
+  background-image: url("../assets/tip/gift/41.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  margin-top: 2px;
+}
+.rightButsTask .rbt_buts_sgin.activeTask {
+  background-image: url("../assets/tip/gift/43.svg");
+}
+
+/* //任务图片样式 */
+.activeTask .c_m_actives {
+  height: calc(var(--goodSize) + 15px);
+  position: relative;
+}
+
+.taskMsg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  width: 30px;
+  height: 30px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.childrenIcon {
+  width: 26px;
+  height: 26px;
+}
+
+.activeTipWin {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -80px;
+  left: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.activeTipWin .t_m_m_foot {
+  padding: 16px;
+}

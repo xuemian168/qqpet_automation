@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./ruffles.js"></script>
+</head>
+
+<body>
+    <div id="pet"></div>
+    <script>
+
+        let config = {
+            autoplay: "on",
+            backgroundColor: "#31497D",
+            letterbox: "off", //全屏
+            unmuteOverlay: "hidden",
+            allowScriptAccess: true,
+            wmode: 'transparent',
+            warnOnUnsupportedContent: false,//是否有提示消息
+            contextMenu: 'on',//'显示上下文'
+        }
+
+        console.log(window.RufflePlayer)
+        window.RufflePlayer = window.RufflePlayer || {};
+        // window.addEventListener("load", (event) => {
+        const ruffle = window.RufflePlayer.newest();
+        const player = ruffle.createPlayer();
+        player.id = "player"
+        console.log(player)
+        const container = document.getElementById("pet");
+        container.appendChild(player);
+        // player.load("../../assets/Action/GG/Adult/happy/Stand.swf");
+        // player.load("https://ruffle.rs/demo/logo-anim.swf");
+        // });
+        player.load({ url: "./Stand.swf", ...config }).then((e) => {
+        // player.load({ url: "https://ruffle.rs/demo/logo-anim.swf", ...config }).then((e) => {
+            console.info("ok1", e);
+        }).catch((e) => {
+            console.error(`Ruffle failed to load the file:1 ${e}`);
+        });
+        setTimeout(() => {
+
+            player.load({ url: "./Eat1.swf", ...config }).then((e) => {
+                console.info("ok2", e);
+            }).catch((e) => {
+                console.error(`Ruffle failed to load the file: 2 ${e}`);
+            });
+            setTimeout(() => {
+
+                player.load({ url: "./Dying.swf", ...config }).then((e) => {
+                    console.info("ok3", e);
+                }).catch((e) => {
+                    console.error(`Ruffle failed to load the file: 3${e}`);
+                });
+            }, 5000);
+        }, 5000);
+
+        player.addEventListener('loadedmetadata', () => {
+            console.info(player.metadata, 'isActionScript3');
+        })
+        player.style.width = "140px";
+        player.style.height = "140px";
+    </script>
+</body>
+
+</html>

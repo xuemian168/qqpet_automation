@@ -1,0 +1,154 @@
+<div id="appMain por" class="not_drag" :style="{opacity:toSee? '1 !important':'0 !important'}">
+  <div class="windowTip" v-if="windowTipData" :style="{
+    left: windowTipPosition[0] - 50  + 'px',
+    top: windowTipPosition[1] - 50 + 'px',
+  }">
+    <div v-if="windowTipData?.type == 'icon'" class="tipIcon tc">
+      {{windowTipData.icon}}
+    </div>
+  </div>
+  <!-- <div class="ruler">
+    <div class="ruler_x" :style="{
+      top:windowTipPosition[1] + 'px',
+      ...rulerStyle('x')
+    }"> </div>
+    <div class="ruler_y" :style="{
+      left:windowTipPosition[0] + 'px',
+      ...rulerStyle('y')
+    }"> </div>
+  </div> -->
+  <!-- not_drag notSelect -->
+  <span class="js-cursor-container" :style="{opacity:starT}"></span>
+  <canvas id="frist"></canvas>
+  <div class="tip fccC focusPress" cando :style="{opacity:show? 0.8:(showIcon?0.5:0)}"
+    :class="[show? 'showTip':'unShowTip',hideTipIcon && showIcon? 'hideShowTip':'',!show && showIcon? 'hideBackGround':'']">
+    <div class="openMoreTip fcc focusPress f1 wsnw" :title="!open? '点击开启控制':!openInfoTip? '点击打开详细提示':'点击关闭详细提示'" cando
+      @click="openInfoDataSee(open)">
+      <div class="title focusPress" cando :style="{maxWidth:show? '100px':'0px'}">
+        {{open?'已开启控制':'已关闭控制'}}
+      </div>
+      <div cando candoMust class="focusPress iconActive" :title="!open? '点击开启控制':!openInfoTip? '点击打开详细提示':'点击关闭详细提示'">☢
+      </div>
+    </div>
+    <div class="infoTip" :style="{
+      maxWidth:open && show && openInfoTip? '800px':'100px'
+    }" :class="[open && openInfoTip? 'openInfoTip':'unOpenInfoTip']" cando>
+      <div cando class="fcc w100 controlTitle" :class="[showControl.normal? 'openRowActive':'closeRowActive']"
+        @click="openCortrol('normal')">
+        控制值展示
+        <div class="iconActive" cando>
+          ☢
+        </div>
+        <div class="see ml32" cando :class="[showControl.normal? 'openRowSee':'closeRowSee']">
+          ⬆
+        </div>
+      </div>
+      <div class="row" cando :class="[showControl.normal? 'openRow':'closeRow']">
+        <div class="fjc" cando>
+          <div class="ts fC p8" cando>
+            <div cando> ☢</div>
+            <div cando>球数量：{{much}}</div>
+            <div cando>球大小：{{pointSize}}</div>
+            <div cando>是否显示缩略系统图标：{{showIcon? '是':'否'}}</div>
+          </div>
+          <div class="ts fC p8" cando>
+            <div cando> ☢</div>
+            <div cando>球透明度：{{op}}</div>
+            <div cando>球线透明度：{{opline}}</div>
+            <div cando>鼠标球线透明度：{{opmou}}</div>
+          </div>
+          <div class="ts fC p8" cando>
+            <div cando> ☢</div>
+            <div cando>跟随鼠标大小：{{starSize}}</div>
+            <div cando>跟随鼠标透明度：{{starT}}</div>
+            <div :title="openChangeShow? '点击关闭':'点击修改'" @click="openChange(starContent)" class="focusPress" cando>
+              跟随鼠标内容：{{starContent}}</div>
+            <div cando v-if="openChangeShow" class="fcc por openIconOnceChoose">
+              <div class="icons poa fcw" cando :style="{width:emoji.length / 3 + 'px'}">
+                <div class="iconOnce tc fcc por" :iconTip="item" @click="chooseIcon(item)"
+                  style="width: 20px;height: 20px;" cando v-for='(item, index) in emoji' :key='index'>{{item}}
+                </div>
+              </div>
+              <input @input="limitInput" class="changeInput" cando type="text" v-model="starContentData">
+              <!-- <div class="submit por" cando @click="chooseIcon">图标</div> -->
+              <div class="submit" cando @click="submit">修改</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div cando class="fcc w100 controlTitle" :class="[showControl.kjj? 'openRowActive':'closeRowActive']"
+        @click="openCortrol('kjj')">
+        快捷键控制
+        <div class="iconActive" cando>
+          ☢
+        </div>
+        <div class="see ml32" cando :class="[showControl.kjj? 'openRowSee':'closeRowSee']">
+          ⬆
+        </div>
+      </div>
+      <div class="row" cando :class="[showControl.kjj? 'openRow':'closeRow']">
+        <div class="fjc" cando>
+          <div class="ts fC p8" cando>
+            <div cando> ☢</div>
+            <div cando>ALT + 0 : 开启/关闭控制</div>
+            <div cando>ALT + ESC : 退出</div>
+            <div cando>ALT + R : 重新加载</div>
+            <div cando>ALT + 5 : 是否显示缩略系统图标</div>
+            <div cando>ALT + Y : 暂时隐藏/显示</div>
+          </div>
+          <div class="ts fC p8" cando>
+            <div cando> ☢</div>
+            <div cando>ALT + up : 圆球大</div>
+            <div cando>ALT + down : 圆球小</div>
+            <div cando>ALT + left : 圆球增加数量</div>
+            <div cando>ALT + right : 圆球减少数量</div>
+            <div cando>ALT + 8 : 跟随鼠标大</div>
+            <div cando>ALT + 2 : 跟随鼠标小</div>
+          </div>
+          <div class="ts fC p8" cando>
+            <div cando>ALT + 4 : 跟随鼠标显示</div>
+            <div cando>ALT + 6 : 跟随鼠标隐藏</div>
+            <div cando>Ctrl + up : 圆球显示</div>
+            <div cando>Ctrl + down : 圆球隐藏</div>
+            <div cando>Ctrl + left : 球与球之间连线显示</div>
+            <div cando>Ctrl + right: 球与球之间连线隐藏</div>
+            <div cando>Shift + up : 鼠标与球之间连线显示</div>
+            <div cando>Shift + down: 鼠标与球之间连线隐藏</div>
+          </div>
+        </div>
+      </div>
+      <!-- <div cando class="fcc w100 controlTitle" :class="[showControl.line? 'openRowActive':'closeRowActive']"
+        @click="openCortrol('line')">
+        辅助线控制
+        <div class="iconActive" cando>
+          ☢
+        </div>
+        <div class="see ml32" cando :class="[showControl.line? 'openRowSee':'closeRowSee']">
+          ⬆
+        </div>
+      </div>
+      <div class="row" cando :class="[showControl.line? 'openRow':'closeRow']">
+        <div class="fjc" cando>
+          <div class="ts fC p8" cando>
+            <div cando>快捷键控制: </div>
+            <div cando>ALT + 0 : 开启/关闭控制</div>
+            <div cando>ALT + ESC : 退出</div>
+            <div cando>ALT + R : 重新加载</div>
+            <div cando>ALT + 5 : 是否显示缩略系统图标</div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <!-- <div id="sets" style="opacity: 0.1;">
+		<button id="use"></button>
+    <form class="setss" name="in1">
+      <span>数量: </span><input class="in1" type="number" />
+      <span>尺寸: </span><input class="in1" type="number" />
+      <span>透明度-点0-1: </span><input class="in1" type="number" />
+      <span>透明度-鼠标线0-1: </sspan><input class="in1" type="number" />
+        <span>透明度-点线0-1: </span><input class="in1" type="number" />
+    </form>
+    <button id="ourb">start</button>
+  </div> -->
+  </div>
+</div>

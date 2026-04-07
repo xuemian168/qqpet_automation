@@ -1,0 +1,1 @@
+new class{constructor(){this.storage=window.localStorage}get(t){let e=this.storage.getItem(t+"");try{e=JSON.parse(e)}catch(t){}return e}set(t,e){try{e=JSON.stringify(e)}catch(t){}this.storage.setItem(t+"",e)}remove(t){this.storage.removeItem(t+"")}clear(){this.storage.clear()}},module.exports={};

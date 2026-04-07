@@ -1,0 +1,103 @@
+<div id="appMain" class="notSelect fs12">
+  <div class="content_main">
+    <div class="head">
+      <div class="petFile focusPress" @click="openPetFile"></div>
+      <div class="pinkDiamondMain f1">
+        <div class="pinkDiamond" :style="{backgroundImage: 'url(../assets/info/'
+        + ((petInfo?.otherOptions?.pinkDiamond ? 'u':'n') + (petInfo?.otherOptions?.pinkDiamondLevel || '1')) 
+        +'.svg)'}"></div>
+      </div>
+      <div class="close focusPress" @click="goClose"></div>
+    </div>
+    <div class="main">
+      <div class="onceInfo">
+        <div class="label">昵称：</div>
+        <div class="value">{{this.petInfo?.info?.name}}</div>
+      </div>
+      <!-- <div class="onceInfo">
+        <div class="label">主人：</div>
+        <div class="value">{{this.petInfo?.info?.host}}</div>
+      </div> -->
+      <div class="onceInfo">
+        <div class="label">等级：</div>
+        <div class="value">{{this.petInfo?.maxInfo?.level}}</div>
+        <div class="bones fcc h100">
+          <div class="bone fcc h100" v-for="(btem, bndex) in bone" :key="bndex">
+            <img :src="'../assets/stateInfo/' + btem.icon + '.png'" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="onceInfo">
+        <div class="label">年龄：</div>
+        <div class="value">{{Math.trunc(((+petInfo?.info?.onLineTime || 0) / 60))}}小时</div>
+      </div>
+    </div>
+    <div class="onceInfo onceInfoLine" @click="chooseOnce({})">
+      <div class="label">成长：</div>
+      <div class="valueLine">
+        <div class="background_line" :style="{width:toPercent(getGrowth[0],getGrowth[1],getGrowth[2]) }">
+          <div class="b_left" style="background-image: url('../assets/stateInfo/lusejindutiao00.png');"></div>
+          <div class="b_center">
+            <div class="b_c_back" style="background-image: url('../assets/stateInfo/lusejindutiao01.png');"></div>
+          </div>
+          <div class="b_right" style="background-image: url('../assets/stateInfo/lusejindutiao02.png');"></div>
+        </div>
+        <div class="v_l_value fs12 focusPress" :class="[hoverNum? 'hoverNum':'']">
+          {{getGrowth[0] - getGrowth[2]}} /
+          {{getGrowth[1] - getGrowth[2]}}
+          <!-- {{((getGrowth[0] - (getGrowth[2] || 0)) || '0')+ ' / ' + ((getGrowth[1] - getGrowth[2]) || '100')}} -->
+          <!-- {{getGrowth.join('/')}} -->
+          <!-- {{getGrowth[0] }} 
+          {{getGrowth[1] }} 
+          {{getGrowth[2] }}  -->
+        </div>
+      </div>
+    </div>
+    <div class="onceInfo onceInfoLine" v-for='(item, index) in valueList' :key='index' @click="chooseOnce(item)">
+      <div class="label">{{item.label}}</div>
+      <div class="valueLine">
+        <div class="background_line" :style="{width:toPercent(item.value[0],item.value[1] || 1) }">
+          <div class="b_left" v-if="item?.background"
+            :style="{backgroundImage: 'url(../assets/stateInfo/'+ item.background +'jindutiao00.png)'}"></div>
+          <div class="b_center">
+            <div class="b_c_back" v-if="item?.background"
+              :style="{backgroundImage: 'url(../assets/stateInfo/'+ item.background +'jindutiao01.png)'}"></div>
+          </div>
+          <div class="b_right" v-if="item?.background"
+            :style="{backgroundImage: 'url(../assets/stateInfo/'+ item.background +'jindutiao02.png)'}"></div>
+        </div>
+        <div class="v_l_value fs12 focusPress" :class="[hoverNum? 'hoverNum':'']">
+          {{(item.value[0] || '0') + ' / ' + item.value[1] }}
+        </div>
+      </div>
+    </div>
+    <div class="onceInfo onceInfoLine">
+      <div class="label">成长速度：</div>
+      <div class="value">{{petInfo?.maxInfo?.growthRate}}/小时</div>
+    </div>
+    <div class="onceInfo onceInfoLine">
+      <div class="label">在线：</div>
+      <div class="value mr16">{{petInfo?.info?.onlineDataTime|| 0}}/分钟</div>
+      <div class="getOnlineGift fcc focusPress" @click="chooseOnce({type:'task'})">
+        <div>领取</div>
+      </div>
+    </div>
+    <div class="onceInfo onceInfoLine">
+      <div class="label">状态：</div>
+      <div class="value fcc mr16">{{petState.msg || '成长中~'}}</div>
+      <div class="getOnlineGift fcc focusPress" @click="stopState" v-if="canStopState">
+        <div>停止</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot fcb w100">
+    <!-- title="注意，开启后自动使用物品~" -->
+    <div class="sweetHeart" :style="{backgroundImage: 'url(../assets/stateInfo/'
+        + (petInfo?.otherOptions?.sweetHeart? 'h_up':'h_down') 
+        +'.png)'}"></div>
+    <!-- title="注意，开启后自动使用物品~" -->
+    <div class="openSweetHeart focusPress" v-if="!this.petInfo?.otherOptions?.sweetHeart" @click="doSweetHeart(true)">
+    </div>
+    <div class="closeSweetHeart focusPress" v-else @click="doSweetHeart(false)"></div>
+  </div>
+</div>

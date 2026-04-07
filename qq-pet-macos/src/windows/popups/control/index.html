@@ -1,0 +1,289 @@
+<div
+  id="appMain"
+  class="not_drag notSelect"
+  :style="{
+  paddingTop: paddingTopMain
+}"
+>
+  <div class="activeTipWin" v-if="winShow">
+    <div class="tipMain fccC" cando>
+      <!-- :style="{
+          left:tipMainPosition[0] + 15 + 'px',
+          top:tipMainPosition[1] + 15 +'px',
+        }" -->
+      <div class="t_m_head fc w100" cando>
+        <div
+          class="t_m_close focusPress"
+          cando
+          @click="closeTipWin(true)"
+        ></div>
+      </div>
+      <div class="t_m_main f1 fccC w100" cando>
+        <!-- 头部文字 -->
+        <!-- <div class="t_m_m_top " cando v-if="tipOpt.tipMsg">{{tipOpt.tipMsg}}</div> -->
+        <!-- <div class="t_m_m_center" cando v-if="tipOpt.icon">
+          <img class="t_m_m_c_icon" cando :src="tipOpt.icon" alt="" />
+        </div> -->
+        <div class="t_m_m_foot" cando>{{winShowText || '暂无提醒~~'}}</div>
+      </div>
+      <div class="t_m_foot fc w100" cando>
+        <div class="t_m_but focusPress" cando @click="closeTipWin(false)"></div>
+      </div>
+    </div>
+  </div>
+  <div class="activeMenu w100 h100 fjc" v-show="activeMenu">
+    <div class="head_hover_cover"></div>
+    <div
+      class="menu h100 por"
+      v-for="(item, index) in menus"
+      :key="index"
+      :class="[index != 0 && index != (menus?.length ? menus.length : 0) - 1 ? 'marginLR':'']"
+    >
+      <div class="m_head obliqueHover focusPress fcc" cando>
+        <div class="m_h_name" cando>{{item.name}}</div>
+        <div class="m_h_i_back fcc focusPress">
+          <img
+            class="m_h_i_bk_6 focusPress"
+            src="../assets/control/icons/bk/6.svg"
+            alt=""
+          />
+          <img class="m_h_img focusPress" cando :src="item.icon" alt="" />
+        </div>
+        <div class="smallLine"></div>
+        <div
+          class="m_children"
+          :style="{
+        }"
+        >
+          <div
+            class="m_c_once focusPress fc normal"
+            cando
+            :class="['list' + index]"
+            v-for="(ctem, cndex) in item.children"
+            :key="cndex"
+          >
+            <div class="m_c_o_bk fcc focusPress" @click="chooseOnce(ctem)">
+              <div class="m_c_o_b_point focusPress" cando></div>
+              <div class="m_c_o_b_round focusPress fcc" cando>
+                <img
+                  class="focusPress childrenIcon"
+                  cando
+                  :src="ctem.icon"
+                  alt=""
+                />
+              </div>
+              <div class="m_c_o_b_piece focusPress" cando>{{ctem.name}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="doActive fjc" v-show="doActive">
+    <div
+      class="active fcC"
+      cando
+      v-if="doActiveMenu"
+      :class="[doActiveMenu.class || '']"
+    >
+      <div class="d_head fcc" cando>
+        <img class="d_h_img" cando :src="doActiveMenu.icon" alt="" />
+        <div class="d_h_title f1" cando>{{doActiveMenu.name}}</div>
+        <div class="d_h_iconTitle f1" v-if="activeUseData?.iconTitle">
+          <div
+            class="d_h_iconTitleIcon"
+            :style="{backgroundImage: activeUseData.iconTitle}"
+          ></div>
+        </div>
+        <div class="d_h_close focusPress" cando @click="closeActive"></div>
+      </div>
+      <div class="activeTip" v-if="tipOpt" cando>
+        <div
+          class="tipMain fccC"
+          cando
+          :style="{
+          left:tipMainPosition[0] + 15 + 'px',
+          top:tipMainPosition[1] + 15 +'px',
+        }"
+        >
+          <div class="t_m_head fc w100" cando>
+            <div
+              class="t_m_close focusPress"
+              cando
+              @click="closeTip(true)"
+            ></div>
+          </div>
+          <div class="t_m_main f1 fccC w100" cando>
+            <!-- 头部文字 -->
+            <!-- <div class="t_m_m_top " cando v-if="tipOpt.tipMsg">{{tipOpt.tipMsg}}</div> -->
+            <div class="t_m_m_center" cando v-if="tipOpt.icon">
+              <img class="t_m_m_c_icon" cando :src="tipOpt.icon" alt="" />
+            </div>
+            <div class="t_m_m_foot" cando>{{tipOpt.msg || '暂无提醒~~'}}</div>
+          </div>
+          <div class="t_m_foot fc w100" cando>
+            <div
+              class="t_m_but focusPress"
+              cando
+              @click="closeTip(false)"
+            ></div>
+          </div>
+        </div>
+      </div>
+      <!-- //看病 -->
+      <div
+        class="curePet focusPress"
+        cando
+        v-if="doActiveMenu.value == 'cure'"
+        @click="seeTip({type:'cure'})"
+      >
+        点击诊断
+      </div>
+      <div class="d_main f1 w100 fcc" cando>
+        <div class="concrol_left fcc" cando>
+          <div class="c_r_left focusPress" cando @click="nextPage(false)"></div>
+        </div>
+        <div class="concrol_main f1 fcbC" cando v-if="activeList?.length > 0">
+          <div class="w100 c_m_active_box fcc f1" cando>
+            <div
+              class="c_m_actives f1 fccC"
+              cando
+              v-for="(item, index) in activeList"
+              :key="index"
+              @click="useGood(item,index)"
+              :style="{opacity:item.name? 1:0}"
+              :class="[
+              doActiveMenu.value == 'task'?
+              (item.isTake == 1? 'focusPress':'')
+              :  (item.name  ? 'focusPress':'')]"
+            >
+              <div class="c_m_a_icon fccC f1" cando>
+                <img
+                  class="c_m_a_i_img w100 h100"
+                  cando
+                  :src="item.icon"
+                  alt=""
+                />
+              </div>
+              <div
+                class="taskMsg"
+                v-if="doActiveMenu.value == 'task'"
+                cando
+                :class="[taskMsg[item.isTake].class]"
+                :style="{backgroundImage: taskMsg[item.isTake].icon}"
+              >
+                <!-- {{taskMsg[item.isTake].label}} -->
+              </div>
+              <!-- <div class="taskTime" v-if="doActiveMenu.value == 'task'"> {{item.isTake}}</div> -->
+              <div class="taskTime" v-if="doActiveMenu.value == 'task'" cando>
+                {{item.seeTime}}
+              </div>
+              <div
+                class="c_m_a_tip fcC fs12"
+                cando
+                :style="{
+                left:mousePosition[0] + 15 + 'px',
+                top:mousePosition[1] + 15 +'px',
+              }"
+              >
+                <div class="toe" cando>{{item.name}}</div>
+                <div
+                  class="c_m_a_t_once fc"
+                  cando
+                  v-for="(vtem, vndex) in item.valueList"
+                  :key="vndex"
+                >
+                  <div class="c_m_a_t_label toe" cando>
+                    {{vtem?.label || ''}}
+                  </div>
+                  <div class="c_m_a_t_value toe" cando>
+                    {{vtem?.value || ''}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="page fs12" cando>{{current}} / {{total}}</div>
+        </div>
+        <div class="concrol_main f1 fcc" cando v-else>空空如也 ~~</div>
+        <div class="concrol_right fcc" cando>
+          <div class="c_r_right focusPress" cando @click="nextPage(true)"></div>
+        </div>
+        <div
+          class="rightButsTask fccC"
+          cando
+          v-if="doActiveMenu.value == 'task'"
+        >
+          <div
+            class="rbt_buts_online focusPress"
+            cando
+            @click="changeChildren(0)"
+            :class="[activeUseData?.useType == 'online'?'activeTask':'']"
+          ></div>
+          <div
+            class="rbt_buts_sgin focusPress"
+            cando
+            @click="changeChildren(1)"
+            :class="[activeUseData?.useType == 'sign'?'activeTask':'']"
+          ></div>
+        </div>
+      </div>
+      <div
+        class="d_foot"
+        cando
+        v-if="
+      doActiveMenu?.foot == 'hunger' 
+      || doActiveMenu?.foot == 'clean'
+      || doActiveMenu?.foot == 'cure'"
+      >
+        <div
+          class="d_f_line fcc"
+          cando
+          v-if="
+        doActiveMenu?.foot == 'hunger' 
+        || doActiveMenu?.foot == 'clean'
+        || doActiveMenu?.foot == 'cure'"
+        >
+          <div class="d_f_label" cando>
+            {{petInfo[doActiveMenu.foot]?.label}}
+          </div>
+          <div class="valueLine" cando>
+            <div
+              class="background_line"
+              cando
+              :style="{
+              width: toPercent(petInfo[doActiveMenu.foot]?.value[0] || 0
+                ,petInfo[doActiveMenu.foot]?.value[1] || 1) 
+              }"
+            >
+              <div
+                class="b_left"
+                cando
+                v-if="petInfo[doActiveMenu.foot]?.background"
+                :style="{backgroundImage: 'url(../assets/stateInfo/'+ petInfo[doActiveMenu.foot].background +'jindutiao00.png)'}"
+              ></div>
+              <div class="b_center" cando>
+                <div
+                  class="b_c_back"
+                  cando
+                  v-if="petInfo[doActiveMenu.foot]?.background"
+                  :style="{backgroundImage: 'url(../assets/stateInfo/'+ petInfo[doActiveMenu.foot].background +'jindutiao01.png)'}"
+                ></div>
+              </div>
+              <div
+                class="b_right"
+                cando
+                v-if="petInfo[doActiveMenu.foot]?.background"
+                :style="{backgroundImage: 'url(../assets/stateInfo/'+ petInfo[doActiveMenu.foot].background +'jindutiao02.png)'}"
+              ></div>
+            </div>
+            <div class="v_l_value fs12 focusPress" cando>
+              {{(petInfo[doActiveMenu.foot]?.value[0] || '0') + ' / ' +
+              petInfo[doActiveMenu.foot]?.value[1]}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

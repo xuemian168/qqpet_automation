@@ -41,6 +41,9 @@ def find_store_path(custom_path: str = "") -> Path:
     elif system == "Darwin":
         home = Path.home()
         candidates = [
+            # macOS 移植版（明文，无加密）
+            home / "Library" / "Application Support" / "qq-pet-macos" / "config-macos.json",
+            # 原版路径
             home / "Library" / "Application Support" / "pet" / "config.json",
             home / "Library" / "Application Support" / "pet" / "configDev.json",
         ]

@@ -25,7 +25,7 @@ Thumbs.db
 qq_pet_app/
 qq_pet_extracted/
 
-# asar 解包中的大型二进制文件
+# asar 解包中的大型二进制
 qq_pet_asar/node_modules/
 qq_pet_asar/libs/
 qq_pet_asar/src/assets/
@@ -51,6 +51,22 @@ qq_pet_asar/**/*.gif
 qq_pet_asar/**/*.cur
 qq_pet_asar/**/*.fla
 qq_pet_asar/**/*.xlsx
+
+# macOS 移植版
+qq-pet-macos/node_modules/
+qq-pet-macos/package-lock.json
+qq-pet-macos/src/assets/
+qq-pet-macos/src/windows/lib/
+qq-pet-macos/**/*.swf
+qq-pet-macos/**/*.wasm
+qq-pet-macos/**/*.png
+qq-pet-macos/**/*.gif
+qq-pet-macos/**/*.cur
+qq-pet-macos/**/*.fla
+qq-pet-macos/**/*.xlsx
+
+# 逆向分析报告
+新版QQ宠物*.md
 
 # 备份文件
 *.bak
