@@ -5,7 +5,7 @@ __pycache__/
 .venv/
 *.egg
 dist/
-build/
+/build/
 
 # IDE
 .idea/
@@ -55,11 +55,14 @@ qq_pet_asar/**/*.xlsx
 # macOS 移植版
 qq-pet-macos/node_modules/
 qq-pet-macos/package-lock.json
+qq-pet-macos/dist/
 qq-pet-macos/src/assets/
 qq-pet-macos/src/windows/lib/
 qq-pet-macos/**/*.swf
 qq-pet-macos/**/*.wasm
 qq-pet-macos/**/*.png
+qq-pet-macos/**/*.gif
+!qq-pet-macos/build/icon.png
 qq-pet-macos/**/*.gif
 qq-pet-macos/**/*.cur
 qq-pet-macos/**/*.fla
