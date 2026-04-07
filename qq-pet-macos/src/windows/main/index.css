@@ -29,7 +29,7 @@ body {
   /* cursor: url("../../assets/img_res/hand/default/normal.cur"), default; */
   position: relative;
 }
-#pet {
+#pet, ruffle-player, ruffle-player * {
   /* opacity: 0.2; */
   cursor: pointer !important;
   width: 100%;
@@ -39,6 +39,10 @@ body {
   left: 0;
   top: 0;
   transition: all 0.08s !important;
+  pointer-events: none !important;
+}
+#move {
+  pointer-events: auto !important;
 }
 
 .phantom {

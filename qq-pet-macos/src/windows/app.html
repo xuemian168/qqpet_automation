@@ -33,6 +33,10 @@
         body {
             background-color: transparent !important;
         }
+        /* Ruffle: 让鼠标事件穿透到下层 #move div */
+        ruffle-player {
+            pointer-events: none !important;
+        }
     </style>
     <script>
         window.RufflePlayer = window.RufflePlayer || {};
