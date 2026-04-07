@@ -1,0 +1,94 @@
+name: Build macOS App
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        arch: [x64, arm64]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Download resources
+        run: |
+          cd qq-pet-macos
+          gh release download resources-v1 \
+            --pattern 'qq-pet-resources.tar.gz' \
+            --dir /tmp
+          tar xzf /tmp/qq-pet-resources.tar.gz
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        run: |
+          cd qq-pet-macos
+          npm install
+
+      - name: Build (${{ matrix.arch }})
+        run: |
+          cd qq-pet-macos
+          npx electron-builder --mac dmg zip --${{ matrix.arch }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: qq-pet-macos-${{ matrix.arch }}
+          path: |
+            qq-pet-macos/dist/*.dmg
+            qq-pet-macos/dist/*.zip
+          if-no-files-found: error
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: List artifacts
+        run: find artifacts -type f | head -20
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: QQ宠物 macOS ${{ github.ref_name }}
+          body: |
+            ## QQ宠物 macOS 干净版
+
+            已移除遥测、设备指纹采集，使用 Ruffle WASM 替代 Flash。
+
+            ### 下载
+            - **Apple Silicon (M1/M2/M3/M4)**: 下载 `arm64` 版本
+            - **Intel Mac**: 下载 `x64` 版本
+
+            ### 安装
+            1. 下载 `.dmg` 文件
+            2. 双击打开，将 `QQ宠物.app` 拖入 `Applications`
+            3. 首次打开需要在「系统设置 → 隐私与安全性」中允许运行
+
+            > ⚠️ 应用未签名，macOS 会提示"无法验证开发者"，需手动允许。
+          files: artifacts/**/*
+          draft: false
+          prerelease: false
