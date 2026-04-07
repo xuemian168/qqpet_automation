@@ -2,6 +2,10 @@
 
 QQ 宠物（怀旧服 v1.2.4）的逆向分析与 macOS 移植项目，附带 OpenClaw Skill 实现宠物自动管理。
 
+![4d1509102338d77c5ba5e508f5624866](https://github.com/user-attachments/assets/7fa61a7a-b23f-483f-b071-d297dc393417)
+
+<img width="320" height="334" alt="image" src="https://github.com/user-attachments/assets/457cf203-b00f-4108-a6f8-cf44d75fe315" />
+
 ## 项目概述
 
 本项目完成了三件事：
