@@ -54,3 +54,4 @@ qq_pet_asar/**/*.xlsx
 
 # 备份文件
 *.bak
+docs/
