@@ -1,67 +1,160 @@
 # QQ 宠物管家 (WorkBuddy)
 
-QQ 宠物（怀旧服 v1.2.4）的 OpenClaw Skill，通过直接读写 electron-store 数据文件实现宠物自动管理。
+QQ 宠物（怀旧服 v1.2.4）的逆向分析与 macOS 移植项目，附带 OpenClaw Skill 实现宠物自动管理。
 
-## 功能
+## 项目概述
 
-- **状态监控**：查询饥饿/清洁/心情/健康/等级等完整状态
-- **基础养护**：喂食、洗澡、逗玩
-- **疾病诊断**：识别当前疾病、严重程度、所需药物
-- **自动治疗**：匹配背包药物自动治病
-- **一键养护**：按优先级自动处理所有问题
-- **物品管理**：查看背包食物、清洁用品、药品
+本项目完成了三件事：
 
-## 技术原理
+1. **逆向分析** — 完整分析了 QQ 宠物的通信架构（Express + WebSocket + RSA 上报）
+2. **macOS 移植** — 提取 Electron 源码，移除遥测/指纹采集，用 Ruffle WASM 替代 Flash，适配 macOS
+3. **自动化管理** — Python CLI 直接读写 electron-store 数据文件，实现宠物状态监控与养护
 
-QQ 宠物怀旧服是 Electron 应用，数据存储在 electron-store（AES-256-CBC 加密的 JSON 文件）中。本工具直接读写该数据文件，无需 OpenCV 或屏幕操控。
+## 快速开始
 
-## 安装
+### 1. 启动宠物（macOS）
 
 ```bash
+cd qq-pet-macos && npm install && npx electron .
+```
+
+宠物会出现在桌面上，可拖动、右键菜单、状态栏图标。
+
+### 2. 安装管理工具
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-依赖：
-- `pyyaml` — 配置文件解析
-- `pycryptodome` — AES 解密 electron-store
-
-## 使用
+### 3. 查看宠物状态
 
 ```bash
-# 查询状态
-python -m src.qq_pet.cli status
+.venv/bin/python -m src.qq_pet.cli status
+```
 
-# 喂食
-python -m src.qq_pet.cli feed
+输出示例：
 
-# 洗澡
-python -m src.qq_pet.cli bath
+```json
+{
+  "name": "爹",
+  "host": "主",
+  "level": 1,
+  "hunger": 3034,
+  "hunger_max": 3100,
+  "clean": 3026,
+  "clean_max": 3100,
+  "health": 5,
+  "mood": 969,
+  "mood_max": 1000,
+  "is_hungry": false,
+  "is_dirty": false,
+  "is_sick": false
+}
+```
 
-# 逗玩
-python -m src.qq_pet.cli play
+## CLI 命令
 
-# 健康诊断
-python -m src.qq_pet.cli diagnose
+```bash
+# 状态查询
+.venv/bin/python -m src.qq_pet.cli status      # 宠物状态概览
+.venv/bin/python -m src.qq_pet.cli info         # 详细信息（等级/成长/属性）
+.venv/bin/python -m src.qq_pet.cli inventory    # 背包物品
 
-# 治病（自动匹配药物）
-python -m src.qq_pet.cli heal
+# 养护操作
+.venv/bin/python -m src.qq_pet.cli feed         # 喂食（+1000 饥饿值）
+.venv/bin/python -m src.qq_pet.cli bath         # 洗澡（+1000 清洁值）
+.venv/bin/python -m src.qq_pet.cli play         # 逗玩（+100 心情值）
+.venv/bin/python -m src.qq_pet.cli feed --amount 2000  # 指定数量
+
+# 医疗
+.venv/bin/python -m src.qq_pet.cli diagnose     # 疾病诊断
+.venv/bin/python -m src.qq_pet.cli heal         # 自动治病（匹配背包药物）
 
 # 一键养护
-python -m src.qq_pet.cli auto
+.venv/bin/python -m src.qq_pet.cli auto         # 按优先级自动处理所有问题
 
-# 查看背包
-python -m src.qq_pet.cli inventory
-
-# 备份数据
-python -m src.qq_pet.cli backup
+# 数据管理
+.venv/bin/python -m src.qq_pet.cli backup       # 备份数据文件
+.venv/bin/python -m src.qq_pet.cli raw          # 查看原始数据（调试）
 ```
 
 ## OpenClaw Skill
 
-将 `skills/qq-pet/` 目录复制到 OpenClaw skills 目录即可使用：
+将 `skills/qq-pet/` 复制到 skill 目录后，AI 助手可通过自然语言管理宠物：
 
 ```bash
 cp -r skills/qq-pet ~/.openclaw/skills/
+```
+
+触发关键词：`QQ宠物`、`宠物状态`、`喂食`、`洗澡`、`治病`、`一键养护`
+
+## macOS 移植版改动
+
+相比 Windows 原版，macOS 版做了以下修改：
+
+| 修改项 | 说明 |
+|--------|------|
+| 遥测移除 | 移除 RSA 数据上报、machineId 采集、sysInfo 采集 |
+| Flash 替代 | PepFlash DLL → Ruffle WASM（最新 nightly） |
+| 自动更新 | 禁用远程更新检查 |
+| 存储加密 | 改为明文 JSON（方便 CLI 读写） |
+| 截图功能 | PrintScr.exe → macOS `screencapture` |
+| 窗口适配 | 修复透明窗口白框、托盘图标 ICO→PNG |
+| 拖动修复 | 鼠标事件监听提升到 document 级别 |
+| IP 获取 | 修复 Darwin 平台网络接口枚举 |
+
+## 游戏机制（逆向所得）
+
+### 属性临界值
+
+- **饥饿 < 720**：进入饥饿状态
+- **清洁 < 1080**：进入脏污状态
+- **心情 < 100**：心情低落
+- **健康 = 5** 正常，**4→1** 逐级生病，**0** = 死亡
+
+### 疾病系统
+
+三条独立疾病链，不治疗会逐级恶化：
+
+```
+感冒(板蓝根) → 发烧(退烧药) → 重感冒(银翘丸) → 肺炎(金色消炎药水) → 死亡
+咳嗽(枇杷糖浆) → 支气管炎(甘草剂) → 哮喘(定喘丸) → 肺结核(通风散) → 死亡
+肚子胀(消食片) → 胃炎(蓝色消炎药水) → 胃溃疡(龙胆草) → 胃癌(仙人汤) → 死亡
+```
+
+### 属性衰减（每60秒）
+
+- 饥饿/清洁：-5~8（心情<600 额外-2）
+- 心情：-2~4
+
+## 数据文件位置
+
+| 平台 | 路径 |
+|------|------|
+| macOS（移植版） | `~/Library/Application Support/qq-pet-macos/config-macos.json` |
+| Windows（原版） | `%APPDATA%/pet/config.json`（AES 加密） |
+
+## 项目结构
+
+```
+workbuddy/
+├── qq-pet-macos/                 # macOS 移植版 Electron 应用
+│   ├── main.js                   # 入口（已清理遥测）
+│   ├── package.json
+│   └── src/                      # 源码（从 app.asar 解包修改）
+├── skills/qq-pet/SKILL.md        # OpenClaw Skill 定义
+├── src/qq_pet/                   # Python 管理工具
+│   ├── cli.py                    # CLI 入口
+│   ├── pet_client.py             # 数据客户端
+│   ├── store_reader.py           # electron-store 读写
+│   ├── actions.py                # 养护动作
+│   ├── game_data.py              # 游戏常量（逆向）
+│   └── models.py                 # 数据模型
+├── config.yaml                   # 配置文件
+├── requirements.txt              # Python 依赖
+└── pyproject.toml
 ```
 
 ## 配置
@@ -69,27 +162,11 @@ cp -r skills/qq-pet ~/.openclaw/skills/
 编辑 `config.yaml`：
 
 ```yaml
-store_path: ""              # 留空自动检测
-encryption_key: "aes-256-cbc"
+store_path: ""                # 留空自动检测
+encryption_key: "aes-256-cbc" # Windows 原版加密密钥
 thresholds:
   hunger: 720
   clean: 1080
   mood: 100
   health: 5
-```
-
-## 项目结构
-
-```
-workbuddy/
-├── skills/qq-pet/SKILL.md     # OpenClaw Skill 定义
-├── src/qq_pet/
-│   ├── cli.py                 # CLI 入口
-│   ├── pet_client.py          # 数据客户端
-│   ├── store_reader.py        # electron-store 读写
-│   ├── actions.py             # 动作封装
-│   ├── game_data.py           # 游戏常量
-│   └── models.py              # 数据模型
-├── config.yaml                # 配置
-└── docs/                      # 设计文档
 ```
