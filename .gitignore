@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+*.egg
+dist/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# pytest
+.pytest_cache/
+
+# QQ宠物原始安装包和Electron运行时（太大，不提交）
+*.exe
+qq_pet_app/
+qq_pet_extracted/
+
+# asar 解包中的大型二进制文件
+qq_pet_asar/node_modules/
+qq_pet_asar/libs/
+qq_pet_asar/src/assets/
+qq_pet_asar/39f974bfc70b412d*
+qq_pet_asar/3affaca7977286de*
+qq_pet_asar/4a56bad37f1dbfc7*
+qq_pet_asar/4f0814ab1ed847b6*
+qq_pet_asar/580b5aa9814ed4ef*
+qq_pet_asar/5a4ac95c311c5c83*
+qq_pet_asar/85ee50120deeb07e*
+qq_pet_asar/87ecb39aa1987723*
+qq_pet_asar/8e131c6959f17882*
+qq_pet_asar/92898e67953ce51e*
+
+# asar 中的第三方库（可从 npm 重新获取）
+qq_pet_asar/src/windows/lib/
+
+# asar 中的二进制资源文件（swf/wasm/图片/flash等）
+qq_pet_asar/**/*.swf
+qq_pet_asar/**/*.wasm
+qq_pet_asar/**/*.png
+qq_pet_asar/**/*.gif
+qq_pet_asar/**/*.cur
+qq_pet_asar/**/*.fla
+qq_pet_asar/**/*.xlsx
+
+# 备份文件
+*.bak

@@ -1,0 +1,104 @@
+<div id="appMain">
+  <div class="home">
+    <div class="leftMenu" :class="{ openMenu: open }">
+      <div class="topSee">
+        <div
+          class="open"
+          :class="{ openIcon: open }"
+          :title="open ? '收起' : '展开'"
+          @click="openMenu"
+        >
+          <svg
+            t="1747818593746"
+            class="icon"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            p-id="6447"
+            width="32"
+            height="32"
+          >
+            <path
+              d="M102.4 0h307.2a512 512 0 0 1 0 1024H102.4V0z"
+              fill="#409eff"
+              p-id="6448"
+            ></path>
+            <path
+              d="M396.62933368 512L611.53279968 726.76693299 563.19999968 775.099733 300.10026668 512 563.19999968 248.900267l48.264534 48.264533L396.69759968 512z"
+              fill="#FFFFFF"
+              p-id="6449"
+            ></path>
+          </svg>
+        </div>
+        <!-- <div class="TopTip" v-if="open">
+          <div class="TopTipTitle" v-html="TopTip"></div>
+          <svg t="1747819650697" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11995" width="32" height="32"><path d="M0 0m512 0l0 0q512 0 512 512l0 0q0 512-512 512l0 0q-512 0-512-512l0 0q0-512 512-512Z" fill="#5175F4" p-id="11996"></path><path d="M512 0a512 512 0 1 1 0 1024A512 512 0 0 1 512 0z m0 36.571429a475.428571 475.428571 0 1 0 0 950.857142 475.428571 475.428571 0 0 0 0-950.857142z" fill="#2D5AFA" p-id="11997"></path><path d="M512 292.571429a73.142857 73.142857 0 1 1 0-146.285715 73.142857 73.142857 0 0 1 0 146.285715z m0 73.142857a73.142857 73.142857 0 0 1 73.142857 73.142857v365.714286a73.142857 73.142857 0 0 1-146.285714 0V438.857143a73.142857 73.142857 0 0 1 73.142857-73.142857z" fill="#FFFFFF" p-id="11998"></path></svg></div>
+          -->
+      </div>
+      <div class="menu_main">
+        <div
+          class="menu_item"
+          :class="{ active: current == item.router }"
+          v-for="(item, index) in gameList"
+          :key="index"
+          @click="changeSwf(item)"
+        >
+          <div class="c_c" v-if="item.children">
+            <div class="c_title">
+              {{item.name}}
+              <div class="c_cicon" :class="{ openChildrenIcon: item.show }">
+                <svg
+                  t="1747824681672"
+                  class="icon"
+                  viewBox="0 0 1024 1024"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  p-id="16631"
+                  width="32"
+                  height="32"
+                >
+                  <path
+                    d="M511 511.6m-448.5 0a448.5 448.5 0 1 0 897 0 448.5 448.5 0 1 0-897 0Z"
+                    fill="#24B8FF"
+                    p-id="16632"
+                  ></path>
+                  <path
+                    d="M488.6 602l193.3-193.3c12.3-12.3 32.4-12.3 44.7 0l0.4 0.4c12.3 12.3 12.3 32.4 0 44.7L533.7 647.1c-12.3 12.3-32.4 12.3-44.7 0l-0.4-0.4c-12.3-12.2-12.3-32.4 0-44.7z"
+                    fill="#FFFFFF"
+                    p-id="16633"
+                  ></path>
+                  <path
+                    d="M340.1 408.7L533.4 602c12.3 12.3 12.3 32.4 0 44.7l-0.4 0.4c-12.3 12.3-32.4 12.3-44.7 0L295 453.8c-12.3-12.3-12.3-32.4 0-44.7l0.4-0.4c12.3-12.3 32.4-12.3 44.7 0z"
+                    fill="#FFFFFF"
+                    p-id="16634"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div
+              class="c_main"
+              :class="{ openChildren: item.show }"
+              :style="{
+              maxHeight: item.show ? item.children.length*50+'px' : '0'
+            }"
+            >
+              <div
+                class="c_item"
+                v-for="(ctem, cndex) in item.children"
+                :class="{ active: current == ctem.router }"
+                :key="cndex"
+                @click.stop="changeSwf(ctem)"
+              >
+                {{ctem.name}}
+              </div>
+            </div>
+          </div>
+          <div v-else>{{ item.name }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="swfMain">
+      <embed id="gameMain" name="gameMain" class="gameMain" />
+    </div>
+  </div>
+</div>

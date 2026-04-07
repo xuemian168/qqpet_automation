@@ -1,0 +1,38 @@
+<div id="appMain">
+  <!-- <img src="../assets/shop/buy/137.svg" alt=""> -->
+  <div class="store notSelect">
+    <div class="storeHead fc">
+      商城
+    </div>
+    <div class="storeMain">
+      <div class="petBody fcc">
+        <div class="imgBody">
+          <img class="img" :src="imgSrc" alt="">
+        </div>
+      </div>
+      <div class="myStore">
+        <div class="tab fc">
+          <div class="tabOnce focusPress not_drag" v-for='(item, index) in myStore.tab' :key='index'
+            :class="[index == myStore.tab.length-1 ? 'over':'']" :style="{backgroundImage: 'url(../assets/shop/store/images/menu/'
+    + (item.value == myStore.tabValue.tab ? item.icon1:item.icon) +'.gif)'}" @click="chooseMyStore(index)">
+          </div>
+        </div>
+        <div class="goods" v-if="myStore?.tabValue?.children.length >0">
+          <div class="tab fc">
+            <div class="t_tabOnce focusPress not_drag" v-for='(item, index) in myStore.tabValue?.children' :key='index'
+              :style="{backgroundImage: 'url(../assets/shop/store/images/menu/'
+  + (item.value == myStore.tabValue.tabc ? item.icon1:item.icon) +'.gif)', width:item?.width || (item.label.length == 2 ? '44px':'59px')}"
+              @click="chooseMyStore(myStore.tabValue.v1, index)">
+            </div>
+          </div>
+        </div>
+        <!-- {{myStore.tabValue.tabc}} -->
+        <div class="storeGoods">
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

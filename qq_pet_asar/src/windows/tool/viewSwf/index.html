@@ -1,0 +1,236 @@
+<div id="appMain">
+  <div class="viewSwf_heard flex-c-c">
+    <div class="viewSwf_left">
+      .swf查看器
+    </div>
+    <div class="viewSwf_right flex-c-b">
+      <div class="viewSwf_name">
+        <span class="buts not_drag" v-if="router?.length > 0">
+          <span title="返回上传" class="titleIcon" v-show="isSee" @click="backUp">
+            <svg class="icon   hand not_drag" aria-hidden="true">
+              <use xlink:href="#icon-fanhui1"></use>
+            </svg>
+          </span>
+          <span title="返回文件" class="titleIcon" v-show="!isSee && files.length >0" @click="backSee">
+            <svg class="icon   hand not_drag" aria-hidden="true">
+              <use xlink:href="#icon-fanhui1-copy"></use>
+            </svg>
+          </span>
+          <span title="打开" class="titleIcon" @click="openFile(null)" v-show="isSee">
+            <svg class="icon   hand not_drag" aria-hidden="true">
+              <use xlink:href="#icon-jurassic_open"></use>
+            </svg>
+          </span>
+        </span>
+        <span v-if="router?.length > 0" class="routerDom  hoverScrol">
+          <span :title="router.join('/')" v-for="(rot,rod) in router" :key="rod"><span v-if="rod != 0">/</span><span
+              class="hand" @click="toRouter(rod)">{{rot}}</span> </span>
+        </span>
+        <div v-else class="notRouter">点击或拖动选择目录进行文件读取</div>
+      </div>
+      <svg class="icon closeBut hand not_drag" aria-hidden="true" @click="closeWindow">
+        <use xlink:href="#icon-guanbi-copy"></use>
+      </svg>
+    </div>
+  </div>
+  <div class="viewSwf_main flex-c-c not_drag" v-show="!isSee">
+    <div class="spin fcc" v-show="spinningUpFile">
+      <a-spin :spinning="spinningUpFile">
+      </a-spin>
+      <div class="spinTip"> 正在加载中···</div>
+    </div>
+    <input type="file" accept=".swf" multiple ref="getFolder" webkitdirectory directory @change="upLoadFile"
+      style="display: none;">
+    <div class="upload hand mr5" @click="openFile('getFolder')" draggable="true">
+      <div class="upIcon">
+        <svg class="icon   hand not_drag" aria-hidden="true">
+          <use xlink:href="#icon-jurassic_open"></use>
+        </svg>
+      </div>
+      <p class="up">选取目录</p>
+      <p class="down">
+        可读取文件夹进行预览
+      </p>
+    </div>
+    <input type="file" accept=".swf" multiple ref="getFiles" @change="upLoadFile" style="display: none;">
+    <div class="upload hand ml5" @click="openFile('getFiles')" draggable="true">
+      <div class="upIcon">
+        <svg class="icon   hand not_drag" aria-hidden="true">
+          <use xlink:href="#icon-jurassic_open"></use>
+        </svg>
+      </div>
+      <p class="up">选取文件</p>
+      <p class="down">
+        可读取文件进行预览
+      </p>
+    </div>
+  </div>
+  <div class="viewSwf_mains  not_drag" v-show="isSee">
+    <!-- {{files}} -->
+    <span class="swfBorder hand" v-for="(item,index) in files" :key="item.id"
+      :class="[chooseFiles.includes(item) ? 'chooseOnce':'']" @click="chooseRouter(item)">
+      <embed :src="item.path" :style="getStyle()" class="swf hand" type="" wmode="transparent"
+        allowscriptaccess="always">
+      <div class="foot">
+        <a-popover placement="topLeft">
+          <template #content>
+            <div class="reName hand not_drag" @click="reNameFn(item,index)">
+              重命名 <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-bianji"></use>
+              </svg>
+            </div>
+          </template>
+          <div class="embedIds">{{item.id}}.</div>
+        </a-popover>
+        <div class="names hoverScrol" :title="item.path">{{item.name}}</div>
+      </div>
+    </span>
+  </div>
+  <div class="pageFoot" v-if="files.length > 0" v-show="isSee">
+    <div class="chooseOnePage not_drag">
+      <a-checkbox v-model:checked="checkAll" :indeterminate="indeterminate" @change="onCheckAllChange">全选</a-checkbox>
+      <a-checkbox v-model:checked="checkAllPage" :indeterminate="indeterminatePage" @change="onCheckAllChangePage">全选当页
+      </a-checkbox>
+    </div>
+    <div class="paginationPageSize">
+      <a-dropdown placement="top">
+        <a-button>{{ pageSize }} / 页</a-button>
+        <template #overlay>
+          <a-menu>
+            <a-menu-item v-for="(pite,pind) in pageSizeOptions" :key="pind">
+              <a-button @click="changePageSize(pite)">{{ pite }} / 页</a-button>
+            </a-menu-item>
+          </a-menu>
+        </template>
+      </a-dropdown>
+    </div>
+    <a-pagination class="not_drag" showSizeChanger size="small" @change="changePage" v-model:pageSize="pageSize"
+      v-model:current="current" :total="paging" show-quick-jumper simple>
+    </a-pagination>
+  </div>
+  <div class="tool" v-if="chooseFiles.length > 0" v-show="isSee">
+    <a-button @click="doFile('move')" type="primary">移动到</a-button>
+    <a-button @click="doFile('copy')">复制到</a-button>
+    <!-- disabled title="敬请期待~" -->
+    <a-button type="text" @click="seeChooseFn" ghost>查看已选择</a-button>
+  </div>
+
+  <div class="seeChoose" v-show="seeChoose">
+    <div><svg class="icon closeButs hand not_drag" aria-hidden="true" @click="seeChoose = false">
+        <use xlink:href="#icon-guanbi-copy"></use>
+      </svg></div>
+    <div class="viewSwf_mains inviewSwf_mains not_drag">
+      <!-- {{files}} -->
+      <span class="swfBorder hand" v-for="(item,index) in chooseFilesPopup" @click="clearChooseRoutrePopup(item)"
+        :key="item.id">
+        <embed :src="item.path" style="width: 90px;height: 90px;" class="swf hand" type="" wmode="transparent"
+          allowscriptaccess="always">
+        <div class="foot not_drag">
+          <div class="embedIds">{{item.id}}.</div>
+          <div class="names hoverScrol" :title="item.path">{{item.name}}</div>
+        </div>
+      </span>
+    </div>
+    <div class="pageFoot pageFootpopup" v-if="chooseFiles.length > 0">
+      <a-pagination class="nt_odrag" showSizeChanger size="small" @change="changePagePopop"
+        v-model:pageSize="pageSizePopop" v-model:current="currentPopop" :total="pagingPopop" show-quick-jumper>
+      </a-pagination>
+    </div>
+    <div class="tool toolPopup">
+      <a-button @click="submitPopup" type="primary" danger>确定
+        <!-- {{chooseFilesPopup.length }}{{ chooseFiles.length }} -->
+        {{+chooseFiles.length - +chooseFilesPopup.length > 0 ?
+        ('已清除*' + (+chooseFiles.length - +chooseFilesPopup.length) + '*个文件选择'):
+        ''}}
+      </a-button>
+      <a-button @click="seeChoose = false">取消</a-button>
+    </div>
+  </div>
+
+  <div class="doFs fcc" v-show="toPath">
+    <div class="choosePath">
+      <div class="chooseFilesInof mb5">
+        <div>{{state == 0? '请选择路径':state == 1? '正在操作~':'操作完成'}}</div>
+        <div class="doList">
+          <div class="once" v-for="(coite,coind) in chooseFiles">{{coite.path}}</div>
+        </div>
+        <span style="color:rgb(117, 214, 97)">{{toNum}}</span> / {{chooseFiles.length}}
+      </div>
+      <div class="toPath mb5 fcdc not_drag">
+        <!-- <a-auto-complete v-model:value="toPath" :options="[{ value: 'text 1' }, { value: 'text 2' }]"
+          placeholder="请选择目标路径" /> -->
+        <a-input style="width: 100%;" v-model:value="toPath" placeholder="Basic usage" />
+      </div>
+      <div class="chooseFolder fdc mb5">
+        <div class="folderLeft fdc">
+          <div class="folderTitle">
+            <svg class="icon mr5  hand not_drag" aria-hidden="true">
+              <use xlink:href="#icon-jurassic_open"></use>
+            </svg>附近路径
+          </div>
+          <div v-show="otherFolders.length == 0" class="notMsgs">无附近路径</div>
+          <div class="folderTouters">
+            <div class="folderRouter cbhover hand" @click="chooseFolder(oite)" v-for="(oite,oind) in otherFolders">
+              {{oite.path}}</div>
+          </div>
+        </div>
+        <div class="folderRight fdc md5">
+          <div class="folderTitle"><svg class="icon mr5  hand not_drag" aria-hidden="true">
+              <use xlink:href="#icon-lishi"></use>
+            </svg>历史选择路径</div>
+          <div v-show="historyFolders.length == 0" class="notMsgs">无历史路径</div>
+          <div class="folderTouters">
+            <div class="folderRouter cbhover hand" @click="chooseFolder(hite)" v-for="(hite,hind) in historyFolders">
+              {{hite.path}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="buts">
+        <a-button @click="move" :loading="state == 1" type="primary">开始</a-button>
+        <a-button @click="toPath = null" :loading="state == 1">取消</a-button>
+      </div>
+    </div>
+  </div>
+
+  <div class="edit fcc" v-show="editFile.id">
+    <div class="editMain fcdc">
+      <svg class="icon closeButs closeButsEdit hand not_drag" aria-hidden="true" @click="editFile = {}">
+        <use xlink:href="#icon-guanbi-copy"></use>
+      </svg>
+      <embed :src="editFile.path" :class="[fullWindowState? 'fullWindowSeePet':'']" style="width: 300px;height: 300px;"
+        class="swf hand" type="" wmode="transparent" allowscriptaccess="always">
+      <div class="blok">
+        <div class="row ">
+          <div class="editLabel">编号：</div>
+          <div class="hoverScrol editValue">
+            {{editFile.id}}
+          </div>
+        </div>
+        <div class="row ">
+          <div class="editLabel">路径：</div>
+          <div class="hoverScrol editValue">
+            {{editFile.path}}
+          </div>
+        </div>
+        <div class="row ">
+          <div class="editLabel"> 名称：</div>
+          <div class="hoverScrol editValue">
+            {{editFile.name}}
+          </div>
+        </div>
+        <div class="row ">
+          <div class="editLabel"> 重命名：</div>
+          <div class="hoverScrol editValue">
+            <a-input v-model:value="editFile.newName" placeholder="请输入名称" />
+          </div>
+        </div>
+      </div>
+      <div class="editButs">
+        <a-button @click="edit" :loading="editState == 1" type="primary">确定</a-button>
+        <a-button @click="editFile = {}" :loading="editState == 1">取消</a-button>
+        <a-button :class="[fullWindowState? 'fullWindowSeeBut':'']" @click="fullWindow">{{fullWindowState?
+          '退出全屏':'全屏显示'}}</a-button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,97 @@
+#appMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: all 1s;
+  font-size: 14px;
+  background-color: transparent !important;
+}
+
+#app {
+  background-color: transparent !important;
+  height: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  box-shadow: unset !important;
+  border-radius: 10px !important;
+}
+
+.store {
+  padding: 0 20px 20px 20px;
+  background-image: url("../assets/shop/store/images/malf_05.gif");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+.storeHead {
+  height: 30px;
+  line-height: 30px;
+}
+.storeMain {
+  width: 800px;
+  height: 600px;
+  background-image: url("../assets/shop/store/Store_img/BG.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+/* //图片 */
+/* //图片 */
+.petBody {
+  position: absolute;
+  left: 56px;
+  height: 230px;
+  width: 280px;
+  top: 34px;
+  /* background-image: url("../assets/info/16.svg"); */
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
+  border-radius: 10px;
+}
+.petBody .imgBody {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  top: -10px;
+}
+.petBody .imgBody .img {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* //我的 */
+.myStore {
+  background-color: rgba(0, 255, 255, 0.5);
+  position: absolute;
+  left: 30px;
+  top: 290px;
+  width: 330px;
+  height: 290px;
+}
+.myStore .tab {
+  height: 27px;
+  width: 100%;
+  background-color: #cf393969;
+}
+.myStore .tab .tabOnce {
+  height: 27px;
+  width: 82px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.myStore .tab .tabOnce.over {
+  border-radius: 0 40px 0 0;
+}
+
+.myStore .tab .t_tabOnce {
+  height: 22px;
+  width: 59px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.myStore .tab .t_tabOnce.over {
+  border-radius: 0 40px 0 0;
+}

@@ -1,0 +1,1 @@
+(()=>{var __webpack_exports__={};const _require=eval("require");let safeData;const machine=_require("node-machine-id");class isSafe{machineId="";sysInfo=null;constructor(){this.machineId=machine.machineIdSync(),this.sysInfo=windowInfo}}global.isSafe=new isSafe,module.exports=__webpack_exports__})();

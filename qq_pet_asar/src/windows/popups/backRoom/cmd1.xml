@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <result>0</result>
+    <msg><![CDATA[温馨提示：由于你的网络异常，上次游戏还没有完成，你拥有一次重新开始第1关游戏的机会，你确认开始吗？]]></msg>
+    <sex>103</sex>
+    <level>3</level>
+    <gate>10</gate>
+</root>

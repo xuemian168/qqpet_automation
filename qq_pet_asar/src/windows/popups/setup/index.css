@@ -1,0 +1,303 @@
+#appMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: all 1s;
+  font-size: 14px;
+  background-color: transparent !important;
+}
+
+#app {
+  background-color: transparent !important;
+  height: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  box-shadow: unset !important;
+  border-radius: 10px !important;
+}
+
+.setting {
+  width: 350px;
+  height: 311px;
+  background-image: url("../assets/sysSeting/ditu.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.close {
+  width: 26px;
+  height: 15px;
+  background-image: url("../assets/sysSeting/guanbi00.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  z-index: 99;
+}
+
+.close:hover {
+  background-image: url("../assets/sysSeting/guanbi01.png");
+}
+.close:active {
+  background-image: url("../assets/sysSeting/guanbi02.png");
+}
+
+/* //左侧菜单 */
+.leftMenu {
+  position: absolute;
+  left: 13px;
+  top: 36px;
+  width: 93px;
+  height: 230px;
+}
+.lm_once {
+  width: 85px;
+  height: 30px;
+  background-image: url("../assets/sysSeting/yeqian00.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  margin-top: 5px;
+}
+
+.lm_once:hover {
+  background-image: url("../assets/sysSeting/yeqian01.png");
+}
+.lm_once:active {
+  background-image: url("../assets/sysSeting/yeqian02.png");
+  color: #fff;
+}
+.activeMenu {
+  background-image: url("../assets/sysSeting/yeqian02.png") !important;
+  color: #fff !important;
+}
+
+/* //右侧控制区域 */
+.rightMenu {
+  /* padding-top: 30px; */
+  position: absolute;
+  right: 14px;
+  top: 36px;
+  height: 230px;
+  width: 225px;
+  background-image: url("../assets/sysSeting/banshou.png") !important;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.children {
+  height: 200px;
+  width: 225px;
+  overflow: hidden auto;
+}
+
+.childrenIn {
+  width: 225px;
+  padding: 10px 20px;
+}
+.radio .label {
+  width: calc(225px - 22px - 20px - 20px * 2);
+  margin-left: 10px;
+}
+.radio .choose {
+  width: 22px;
+  height: 22px;
+  background-image: url("../assets/sysSeting/fangxuankuang00.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.radio .choose:hover {
+  background-image: url("../assets/sysSeting/fangxuankuang01.png");
+}
+.radio .choose.active {
+  background-image: url("../assets/sysSeting/fangxuankuang02.png");
+}
+
+/* //快捷键 */
+.shortcutKeysMain {
+  width: 130px;
+  position: relative;
+}
+.shortcutKeysBut {
+  /* width: 30px; */
+  padding: 0 10px;
+  height: 30px;
+  border-radius: 8px;
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  /* background-color: rgb(16, 103, 216); */
+  background-image: url("../assets/sysSeting/yeqianup.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  color: #000;
+}
+
+.shortcutKeysBut.activeKey {
+  background-image: url("../assets/sysSeting/combox.png");
+  /* background-color: rgba(129, 184, 255, 0.8); */
+  color: #000 !important;
+}
+.shortcutKeysTip {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  word-break: break-all;
+  max-height: 0px;
+  overflow: hidden;
+  transition: all 0.5s;
+  background-image: url("../assets/sysSeting/combox.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  /* background-color: rgba(95, 196, 255, 0.664); */
+  z-index: 300;
+  padding: 0 5px;
+}
+.shortcutKeysTip.openTip {
+  padding: 5px;
+  max-height: 200px;
+}
+/* 按钮 */
+.footBUts {
+  position: absolute;
+  left: 12px;
+  bottom: 5px;
+  width: 325px;
+  height: 40px;
+  padding: 0 20px;
+}
+
+.f_submit {
+  width: 84px;
+  height: 40px;
+  background-image: url("../assets/sysSeting/yingyong00.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.f_submit:hover {
+  background-image: url("../assets/sysSeting/yingyong01.png");
+}
+.f_submit:active {
+  background-image: url("../assets/sysSeting/yingyong02.png");
+}
+
+.f_submit.unDo {
+  background-image: url("../assets/sysSeting/yingyong02.png") !important;
+}
+
+.sl_center {
+  width: 147px;
+  height: 17px;
+  background-image: url("../assets/sysSeting/yinxiaotiao.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.sl_down {
+  width: 15px;
+  height: 15px;
+  background-image: url("../assets/sysSeting/xiala00.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  z-index: 99;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.sl_down:hover {
+  background-image: url("../assets/sysSeting/xiala01.png");
+}
+.sl_down:active {
+  background-image: url("../assets/sysSeting/xiala02.png");
+}
+
+.sl_up {
+  width: 15px;
+  height: 15px;
+  background-image: url("../assets/sysSeting/xiala00.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  z-index: 99;
+  padding: 10px;
+  border-radius: 10px;
+  transform: rotate(180deg);
+}
+
+.sl_up:hover {
+  background-image: url("../assets/sysSeting/xiala01.png");
+}
+.sl_up:active {
+  background-image: url("../assets/sysSeting/xiala02.png");
+}
+
+.sl_center_z {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  /* background-color: #00000063; */
+  width: 17px;
+  height: 50px;
+  overflow: hidden;
+  transform: translateX(-50%);
+  margin: 0 10px;
+}
+
+.slc_z {
+  width: 147px;
+  height: 17px;
+  background-image: url("../assets/sysSeting/zhenshutiao.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: -34px;
+  bottom: 10px;
+  border-radius: 50%;
+  transform: rotate(180deg);
+}
+
+/* //按钮 */
+.sliderLabel {
+  width: 100%;
+  height: 40px;
+}
+.sliderButs {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  opacity: 0.15;
+  transition: all 0.5s;
+}
+.sliderLabel:hover .sliderButs {
+  opacity: 1;
+}
+
+.sliderButs_submit {
+  width: 84px;
+  height: 40px;
+  background-image: url("../assets/sysSeting/queding00.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.sliderButs_submit:hover {
+  background-image: url("../assets/sysSeting/queding01.png");
+}
+.sliderButs_submit:active {
+  background-image: url("../assets/sysSeting/queding02.png");
+}
+
+.seeImg {
+  width: 100px;
+}
+
+.seeValue{
+  padding: 2px 0;
+  font-size: 12px;
+  color: #7b7b7bdc;
+}
+.seeValues{
+  font-size: 14px;
+}

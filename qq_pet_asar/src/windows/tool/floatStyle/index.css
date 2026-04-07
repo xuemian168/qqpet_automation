@@ -1,0 +1,211 @@
+#appMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: all 1s;
+  font-size: 14px;
+  background-color: transparent !important;
+}
+
+#app {
+  background-color: transparent !important;
+  height: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  box-shadow: unset !important;
+  border-radius: 10px !important;
+}
+
+.tipbody {
+  /* width: 800px;
+  height: 600px; */
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.tip {
+  padding: 6px 12px;
+  background-color: #000;
+  color: #fff;
+  z-index: 99999;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  transition: all 1s;
+  max-width: 700px;
+}
+.title {
+  overflow: hidden;
+  transition: all 0.5s;
+}
+.unShowTip {
+  max-width: 10px;
+  overflow: hidden;
+}
+
+.hideShowTip {
+  left: calc(0% + 100px);
+  top: calc(100% - 50px);
+}
+.hideBackGround {
+  background-color: transparent !important;
+}
+.openMoreTip {
+  /* background-color: #fff; */
+  border-radius: 50%;
+  /* color: #fff; */
+  height: 25px;
+  /* width: 25px; */
+  /* border: 1px solid #fff; */
+}
+.infoTip {
+  transition: all 0.5s;
+  overflow: hidden;
+}
+.openInfoTip {
+  max-height: 300px;
+  overflow: hidden auto !important;
+}
+.unOpenInfoTip {
+  max-height: 0px;
+}
+
+.js-cursor-container {
+  z-index: 99999;
+}
+
+.submit {
+  padding: 3px 8px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 10px;
+  border: 1px solid #fff;
+}
+
+.changeInput {
+  color: #000;
+}
+
+@keyframes loading {
+  /*  旋转 */
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+.iconActive {
+  animation-name: loading;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.icons {
+  right: 100%;
+  top: 0;
+  background-color: #000;
+  border-radius: 10px;
+  transform: translateY(-50%);
+  padding: 10px;
+  height: 200px;
+  overflow: auto;
+}
+.openIconOnceChoose {
+  padding-bottom: 100px;
+}
+.iconOnce {
+  border: 1px solid #000;
+}
+.iconOnce:hover {
+  border: 1px solid #fff;
+}
+/* .iconOnceTip {
+  max-height: 0px;
+  overflow: hidden;
+  transition: all 0.5s;
+  font-size: 50px;
+  left: 0;
+  bottom: 0;
+  transform: translate(-100%, 50%);
+  background-color: #000;
+  border-radius: 10px;
+  z-index: 100;
+}
+.iconOnce:hover .iconOnceTip {
+  max-height: 100px;
+  border: 1px solid #fff;
+} */
+
+.controlTitle {
+  margin-bottom: 10px;
+}
+.openRowActive {
+  background-color: rgba(28, 65, 167, 0.4);
+}
+.closeRowActive {
+  background-color: rgba(28, 65, 167, 0.2);
+}
+.see {
+  transition: all 1s;
+}
+
+.openRowSee {
+  transform: rotate(180deg);
+}
+.closeRowSee {
+  transform: rotate(0deg);
+}
+.row {
+  transition: all 0.5s;
+  overflow: hidden;
+  max-height: 0px;
+}
+.openRow {
+  max-height: 300px;
+}
+.closeRow {
+}
+
+.windowTip {
+  position: fixed;
+  max-height: 0;
+  transition: all 0.5s;
+  z-index: 999999;
+}
+
+.tipIcon {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 35px;
+  border: 1px solid #fff;
+  background-color: #000;
+  border-radius: 10px;
+}
+
+/* 尺子 */
+.ruler_x,
+.ruler_y {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: red;
+  opacity: 0.2;
+  /* transition: all 0.1s; */
+}
+.ruler_x {
+  width: 100%;
+  height: 2px;
+  transform: translateY(-50%);
+}
+.ruler_y {
+  height: 100%;
+  width: 2px;
+  transform: translateX(-50%);
+}

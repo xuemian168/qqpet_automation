@@ -1,0 +1,50 @@
+<div id="appMain" class="not_drag notSelect">
+  <div class="menuMain" cando :style="menuMainStyle">
+    <div class="bk_body" cando>
+      <div class="head fcc w100" cando>
+        <div class="h_left" cando></div>
+        <div class="h_center f1" cando></div>
+        <div class="h_right" cando></div>
+      </div>
+      <div class="center fcc w100 focusPress por" :class="[activeFatherValue == item.value? 'active':''
+        ,item?.children? 'haveChildren':''
+        ,item?.new? 'new':''
+        ,item?.unShow ?'unShow':'']" :fv="item.value" cando v-for='(item, index) in menu' :key='index'
+        @click="chooseItem(item,index,'fv')" :title="item.title">
+        <div class="c_left" cando :fv="item.value">
+          <div class="c_left_new" cando :fv="item.value"></div>
+        </div>
+        <div class="c_center f1" cando :fv="item.value">{{item.label}}</div>
+        <div class="c_right" cando :fv="item.value"></div>
+        <div class="bk_body sun_bk_body poa" :fv="item.value" cando :style="sunBkBodyStyle"
+          v-if="item.children && activeFatherValue == item.value">
+          <!-- top: sunPositionTop + 'px' -->
+          <div class="head fcc w100" cando :fv="item.value">
+            <div class="h_left" cando :fv="item.value"></div>
+            <div class="h_center f1" cando :fv="item.value"></div>
+            <div class="h_right" cando :fv="item.value"></div>
+          </div>
+          <div class="center fcc w100 focusPress" :class="[activeSunValue == ctem?.value? 'active':''
+            ,ctem?.new? 'new':'']" :fv="item.value" :sv="ctem.value" cando v-for='(ctem, cndex) in item.children'
+            :key='cndex' @click.stop="chooseItem(ctem,index + '-' + cndex,'sv')">
+            <div class="c_left" cando :fv="item.value" :sv="ctem.value">
+              <div class="c_left_new" cando :fv="item.value" :sv="ctem.value"></div>
+            </div>
+            <div class="c_center f1" cando :fv="item.value" :sv="ctem.value">{{ctem.label}}</div>
+            <div class="c_right_sun" cando :fv="item.value" :sv="ctem.value"></div>
+          </div>
+          <div class="foot fcc w100" cando :fv="item.value">
+            <div class="f_left" cando :fv="item.value"></div>
+            <div class="f_center f1" cando :fv="item.value"></div>
+            <div class="f_right" cando :fv="item.value"></div>
+          </div>
+        </div>
+      </div>
+      <div class="foot fcc w100" cando>
+        <div class="f_left" cando></div>
+        <div class="f_center f1" cando></div>
+        <div class="f_right" cando></div>
+      </div>
+    </div>
+  </div>
+</div>

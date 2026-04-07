@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>pet</title>
+    <!-- <script src="../service/config.js"></script> -->
+    <!-- <script src="./js/init.js"></script> -->
+    <style>
+        /* //动画 */
+        @keyframes loading {
+
+            /*  旋转 */
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .iconActive {
+            animation-name: loading;
+            animation-duration: 3s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        #app,
+        #router,
+        html,
+        body {
+            background-color: transparent !important;
+        }
+    </style>
+    <script>
+    </script>
+</head>
+
+<body>
+    <div id="app" class="drag defaultAppStyle" style="display:none;opacity: 0;transition: 1s;user-select: none;">
+        <div id="router">not router</div>
+    </div>
+</body>
+
+</html>

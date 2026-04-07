@@ -1,0 +1,251 @@
+:root {
+  --rightRowHeight: 20px;
+  --smallLeft: 270px;
+}
+#appMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: all 1s;
+  font-size: 14px;
+  /* background-color: aliceblue; */
+  background-image: url("../assets/info/2.png");
+  /* background-image: url("../assets/info/2.svg"); */
+  background-color: transparent !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* opacity: 0.2; */
+  position: relative;
+  font-size: 12px;
+}
+#app {
+  background-color: transparent !important;
+  /* background-color: rgba(255, 255, 255, 0.1) !important; */
+  height: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  box-shadow: unset !important;
+  border-radius: 10px !important;
+}
+
+/* //图片 */
+.headImg {
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  height: 160px;
+  width: 160px;
+  background-image: url("../assets/info/16.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+}
+.headImg .img {
+  width: 90%;
+  height: 90%;
+}
+/* //名字 */
+.name {
+  position: absolute;
+  left: 25px;
+  top: 208px;
+  width: 160px;
+  text-align: center;
+}
+/* //粉钻 */
+.pinkDiamondMain {
+  position: absolute;
+  left: 25px;
+  top: 183px;
+  width: 160px;
+}
+.pinkDiamond {
+  height: 28px;
+  width: 25px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+/* //贴心宝贝 */
+.service {
+  position: absolute;
+  left: 25px;
+  top: 230px;
+  width: 160px;
+}
+.service .sweetHeart {
+  height: 20px;
+  width: 65px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+/* /右边 */
+.rightRow {
+  position: absolute;
+  /* border: 1px solid #000; */
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  left: 190px;
+  top: 20px;
+  width: 210px;
+  height: var(--rightRowHeight);
+}
+.hostName {
+  top: 45px;
+}
+.label {
+  font-weight: 600;
+  color: #010b41;
+}
+/* 输入框 */
+.input {
+  width: 100px;
+  height: var(--rightRowHeight);
+  color: #fff;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-right: 5px;
+}
+
+/* //按钮 */
+.but {
+  height: calc(var(--rightRowHeight) + 5px);
+  width: 40px;
+  background-image: url("../assets/info/55.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  top: -2px;
+}
+.but:hover {
+  background-image: url("../assets/info/57.svg");
+}
+.but:active {
+  background-image: url("../assets/info/59.svg");
+  position: relative;
+}
+
+/* //小信息 */
+.smallRow {
+  position: absolute;
+  left: 190px;
+  top: 66px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-right: 20px;
+  /* background-color: aqua; */
+  box-sizing: border-box;
+}
+.smallValue {
+  white-space: nowrap;
+}
+.birthDay {
+  left: var(--smallLeft);
+}
+.level {
+  top: 85px;
+}
+
+.yb {
+  top: 85px;
+  left: var(--smallLeft);
+}
+/* //关闭 */
+.close {
+  width: 20px;
+  height: 20px;
+  background-image: url("../assets/info/9.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 15px;
+  top: 5px;
+  /* top: -2px; */
+}
+.close:hover {
+  background-image: url("../assets/info/11.svg");
+}
+.close:active {
+  background-image: url("../assets/info/13.svg");
+}
+
+/* //个人能力 */
+.attributeValue {
+  position: absolute;
+  top: 105px;
+}
+
+.intel {
+  top: 125px;
+}
+.strong {
+  top: 125px;
+  left: calc(var(--smallLeft) + 30px);
+}
+.charm {
+  top: 145px;
+}
+
+/* //学历 */
+.educationValue {
+  position: absolute;
+  top: 175px;
+}
+
+.educationInfo {
+  top: 195px;
+}
+/* 
+.infoCard_heard {
+  height: 40px;
+  width: 100%;
+  padding: 5px 20px 5px 20px;
+}
+.infoCard_main {
+  flex: 1;
+  height: 0;
+  width: 100%;
+}
+.infoCard_left {
+  width: 150px;
+  height: 100%;
+  max-width: 150px;
+}
+.infoCard_right {
+  flex: 1;
+}
+
+.infoCard_name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.avatars {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 5px;
+}
+
+.closeBut {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+} */
+
+.pinkDiamondUP {
+  color: #4c4c4c90;
+  margin-left: 8px;
+}
+.pinkDiamondUPs {
+  color: #ff425b90;
+  margin-left: 8px;
+}

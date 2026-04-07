@@ -1,0 +1,25 @@
+#appMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: all 1s;
+  font-size: 14px;
+  background-color: #fff !important;
+}
+
+#app {
+  background-color: transparent !important;
+  height: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  box-shadow: unset !important;
+  border-radius: 10px !important;
+}
+
+.tipbody {
+  /* width: 800px;
+  height: 600px; */
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}

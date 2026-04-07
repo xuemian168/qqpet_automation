@@ -1,0 +1,21 @@
+<div id="appMain" class="not_drag">
+  <!-- :style="sizeStyle" -->
+  <div id="move" :style="sizeStyle">
+    <div class="focusPress phantom"></div>
+    <embed id="pet" name="pet" class="pet"> </embed>
+  </div>
+  <div id="float">
+    <transition-group name="myFloat">
+      <div v-for='(item, index) in floatArr' :key='item.id' class="float_once poa fcc" :style="{
+          zIndex:index * 10
+        }">
+        <div class="icon" :style="{backgroundImage: 'url(../assets/float/'+item.type+'/'+ item.icon +'.svg)'}">
+        </div>
+        <div class="type" :style="{backgroundImage: 'url(../assets/float/'+item.type+'/type.svg)'}">
+        </div>
+        <div class="nums" v-for='(ntem, nndex) in item.nums' :key='nndex'
+          :style="{backgroundImage: 'url(../assets/float/'+item.type+'/'+ ntem +'.svg)'}">
+        </div>
+      </div>
+    </transition-group>
+  </div>

@@ -1,0 +1,24 @@
+# QQ 宠物管家配置
+
+# electron-store 数据文件路径（留空自动检测）
+store_path: ""
+
+# 加密密钥（来自 store.js 源码）
+encryption_key: "aes-256-cbc"
+
+# 养护阈值（来自游戏源码逆向）
+thresholds:
+  hunger: 720       # 低于此值进入饥饿状态
+  clean: 1080       # 低于此值进入脏污状态
+  mood: 100         # 低于此值心情低落
+  health: 5         # 低于此值需要治疗
+
+# 喂食/洗澡补充量
+feed_amount: 1000
+bath_amount: 1000
+play_mood_boost: 100
+
+# 定时自动化
+schedule:
+  interval_minutes: 30
+  enabled: false
