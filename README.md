@@ -4,8 +4,6 @@ QQ 宠物（怀旧服 v1.2.4）的逆向分析与 macOS 移植项目，附带 Op
 
 ![4d1509102338d77c5ba5e508f5624866](https://github.com/user-attachments/assets/7fa61a7a-b23f-483f-b071-d297dc393417)
 
-<img width="320" height="334" alt="image" src="https://github.com/user-attachments/assets/457cf203-b00f-4108-a6f8-cf44d75fe315" />
-
 ## 项目概述
 
 本项目完成了三件事：
@@ -13,6 +11,8 @@ QQ 宠物（怀旧服 v1.2.4）的逆向分析与 macOS 移植项目，附带 Op
 1. **逆向分析** — 完整分析了 QQ 宠物的通信架构（Express + WebSocket + RSA 上报）
 2. **macOS 移植** — 提取 Electron 源码，移除遥测/指纹采集，用 Ruffle WASM 替代 Flash，适配 macOS
 3. **自动化管理** — Python CLI 直接读写 electron-store 数据文件，实现宠物状态监控与养护
+
+<img width="320" height="334" alt="image" src="https://github.com/user-attachments/assets/457cf203-b00f-4108-a6f8-cf44d75fe315" />
 
 ## 快速开始
 
