@@ -19,11 +19,14 @@
     "node-xlsx": "^0.23.0",
     "nodejs-websocket": "^1.7.2"
   },
+  "author": "xuemian",
+  "repository": "https://github.com/xuemian168/qqpet_automation",
   "devDependencies": {
     "electron": "^28.0.0",
     "electron-builder": "^24.9.1"
   },
   "build": {
+    "publish": null,
     "appId": "com.qqpet.macos",
     "productName": "QQ宠物",
     "directories": {
