@@ -11,7 +11,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        arch: [x64, arm64]
+        arch: [arm64]
 
     steps:
       - name: Checkout
@@ -79,11 +79,7 @@ jobs:
 
             已移除遥测、设备指纹采集，使用 Ruffle WASM 替代 Flash。
 
-            ### 下载
-            - **Apple Silicon (M1/M2/M3/M4)**: 下载 `arm64` 版本
-            - **Intel Mac**: 下载 `x64` 版本
-
-            ### 安装
+            ### 安装（Apple Silicon M1/M2/M3/M4）
             1. 下载 `.dmg` 文件
             2. 双击打开，将 `QQ宠物.app` 拖入 `Applications`
             3. 首次打开需要在「系统设置 → 隐私与安全性」中允许运行
