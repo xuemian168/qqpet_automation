@@ -18,6 +18,22 @@ QQ 宠物（怀旧服 v1.2.4）的逆向分析与 macOS 移植项目，附带 Op
 
 ### 1. 启动宠物（macOS）
 
+#### 方式一：DMG 安装包（推荐）
+
+从 [Releases](https://github.com/nicexuemian/workbuddy/releases) 下载最新的 `.dmg` 文件，双击挂载后将应用拖入 Applications 文件夹。
+
+> **⚠️ "已损坏，无法打开" 解决方法**
+>
+> 由于应用未经 Apple 签名，macOS Gatekeeper 会阻止运行。请在终端执行以下命令：
+>
+> ```bash
+> sudo xattr -rd com.apple.quarantine /Applications/QQ宠物管家.app
+> ```
+>
+> 然后重新打开应用即可。
+
+#### 方式二：从源码运行
+
 ```bash
 cd qq-pet-macos && npm install && npx electron .
 ```
