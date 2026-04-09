@@ -1,6 +1,6 @@
 # QQ 宠物管家 (WorkBuddy)
 
-QQ 宠物（怀旧服 v1.2.4）的逆向分析与 macOS 移植项目，附带 OpenClaw Skill 实现宠物自动管理。
+QQ 宠物（怀旧服 v1.2.4）的逆向分析与桌面移植项目（macOS / Windows），附带 OpenClaw Skill 实现宠物自动管理。
 
 <img width="480" alt="QQ宠物" src="https://github.com/user-attachments/assets/7fa61a7a-b23f-483f-b071-d297dc393417" />
 
@@ -9,18 +9,26 @@ QQ 宠物（怀旧服 v1.2.4）的逆向分析与 macOS 移植项目，附带 Op
 本项目完成了三件事：
 
 1. **逆向分析** — 完整分析了 QQ 宠物的通信架构（Express + WebSocket + RSA 上报）
-2. **macOS 移植** — 提取 Electron 源码，移除遥测/指纹采集，用 Ruffle WASM 替代 Flash，适配 macOS
+2. **桌面移植** — 提取 Electron 源码，移除遥测/指纹采集，用 Ruffle WASM 替代 Flash，适配 macOS 和 Windows
 3. **自动化管理** — Python CLI 直接读写 electron-store 数据文件，实现宠物状态监控与养护
 
 <img width="320" height="334" alt="image" src="https://github.com/user-attachments/assets/457cf203-b00f-4108-a6f8-cf44d75fe315" />
 
 ## 快速开始
 
-### 1. 启动宠物（macOS）
+### 1. 启动宠物
 
-#### 方式一：DMG 安装包（推荐）
+从 [Releases](https://github.com/xuemian168/qqpet_automation/releases) 下载对应平台的安装包：
 
-从 [Releases](https://github.com/nicexuemian/workbuddy/releases) 下载最新的 `.dmg` 文件，双击挂载后将应用拖入 Applications 文件夹。
+| 平台 | 文件 | 说明 |
+|------|------|------|
+| macOS (Apple Silicon) | `QQ宠物-x.x.x-arm64.dmg` | DMG 安装包 |
+| Windows (64位) | `QQ宠物 Setup x.x.x.exe` | NSIS 安装程序 |
+| Windows (64位) | `QQ宠物-x.x.x-portable.exe` | 免安装便携版 |
+
+#### macOS 安装
+
+双击 `.dmg` 文件，将应用拖入 Applications 文件夹。
 
 > **⚠️ "已损坏，无法打开" 解决方法**
 >
@@ -32,7 +40,17 @@ QQ 宠物（怀旧服 v1.2.4）的逆向分析与 macOS 移植项目，附带 Op
 >
 > 然后重新打开应用即可。
 
-#### 方式二：从源码运行
+#### Windows 安装
+
+- **安装版**：双击 `QQ宠物 Setup x.x.x.exe`，可自定义安装目录
+- **便携版**：双击 `QQ宠物-x.x.x-portable.exe` 直接运行，无需安装
+
+> **⚠️ Windows SmartScreen 提示**
+>
+> 应用未经 Microsoft 签名，首次运行时 SmartScreen 可能提示"Windows 已保护你的电脑"。
+> 点击 **"更多信息"** → **"仍要运行"** 即可。
+
+#### 从源码运行
 
 ```bash
 cd qq-pet-macos && npm install && npx electron .
@@ -110,9 +128,9 @@ cp -r skills/qq-pet ~/.openclaw/skills/
 
 触发关键词：`QQ宠物`、`宠物状态`、`喂食`、`洗澡`、`治病`、`一键养护`
 
-## macOS 移植版改动
+## 移植版改动
 
-相比 Windows 原版，macOS 版做了以下修改：
+相比 Windows 原版（QQ 宠物怀旧服），桌面移植版做了以下修改：
 
 | 修改项 | 说明 |
 |--------|------|
@@ -154,6 +172,7 @@ cp -r skills/qq-pet ~/.openclaw/skills/
 | 平台 | 路径 |
 |------|------|
 | macOS（移植版） | `~/Library/Application Support/qq-pet-macos/config-macos.json` |
+| Windows（移植版） | `%APPDATA%/qq-pet-macos/config-macos.json` |
 | Windows（原版） | `%APPDATA%/pet/config.json`（AES 加密） |
 
 ## 项目结构

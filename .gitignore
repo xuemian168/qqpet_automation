@@ -63,6 +63,8 @@ qq-pet-macos/**/*.wasm
 qq-pet-macos/**/*.png
 qq-pet-macos/**/*.gif
 !qq-pet-macos/build/icon.png
+!qq-pet-macos/resources/icon.png
+!qq-pet-macos/resources/icon.ico
 qq-pet-macos/**/*.gif
 qq-pet-macos/**/*.cur
 qq-pet-macos/**/*.fla

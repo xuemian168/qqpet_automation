@@ -1,4 +1,4 @@
-name: Build macOS App
+name: Build & Release
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-macos:
     runs-on: macos-latest
     strategy:
       matrix:
@@ -37,7 +37,7 @@ jobs:
           cd qq-pet-macos
           npm install
 
-      - name: Build (${{ matrix.arch }})
+      - name: Build macOS (${{ matrix.arch }})
         run: |
           cd qq-pet-macos
           npx electron-builder --mac dmg zip --${{ matrix.arch }}
@@ -53,8 +53,51 @@ jobs:
             qq-pet-macos/dist/*.zip
           if-no-files-found: error
 
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Download resources
+        run: |
+          cd qq-pet-macos
+          gh release download resources-v1 `
+            --pattern 'qq-pet-resources.tar.gz' `
+            --dir $env:TEMP
+          tar xzf "$env:TEMP\qq-pet-resources.tar.gz"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        run: |
+          cd qq-pet-macos
+          npm install
+
+      - name: Build Windows (x64)
+        run: |
+          cd qq-pet-macos
+          npx electron-builder --win nsis portable --x64
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: qq-pet-windows-x64
+          path: |
+            qq-pet-macos/dist/*.exe
+            !qq-pet-macos/dist/*__uninstaller*
+          if-no-files-found: error
+
   release:
-    needs: build
+    needs: [build-macos, build-windows]
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/v')
     permissions:
@@ -73,18 +116,25 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          name: QQ宠物 macOS ${{ github.ref_name }}
+          name: QQ宠物 ${{ github.ref_name }}
           body: |
-            ## QQ宠物 macOS 干净版
+            ## QQ宠物桌面版（干净版）
 
             已移除遥测、设备指纹采集，使用 Ruffle WASM 替代 Flash。
 
-            ### 安装（Apple Silicon M1/M2/M3/M4）
+            ### macOS 安装（Apple Silicon M1/M2/M3/M4）
             1. 下载 `.dmg` 文件
             2. 双击打开，将 `QQ宠物.app` 拖入 `Applications`
-            3. 首次打开需要在「系统设置 → 隐私与安全性」中允许运行
+            3. 如提示"已损坏"，在终端执行：
+               ```
+               sudo xattr -rd com.apple.quarantine /Applications/QQ宠物.app
+               ```
 
-            > ⚠️ 应用未签名，macOS 会提示"无法验证开发者"，需手动允许。
+            ### Windows 安装
+            - **安装版**：下载 `QQ宠物 Setup x.x.x.exe`，双击安装
+            - **便携版**：下载 `QQ宠物-x.x.x-portable.exe`，直接运行，无需安装
+
+            > ⚠️ 应用未签名，macOS / Windows 可能弹出安全提示，请手动允许运行。
           files: artifacts/**/*
           draft: false
           prerelease: false
