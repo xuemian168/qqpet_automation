@@ -28,7 +28,10 @@ qq_pet_extracted/
 # asar 解包中的大型二进制
 qq_pet_asar/node_modules/
 qq_pet_asar/libs/
-qq_pet_asar/src/assets/
+qq_pet_asar/src/assets/**
+!qq_pet_asar/src/assets/**/
+!qq_pet_asar/src/assets/**/*.swf
+!qq_pet_asar/src/assets/**/*.wasm
 qq_pet_asar/39f974bfc70b412d*
 qq_pet_asar/3affaca7977286de*
 qq_pet_asar/4a56bad37f1dbfc7*
@@ -43,9 +46,7 @@ qq_pet_asar/92898e67953ce51e*
 # asar 中的第三方库（可从 npm 重新获取）
 qq_pet_asar/src/windows/lib/
 
-# asar 中的二进制资源文件（swf/wasm/图片/flash等）
-qq_pet_asar/**/*.swf
-qq_pet_asar/**/*.wasm
+# asar 中的二进制资源文件（图片/flash等）
 qq_pet_asar/**/*.png
 qq_pet_asar/**/*.gif
 qq_pet_asar/**/*.cur
@@ -56,10 +57,11 @@ qq_pet_asar/**/*.xlsx
 qq-pet-macos/node_modules/
 qq-pet-macos/package-lock.json
 qq-pet-macos/dist/
-qq-pet-macos/src/assets/
+qq-pet-macos/src/assets/**
+!qq-pet-macos/src/assets/**/
+!qq-pet-macos/src/assets/**/*.swf
+!qq-pet-macos/src/assets/**/*.wasm
 qq-pet-macos/src/windows/lib/
-qq-pet-macos/**/*.swf
-qq-pet-macos/**/*.wasm
 qq-pet-macos/**/*.png
 qq-pet-macos/**/*.gif
 !qq-pet-macos/build/icon.png
