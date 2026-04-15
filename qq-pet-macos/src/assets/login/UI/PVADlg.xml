@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="gb2312" standalone="yes" ?>
+<window name="pvadlg" width="340" height="242" visible="0" skin="image:loginbg.png" caption="QQ宠物登录">
+	<children>
+	<hotspot height="53" anchor="left,right" drag="pvadlg.OnDragTitle">
+		<children>
+			<button name="btnClose" paddingright="6" paddingtop="34" anchor="right" skin="image:Button_close.png;serial:3"/>
+		</children>
+	</hotspot>
+	
+	<picture name="adv" paddingleft="2" paddingtop="54" skin="image:adv1.png"/>
+	<picture name="picXZDLQQ" paddingleft="30" paddingtop="128" skin="image:picXZDLQQ.png"/>
+	<picture name="picloginicon" paddingleft="223" paddingtop="127" skin="image:loginicon.png"/>
+	<label name="lablogintext" paddingleft="240" paddingtop="130" text="用其他账号登录" textcolor="8e580a" cursor="hand" mousethrough="0" textunderline="1"/>
+	<picture name="picLine" paddingleft="10" paddingtop="144" skin="serial:2"/>
+	<listbox name="pvalist" paddingleft="40" paddingtop="146" height="81" skin="scrollbar{skin:scrollbar.css}"/>
+	</children>
+</window>

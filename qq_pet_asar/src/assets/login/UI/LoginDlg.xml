@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="gb2312" standalone="yes" ?>
+<window name="logindlg" width="340" height="242" visible="0" skin="image:loginbg.png" caption="QQ宠物登录">
+	<children>
+	<hotspot height="53" anchor="left,right" drag="logindlg.OnDragTitle">
+		<children>
+			<button name="btnClose" paddingright="6" paddingtop="34" anchor="right" skin="image:Button_close.png;serial:3"/>
+		</children>
+	</hotspot>
+	
+	<picture name="adv" paddingleft="2" paddingtop="54" skin="image:adv1.png"/>
+	<picture name="pictext" paddingleft="28" paddingtop="130" skin="image:pictext.png"/>
+	
+	<label name="labRegiest" paddingleft="266" paddingtop="133" text="申请帐号" textcolor="8e580a" cursor="hand" mousethrough="0"/>
+	<safeedit name="sedtPassword" paddingleft="96" paddingtop="152" width="150" height="15" bgcolor="ffffff" skin="image:editbg.png;serial:2" tabindex="2" library="tssafeedit.dat"/>
+	<label name="labForget" paddingleft="266" paddingtop="157" text="忘记密码" textcolor="8e580a" cursor="hand" mousethrough="0"/>
+	<checkbox name="chkMember" paddingleft="95" paddingtop="177" skin="image:Button_check.bmp;serial:4;transcolor:ff00ff" text="记住密码" textcolor="8e580a"/>
+	<checkbox name="chkAutoLogin" paddingleft="191" paddingtop="177" skin="image:Button_check.bmp;serial:4;transcolor:ff00ff" text="自动登录" textcolor="8e580a"/>
+	<picture name="picLine" paddingleft="10" paddingtop="200" skin="image:line.png"/>
+	<button name="btnLogin" paddingleft="96" paddingtop="206" skin="image:Button_login.png;serial:3"/>
+	<button name="btnCancel" paddingleft="190" paddingtop="206" skin="image:Button_cancel.png;serial:3"/>
+	
+	<combobox name="cmbQQUIN" paddingleft="96" paddingtop="129" width="150" height="19" bgcolor="666666" skin="image:editbg.png;serial:2;skin:combobox.css" tabindex="1" />
+	</children>
+</window>

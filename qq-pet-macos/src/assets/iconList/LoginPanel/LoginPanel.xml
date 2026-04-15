@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LoginPanel>
+	<Login>
+		<Item name="第1天" icon="LoginPanel\l1.gif" num="20" tips="元宝\n数量：20"/>
+		<Item name="第2天" icon="LoginPanel\l2.gif" num="1"  tips="桃桃布丁\n饥饿：+180\n数量：1"/>
+		<Item name="第3天" icon="LoginPanel\l3.gif" num="1"  tips="舒爽喷湿器\n清洁：+360\n数量：1"/>
+		<Item name="第4天" icon="LoginPanel\l4.gif" num="1"  tips="彩虹鱼脆脆\n饥饿：+1440\n数量：1"/>
+		<Item name="第5天" icon="LoginPanel\l5.gif" num="1"  tips="魔幻矿泉泥\n清洁：+1800\n数量：1"/>
+		<Item name="第6天" icon="LoginPanel\l6.gif" num="1"  tips="百草丹\n数量：1"/>
+		<Item name="第7天" icon="LoginPanel\l7.gif" num="1"  tips="登录大礼包\n（礼包包括了之前\n的所有奖品哟！）"/>
+	</Login>
+	<Online>
+		<Item name="1分钟" icon="LoginPanel\qq.gif"   num="1" tips="圈圈冰激凌\n饥饿：+90\n数量：1"/>
+		<Item name="5分钟" icon="LoginPanel\fs.gif"   num="1" tips="超炫电吹风\n清洁：+360\n数量：1"/>
+		<Item name="15分钟" icon="LoginPanel\l1.gif"  num="15" tips="元宝\n数量：15"/>
+		<Item name="30分钟" icon="LoginPanel\mmh.gif"  num="1" tips="果味米米花\n饥饿：+360\n数量：1"/>
+		<Item name="60分钟" icon="LoginPanel\l1.gif" num="25" tips="元宝\n数量：25"/>
+		<Item name="90分钟" icon="LoginPanel\ssf.gif" num="1" tips="宝宝爽身粉\n清洁：+1080\n数量：1"/>
+		<Item name="120分钟" icon="LoginPanel\ml.gif" num="1" tips="雪山蜜梨\n饥饿：+720\n数量：1"/>
+		<Item name="150分钟" icon="LoginPanel\np.gif" num="1" tips="吉祥牛排\n饥饿：+900\n数量：1"/>
+		<Item name="180分钟" icon="LoginPanel\l1.gif" num="60" tips="元宝\n数量：60"/>
+		<Item name="240分钟" icon="LoginPanel\l1.gif" num="80" tips="元宝\n数量：80"/>
+	</Online>
+</LoginPanel>
+
+
+

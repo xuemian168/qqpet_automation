@@ -1,0 +1,28 @@
+dropdownbutton
+{
+	image:Button_Dropdown.png;
+	serial:4
+}
+
+list
+{
+	image:dropdownlistbg.png;
+	scrollbar
+	{
+		upbutton
+		{
+		}
+		downbutton
+		{
+		}
+		bgpicture
+		{
+			image:scrollbarbg.png
+		}
+		sliderbutton
+		{
+			image:Button_Silder.png;
+			serial:3
+		}
+	}
+}

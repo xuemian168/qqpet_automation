@@ -1,0 +1,12 @@
+<flash_project name="Stand.swf.flp" version="1">
+    <project_folder name="_fla" expanded="false">
+        <project_file path=".\Stand.swf_as\_fla\MainTimeline.as" filetype="as" />
+        <project_file path=".\Stand.swf_as\_fla\QGG_4.as" filetype="as" />
+        <project_file path=".\Stand.swf_as\_fla\Timeline_1.as" filetype="as" />
+        <project_file path=".\Stand.swf_as\_fla\Timeline_10.as" filetype="as" />
+        <project_file path=".\Stand.swf_as\_fla\Timeline_23.as" filetype="as" />
+        <project_file path=".\Stand.swf_as\_fla\Timeline_6.as" filetype="as" />
+        <project_file path=".\Stand.swf_as\_fla\Timeline_7.as" filetype="as" />
+    </project_folder>
+    <project_file path="./Stand.swf.fla" filetype="fla" profile="" def_file="true" />
+</flash_project>

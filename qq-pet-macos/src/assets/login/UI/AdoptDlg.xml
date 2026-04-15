@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="gb2312" standalone="yes" ?>
+<window name="adoptdlg" width="340" height="213" visible="0" skin="image:adoptbg.png" caption="领养QQ宠物">
+	<children>
+	<hotspot height="33" anchor="left,right" drag="adoptdlg.OnDragTitle">
+		<children>
+			<button name="btnClose" paddingright="6" paddingtop="5" anchor="right" skin="image:Button_close.png;serial:3"/>
+		</children>
+	</hotspot>
+	<hotspot name="spotweb" paddingleft="6" paddingtop="32" width="327" height="179" />
+	</children>
+</window>

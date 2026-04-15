@@ -1,0 +1,22 @@
+upbutton
+{
+	image:Button_Up.png;
+	serial:3
+}
+
+downbutton
+{
+	image:Button_Down.png;
+	serial:3
+}
+
+bgpicture
+{
+	image:scrollbarbg.png
+}
+
+sliderbutton
+{
+	image:Button_Silder.png;
+	serial:3
+}

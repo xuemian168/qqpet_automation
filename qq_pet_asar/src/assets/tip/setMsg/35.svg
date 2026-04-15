@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" height="18.0px" width="52.0px" xmlns="http://www.w3.org/2000/svg">
+  <g transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)">
+    <path d="M51.0 2.0 L52.0 2.0 52.0 3.0 51.0 3.0 51.0 2.0 M0.0 3.0 L0.0 2.0 1.0 2.0 1.0 3.0 0.0 3.0" fill="#0c252f" fill-opacity="0.19215687" fill-rule="evenodd" stroke="none"/>
+    <path d="M52.0 3.0 L52.0 4.0 51.0 4.0 51.0 3.0 52.0 3.0 M0.0 4.0 L0.0 3.0 1.0 3.0 1.0 4.0 0.0 4.0" fill="#267594" fill-opacity="0.6039216" fill-rule="evenodd" stroke="none"/>
+    <path d="M2.0 3.0 L1.0 3.0 1.0 2.0 2.0 2.0 2.0 3.0 M50.0 2.0 L51.0 2.0 51.0 3.0 50.0 3.0 50.0 2.0" fill="#50ccfb" fill-rule="evenodd" stroke="none"/>
+    <path d="M50.0 1.0 L51.0 1.0 51.0 2.0 50.0 2.0 50.0 1.0 M1.0 2.0 L1.0 1.0 2.0 1.0 2.0 2.0 1.0 2.0" fill="#215e76" fill-opacity="0.4745098" fill-rule="evenodd" stroke="none"/>
+    <path d="M52.0 5.0 L52.0 6.0 51.0 6.0 51.0 5.0 52.0 5.0 M0.0 6.0 L0.0 5.0 1.0 5.0 1.0 6.0 0.0 6.0" fill="#38bcef" fill-opacity="0.99215686" fill-rule="evenodd" stroke="none"/>
+    <path d="M52.0 4.0 L52.0 4.45 52.0 5.0 51.0 5.0 51.0 4.45 51.0 4.0 52.0 4.0 M0.0 5.0 L0.0 4.45 0.0 4.0 1.0 4.0 1.0 4.45 1.0 5.0 0.0 5.0" fill="#37aedd" fill-opacity="0.9098039" fill-rule="evenodd" stroke="none"/>
+    <path d="M52.0 6.0 L52.0 7.0 51.0 7.0 51.0 6.0 52.0 6.0 M0.0 7.0 L0.0 6.0 1.0 6.0 1.0 7.0 0.0 7.0" fill="#34bcf0" fill-rule="evenodd" stroke="none"/>
+    <path d="M50.0 5.0 L51.0 5.0 51.0 6.0 50.0 6.0 50.0 5.0 M1.0 5.0 L2.0 5.0 2.0 6.0 1.0 6.0 1.0 5.0" fill="#abf9ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M51.0 4.0 L51.0 4.45 51.0 5.0 50.0 5.0 50.0 4.45 50.0 4.0 51.0 4.0 M2.0 4.0 L2.0 4.45 2.0 5.0 1.0 5.0 1.0 4.45 1.0 4.0 2.0 4.0" fill="#a8f7fe" fill-rule="evenodd" stroke="none"/>
+    <path d="M2.0 3.0 L2.0 4.0 1.0 4.0 1.0 3.0 2.0 3.0 M50.0 3.0 L51.0 3.0 51.0 4.0 50.0 4.0 50.0 3.0" fill="#8de7fd" fill-rule="evenodd" stroke="none"/>
+    <path d="M52.0 8.0 L52.0 9.0 51.0 9.0 51.0 8.0 52.0 8.0 M0.0 9.0 L0.0 8.0 1.0 8.0 1.0 9.0 0.0 9.0" fill="#2ab6e9" fill-rule="evenodd" stroke="none"/>
+    <path d="M52.0 7.0 L52.0 8.0 51.0 8.0 51.0 7.0 52.0 7.0 M0.0 8.0 L0.0 7.0 1.0 7.0 1.0 8.0 0.0 8.0" fill="#2fb9ed" fill-rule="evenodd" stroke="none"/>
+    <path d="M50.0 7.0 L51.0 7.0 51.0 8.0 50.0 8.0 50.0 7.0 M1.0 7.0 L2.0 7.0 2.0 8.0 1.0 8.0 1.0 7.0" fill="#a8f9ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M50.0 8.0 L51.0 8.0 51.0 9.0 51.0 10.0 51.0 11.0 50.0 11.0 50.0 9.0 50.0 8.0 M1.0 10.0 L1.0 9.0 1.0 8.0 2.0 8.0 2.0 9.0 2.0 11.0 1.0 11.0 1.0 10.0" fill="#a7f7ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M52.0 9.0 L52.0 10.0 51.0 10.0 51.0 9.0 52.0 9.0 M0.0 10.0 L0.0 9.0 1.0 9.0 1.0 10.0 0.0 10.0" fill="#24b3e5" fill-rule="evenodd" stroke="none"/>
+    <path d="M52.0 10.0 L52.0 11.0 51.0 11.0 51.0 10.0 52.0 10.0 M0.0 11.0 L0.0 10.0 1.0 10.0 1.0 11.0 0.0 11.0" fill="#1fb0e2" fill-rule="evenodd" stroke="none"/>
+    <path d="M52.0 11.0 L52.0 12.0 51.0 12.0 51.0 11.0 52.0 11.0 M0.0 12.0 L0.0 11.0 1.0 11.0 1.0 12.0 0.0 12.0" fill="#1aadde" fill-rule="evenodd" stroke="none"/>
+    <path d="M52.0 12.0 L52.0 13.0 51.0 13.0 51.0 12.0 52.0 12.0 M0.0 13.0 L0.0 12.0 1.0 12.0 1.0 13.0 0.0 13.0" fill="#139fcd" fill-opacity="0.94509804" fill-rule="evenodd" stroke="none"/>
+    <path d="M50.0 11.0 L51.0 11.0 51.0 12.0 50.0 12.0 50.0 11.0 M2.0 11.0 L2.0 12.0 1.0 12.0 1.0 11.0 2.0 11.0" fill="#a8f6ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M50.0 6.0 L51.0 6.0 51.0 7.0 50.0 7.0 50.0 6.0 M1.0 7.0 L1.0 6.0 2.0 6.0 2.0 7.0 1.0 7.0" fill="#a9faff" fill-rule="evenodd" stroke="none"/>
+    <path d="M2.0 1.0 L2.0 0.0 3.0 0.0 3.0 1.0 2.0 1.0 M49.0 0.0 L50.0 0.0 50.0 1.0 49.0 1.0 49.0 0.0" fill="#0b1e26" fill-opacity="0.15686275" fill-rule="evenodd" stroke="none"/>
+    <path d="M3.0 0.0 L4.0 0.0 4.0 1.0 3.0 1.0 3.0 0.0 M48.0 0.0 L49.0 0.0 49.0 1.0 48.0 1.0 48.0 0.0" fill="#29718f" fill-opacity="0.5686275" fill-rule="evenodd" stroke="none"/>
+    <path d="M3.0 3.0 L2.0 3.0 2.0 2.0 3.0 2.0 3.0 3.0 M50.0 2.0 L50.0 3.0 49.0 3.0 49.0 2.0 50.0 2.0" fill="#abf6ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M3.0 4.0 L2.0 4.0 2.0 3.0 3.0 3.0 3.0 4.0 M4.0 3.0 L3.0 3.0 3.0 2.0 4.0 2.0 4.0 3.0 M48.0 2.0 L49.0 2.0 49.0 3.0 50.0 3.0 50.0 4.0 49.0 4.0 49.0 3.0 48.0 3.0 48.0 2.0" fill="#a2fbff" fill-rule="evenodd" stroke="none"/>
+    <path d="M2.0 1.0 L3.0 1.0 3.0 2.0 2.0 2.0 2.0 1.0 M49.0 2.0 L49.0 1.0 50.0 1.0 50.0 2.0 49.0 2.0" fill="#4fccfd" fill-rule="evenodd" stroke="none"/>
+    <path d="M3.0 2.0 L3.0 1.0 4.0 1.0 4.0 2.0 3.0 2.0 M48.0 1.0 L49.0 1.0 49.0 2.0 48.0 2.0 48.0 1.0" fill="#8be6fe" fill-rule="evenodd" stroke="none"/>
+    <path d="M4.0 0.0 L5.0 0.0 5.0 1.0 4.0 1.0 4.0 0.0 M47.0 0.0 L48.0 0.0 48.0 1.0 47.0 1.0 47.0 0.0" fill="#3ba3ce" fill-opacity="0.8156863" fill-rule="evenodd" stroke="none"/>
+    <path d="M5.0 0.0 L12.95 0.0 39.05 0.0 47.0 0.0 47.0 1.0 46.0 1.0 39.05 1.0 12.95 1.0 6.0 1.0 5.0 1.0 5.0 0.0" fill="#4acaff" fill-rule="evenodd" stroke="none"/>
+    <path d="M4.0 2.0 L4.0 1.0 5.0 1.0 5.0 2.0 4.0 2.0 M48.0 2.0 L47.0 2.0 47.0 1.0 48.0 1.0 48.0 2.0" fill="#a1f2ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M46.0 3.0 L46.0 2.0 47.0 2.0 47.0 3.0 46.0 3.0 M6.0 2.0 L6.0 3.0 5.0 3.0 5.0 2.0 6.0 2.0" fill="#90fbff" fill-rule="evenodd" stroke="none"/>
+    <path d="M46.0 3.0 L39.05 3.0 12.95 3.0 6.0 3.0 6.0 2.0 12.95 2.0 39.05 2.0 46.0 2.0 46.0 3.0" fill="#8dfbff" fill-rule="evenodd" stroke="none"/>
+    <path d="M48.0 3.0 L47.0 3.0 47.0 2.0 48.0 2.0 48.0 3.0 M5.0 2.0 L5.0 3.0 4.0 3.0 4.0 2.0 5.0 2.0" fill="#95fbff" fill-rule="evenodd" stroke="none"/>
+    <path d="M48.0 3.0 L48.0 4.0 47.0 4.0 47.0 3.0 48.0 3.0 M5.0 3.0 L5.0 4.0 4.0 4.0 4.0 3.0 5.0 3.0" fill="#83f9ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M46.0 1.0 L47.0 1.0 47.0 2.0 46.0 2.0 46.0 1.0 M5.0 1.0 L6.0 1.0 6.0 2.0 5.0 2.0 5.0 1.0" fill="#aefcff" fill-rule="evenodd" stroke="none"/>
+    <path d="M46.0 2.0 L39.05 2.0 12.95 2.0 6.0 2.0 6.0 1.0 12.95 1.0 39.05 1.0 46.0 1.0 46.0 2.0" fill="#aafcff" fill-rule="evenodd" stroke="none"/>
+    <path d="M47.0 3.0 L47.0 4.0 39.05 4.0 12.95 4.0 5.0 4.0 5.0 3.0 6.0 3.0 12.95 3.0 39.05 3.0 46.0 3.0 47.0 3.0" fill="#7ff9ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M48.0 5.0 L48.0 4.45 48.0 4.0 49.0 4.0 49.0 4.45 49.0 5.0 48.0 5.0 M3.0 5.0 L3.0 4.45 3.0 4.0 4.0 4.0 4.0 4.45 4.0 5.0 3.0 5.0" fill="#81f8ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M48.0 4.0 L48.0 4.45 48.0 5.0 39.05 5.0 12.95 5.0 4.0 5.0 4.0 4.45 4.0 4.0 5.0 4.0 12.95 4.0 39.05 4.0 47.0 4.0 48.0 4.0" fill="#7ef8ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M2.0 5.0 L3.0 5.0 3.0 6.0 2.0 6.0 2.0 5.0 M49.0 6.0 L49.0 5.0 50.0 5.0 50.0 6.0 49.0 6.0" fill="#8df8ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M49.0 5.0 L49.0 4.45 49.0 4.0 50.0 4.0 50.0 4.45 50.0 5.0 49.0 5.0 M2.0 5.0 L2.0 4.45 2.0 4.0 3.0 4.0 3.0 4.45 3.0 5.0 2.0 5.0" fill="#93f9ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M2.0 6.0 L3.0 6.0 3.0 7.0 2.0 7.0 2.0 6.0 M49.0 7.0 L49.0 6.0 50.0 6.0 50.0 7.0 49.0 7.0" fill="#8bf7ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M48.0 5.0 L49.0 5.0 49.0 6.0 39.05 6.0 12.95 6.0 3.0 6.0 3.0 5.0 4.0 5.0 12.95 5.0 39.05 5.0 48.0 5.0" fill="#7df6ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M49.0 4.0 L48.0 4.0 48.0 3.0 49.0 3.0 49.0 4.0 M4.0 4.0 L3.0 4.0 3.0 3.0 4.0 3.0 4.0 4.0" fill="#8cfaff" fill-rule="evenodd" stroke="none"/>
+    <path d="M49.0 9.0 L49.0 8.0 50.0 8.0 50.0 9.0 49.0 9.0 M3.0 8.0 L3.0 9.0 2.0 9.0 2.0 8.0 3.0 8.0" fill="#89f4ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M49.0 8.0 L49.0 7.0 50.0 7.0 50.0 8.0 49.0 8.0 M3.0 7.0 L3.0 8.0 2.0 8.0 2.0 7.0 3.0 7.0" fill="#8af5ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M50.0 9.0 L50.0 11.0 49.0 11.0 49.0 10.0 49.0 9.0 50.0 9.0 M3.0 9.0 L3.0 10.0 3.0 11.0 2.0 11.0 2.0 9.0 3.0 9.0" fill="#88f1ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M3.0 8.0 L12.95 8.0 39.05 8.0 49.0 8.0 49.0 9.0 39.05 9.0 12.95 9.0 3.0 9.0 3.0 8.0" fill="#7af2ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M3.0 7.0 L12.95 7.0 39.05 7.0 49.0 7.0 49.0 8.0 39.05 8.0 12.95 8.0 3.0 8.0 3.0 7.0" fill="#7bf3ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M50.0 12.0 L49.0 12.0 49.0 11.0 50.0 11.0 50.0 12.0 M3.0 12.0 L2.0 12.0 2.0 11.0 3.0 11.0 3.0 12.0" fill="#88f0ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M50.0 12.0 L50.0 13.0 49.0 13.0 49.0 12.0 50.0 12.0 M3.0 12.0 L3.0 13.0 2.0 13.0 2.0 12.0 3.0 12.0" fill="#8aefff" fill-rule="evenodd" stroke="none"/>
+    <path d="M48.0 12.0 L39.05 12.0 12.95 12.0 4.0 12.0 3.0 12.0 3.0 11.0 12.95 11.0 39.05 11.0 49.0 11.0 49.0 12.0 48.0 12.0" fill="#77ecff" fill-rule="evenodd" stroke="none"/>
+    <path d="M49.0 11.0 L39.05 11.0 12.95 11.0 3.0 11.0 3.0 10.0 12.95 10.0 39.05 10.0 49.0 10.0 49.0 11.0" fill="#78eeff" fill-rule="evenodd" stroke="none"/>
+    <path d="M3.0 9.0 L12.95 9.0 39.05 9.0 49.0 9.0 49.0 10.0 39.05 10.0 12.95 10.0 3.0 10.0 3.0 9.0" fill="#79f0ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M49.0 12.0 L49.0 13.0 48.0 13.0 48.0 12.0 49.0 12.0 M4.0 13.0 L3.0 13.0 3.0 12.0 4.0 12.0 4.0 13.0" fill="#77ebff" fill-rule="evenodd" stroke="none"/>
+    <path d="M3.0 6.0 L12.95 6.0 39.05 6.0 49.0 6.0 49.0 7.0 39.05 7.0 12.95 7.0 3.0 7.0 3.0 6.0" fill="#7cf5ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M50.0 14.0 L51.0 14.0 51.0 15.0 50.0 15.0 50.0 14.0 M1.0 14.0 L2.0 14.0 2.0 15.0 1.0 15.0 1.0 14.0" fill="#51c7e5" fill-rule="evenodd" stroke="none"/>
+    <path d="M49.0 14.0 L50.0 14.0 50.0 15.0 49.0 15.0 49.0 14.0 M2.0 14.0 L3.0 14.0 3.0 15.0 2.0 15.0 2.0 14.0" fill="#a2f2ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M50.0 14.0 L50.0 13.55 50.0 13.0 51.0 13.0 51.0 13.55 51.0 14.0 50.0 14.0 M2.0 13.0 L2.0 13.55 2.0 14.0 1.0 14.0 1.0 13.55 1.0 13.0 2.0 13.0" fill="#90e6f6" fill-rule="evenodd" stroke="none"/>
+    <path d="M50.0 13.0 L50.0 13.55 50.0 14.0 49.0 14.0 49.0 13.55 49.0 13.0 50.0 13.0 M3.0 13.0 L3.0 13.55 3.0 14.0 2.0 14.0 2.0 13.55 2.0 13.0 3.0 13.0" fill="#91efff" fill-rule="evenodd" stroke="none"/>
+    <path d="M49.0 15.0 L50.0 15.0 50.0 16.0 49.0 16.0 49.0 15.0 M2.0 15.0 L3.0 15.0 3.0 16.0 2.0 16.0 2.0 15.0" fill="#7fddf0" fill-rule="evenodd" stroke="none"/>
+    <path d="M48.0 14.0 L49.0 14.0 49.0 15.0 48.0 15.0 48.0 14.0 M3.0 14.0 L4.0 14.0 4.0 15.0 3.0 15.0 3.0 14.0" fill="#86eaff" fill-rule="evenodd" stroke="none"/>
+    <path d="M49.0 13.0 L49.0 13.55 49.0 14.0 48.0 14.0 48.0 13.55 48.0 13.0 49.0 13.0 M3.0 14.0 L3.0 13.55 3.0 13.0 4.0 13.0 4.0 13.55 4.0 14.0 3.0 14.0" fill="#7ae9ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M48.0 13.0 L48.0 13.55 48.0 14.0 47.0 14.0 39.05 14.0 12.95 14.0 5.0 14.0 4.0 14.0 4.0 13.55 4.0 13.0 12.95 13.0 39.05 13.0 48.0 13.0" fill="#73e7ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M4.0 15.0 L4.0 14.0 5.0 14.0 5.0 15.0 4.0 15.0 M47.0 14.0 L48.0 14.0 48.0 15.0 47.0 15.0 47.0 14.0" fill="#78e6ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M5.0 14.0 L12.95 14.0 39.05 14.0 47.0 14.0 47.0 15.0 46.0 15.0 39.05 15.0 12.95 15.0 6.0 15.0 5.0 15.0 5.0 14.0" fill="#72e4ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M4.0 16.0 L4.0 15.0 5.0 15.0 5.0 16.0 4.0 16.0 M47.0 16.0 L47.0 15.0 48.0 15.0 48.0 16.0 47.0 16.0" fill="#8debff" fill-rule="evenodd" stroke="none"/>
+    <path d="M46.0 15.0 L47.0 15.0 47.0 16.0 46.0 16.0 46.0 15.0 M5.0 15.0 L6.0 15.0 6.0 16.0 5.0 16.0 5.0 15.0" fill="#84e8ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M48.0 16.0 L49.0 16.0 49.0 17.0 48.0 17.0 48.0 16.0" fill="#55c8e4" fill-rule="evenodd" stroke="none"/>
+    <path d="M5.0 16.0 L5.0 17.0 4.0 17.0 4.0 16.0 5.0 16.0 M47.0 17.0 L47.0 16.0 48.0 16.0 48.0 17.0 47.0 17.0" fill="#9eecf9" fill-rule="evenodd" stroke="none"/>
+    <path d="M46.0 17.0 L46.0 16.0 47.0 16.0 47.0 17.0 46.0 17.0" fill="#a8f2ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M48.0 18.0 L47.0 18.0 47.0 17.0 48.0 17.0 48.0 18.0 M5.0 18.0 L4.0 18.0 4.0 17.0 5.0 17.0 5.0 18.0" fill="#018bb5" fill-opacity="0.8862745" fill-rule="evenodd" stroke="none"/>
+    <path d="M46.0 17.0 L39.05 17.0 12.95 17.0 6.0 17.0 6.0 16.0 12.95 16.0 39.05 16.0 46.0 16.0 46.0 17.0" fill="#a3f1ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M47.0 18.0 L39.05 18.0 12.95 18.0 5.0 18.0 5.0 17.0 6.0 17.0 12.95 17.0 39.05 17.0 46.0 17.0 47.0 17.0 47.0 18.0" fill="#029fce" fill-rule="evenodd" stroke="none"/>
+    <path d="M49.0 17.0 L49.0 18.0 48.0 18.0 48.0 17.0 49.0 17.0 M4.0 18.0 L3.0 18.0 3.0 17.0 4.0 17.0 4.0 18.0" fill="#004a60" fill-opacity="0.4745098" fill-rule="evenodd" stroke="none"/>
+    <path d="M51.0 16.0 L51.0 17.0 50.0 17.0 50.0 16.0 51.0 16.0 M2.0 17.0 L1.0 17.0 1.0 16.0 2.0 16.0 2.0 17.0" fill="#012733" fill-opacity="0.2509804" fill-rule="evenodd" stroke="none"/>
+    <path d="M50.0 17.0 L49.0 17.0 49.0 16.0 50.0 16.0 50.0 17.0 M3.0 17.0 L2.0 17.0 2.0 16.0 3.0 16.0 3.0 17.0" fill="#036988" fill-opacity="0.6627451" fill-rule="evenodd" stroke="none"/>
+    <path d="M51.0 15.0 L51.0 16.0 50.0 16.0 50.0 15.0 51.0 15.0 M1.0 16.0 L1.0 15.0 2.0 15.0 2.0 16.0 1.0 16.0" fill="#056a89" fill-opacity="0.6627451" fill-rule="evenodd" stroke="none"/>
+    <path d="M48.0 15.0 L49.0 15.0 49.0 16.0 48.0 16.0 48.0 15.0" fill="#a0f1ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M6.0 15.0 L12.95 15.0 39.05 15.0 46.0 15.0 46.0 16.0 39.05 16.0 12.95 16.0 6.0 16.0 6.0 15.0" fill="#81e7ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M52.0 14.0 L52.0 15.0 51.0 15.0 51.0 14.0 52.0 14.0 M1.0 15.0 L0.0 15.0 0.0 14.0 1.0 14.0 1.0 15.0" fill="#053f52" fill-opacity="0.39215687" fill-rule="evenodd" stroke="none"/>
+    <path d="M52.0 13.0 L52.0 13.55 52.0 14.0 51.0 14.0 51.0 13.55 51.0 13.0 52.0 13.0 M0.0 14.0 L0.0 13.55 0.0 13.0 1.0 13.0 1.0 13.55 1.0 14.0 0.0 14.0" fill="#0c7fa4" fill-opacity="0.76862746" fill-rule="evenodd" stroke="none"/>
+    <path d="M51.0 13.0 L50.0 13.0 50.0 12.0 51.0 12.0 51.0 13.0 M2.0 12.0 L2.0 13.0 1.0 13.0 1.0 12.0 2.0 12.0" fill="#a3f3fd" fill-rule="evenodd" stroke="none"/>
+    <path d="M4.0 12.0 L12.95 12.0 39.05 12.0 48.0 12.0 48.0 13.0 39.05 13.0 12.95 13.0 4.0 13.0 4.0 12.0" fill="#75eaff" fill-rule="evenodd" stroke="none"/>
+    <path d="M6.0 16.0 L6.0 17.0 5.0 17.0 5.0 16.0 6.0 16.0" fill="#a8f3ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M3.0 15.0 L4.0 15.0 4.0 16.0 3.0 16.0 3.0 15.0" fill="#a1f1ff" fill-rule="evenodd" stroke="none"/>
+    <path d="M3.0 16.0 L4.0 16.0 4.0 17.0 3.0 17.0 3.0 16.0" fill="#52c7e4" fill-rule="evenodd" stroke="none"/>
+  </g>
+</svg>

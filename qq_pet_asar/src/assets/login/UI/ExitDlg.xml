@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="gb2312" standalone="yes" ?>
+<window name="exitdlg" width="253" height="81" visible="0" skin="image:exitbg.png" caption="确认退出">
+	<children>
+	<picture name="pictext" paddingleft="23" paddingtop="11" skin="image:picCWYTC.png"/>
+	<button name="btnexit" paddingleft="35" paddingtop="32" text="退出" textcolor="8e580a" skin="image:Button_exit.png;serial:3"/>
+	<button name="btncancel" paddingleft="145" paddingtop="32" text="再玩一会" textcolor="8e580a" skin="image:Button_exit.png;serial:3"/>
+	<checkbox name="chkRemember" paddingleft="34" paddingtop="56" text="记住我的选择，以后不再提醒" textcolor="8e580a" skin="image:Button_check.bmp;serial:4;transcolor:ff00ff" />
+	</children>
+</window>
