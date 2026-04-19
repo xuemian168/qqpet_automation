@@ -95,7 +95,7 @@ def read_store(path: Path, encryption_key: str = "aes-256-cbc") -> dict:
 
 
 def write_store(path: Path, data: dict, encryption_key: str = "aes-256-cbc") -> None:
-    """加密并写入 electron-store 数据文件"""
+    """加密并写入 electron-store 数据文件（原子写：临时文件 + rename）"""
     json_bytes = json.dumps(data, ensure_ascii=False).encode("utf-8")
 
     if encryption_key:
@@ -103,9 +103,13 @@ def write_store(path: Path, data: dict, encryption_key: str = "aes-256-cbc") -> 
         key = _derive_key(encryption_key, iv)
         cipher = AES.new(key, AES.MODE_CBC, iv)
         ciphertext = cipher.encrypt(pad(json_bytes, AES.block_size))
-        path.write_bytes(iv + b":" + ciphertext)
+        payload = iv + b":" + ciphertext
     else:
-        path.write_bytes(json_bytes)
+        payload = json_bytes
+
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_bytes(payload)
+    os.replace(tmp, path)
 
 
 def backup_store(path: Path) -> Path:

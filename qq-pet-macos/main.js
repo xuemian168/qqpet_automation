@@ -60,6 +60,8 @@ const createWindow = async () => {
       useTool.cleate("only");
     } else {
       require("./src/ini/doMain.js");
+      const { startDataWatcher } = require("./src/ini/dataWatcher.js");
+      startDataWatcher();
     }
   } else {
     app.exit(true);
