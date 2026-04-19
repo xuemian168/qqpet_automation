@@ -136,6 +136,34 @@ def test_find_medicine(client):
     assert key is None
 
 
+def test_autodetect_plaintext_preserves_format(tmp_path):
+    """macOS 移植版使用明文 JSON：即使传入 aes 默认 key，写入后仍需为明文。"""
+    path = tmp_path / "config-macos.json"
+    write_store(path, SAMPLE_DATA, encryption_key="")
+    assert path.read_bytes().startswith(b"{")
+
+    client = PetClient(store_path=str(path), encryption_key="aes-256-cbc")
+    client.update_info({"hunger": 1234})
+
+    # 仍是明文 JSON，没有被加密成 IV:密文 格式
+    assert path.read_bytes().startswith(b"{")
+    assert client.get_status().info.hunger == 1234
+
+
+def test_autodetect_encrypted_preserves_format(tmp_path):
+    """原版加密文件：auto-detect 应保留加密模式。"""
+    path = tmp_path / "config.json"
+    write_store(path, SAMPLE_DATA, encryption_key="aes-256-cbc")
+    head = path.read_bytes()[:17]
+    assert head[16:17] == b":"  # 密文格式校验
+
+    client = PetClient(store_path=str(path), encryption_key="aes-256-cbc")
+    client.update_info({"hunger": 1234})
+
+    head2 = path.read_bytes()[:17]
+    assert head2[16:17] == b":"  # 仍是密文
+
+
 def test_backup(client):
     backup_path = client.backup()
     assert backup_path.exists()

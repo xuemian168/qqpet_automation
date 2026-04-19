@@ -14,7 +14,7 @@ class PetClient:
 
     def __init__(self, store_path: str = "", encryption_key: str = "aes-256-cbc"):
         self._path = find_store_path(store_path)
-        self._encryption_key = encryption_key
+        self._encryption_key = _detect_encryption(self._path, encryption_key)
 
     @property
     def store_path(self) -> Path:
@@ -198,6 +198,31 @@ class PetClient:
                 return parts[0]
 
         return None
+
+
+def _detect_encryption(path: Path, default_key: str) -> str:
+    """根据现有文件头自动识别加密格式
+
+    macOS 移植版使用明文 JSON；原版是 AES 密文（IV[16] + ":" + 密文）。
+    随机 IV 的首字节有 1/256 概率是 `{`，因此用 "能否 JSON 解码" 作为主判据，
+    再用 "第 17 字节为 :" 作为加密格式的辅助确认。
+    """
+    import json as _json
+
+    try:
+        data = path.read_bytes()
+    except (OSError, FileNotFoundError):
+        return default_key
+
+    try:
+        _json.loads(data.decode("utf-8"))
+        return ""
+    except (ValueError, UnicodeDecodeError):
+        pass
+
+    if len(data) >= 17 and data[16:17] == b":":
+        return default_key or "aes-256-cbc"
+    return default_key
 
 
 def _to_int(val) -> int:
