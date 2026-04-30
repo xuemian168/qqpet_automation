@@ -6,6 +6,9 @@
 
 ## [Unreleased]
 
+### 修复
+- 「控制透明浏览器」(urlWindowOpen) 弹出窗口无法关闭：原代码显式调用了 `setClosable(false)` 禁用关闭按钮，改为可关闭，并监听 `closed` 事件联动关闭父控制面板，避免遗留孤儿窗口（[#3](https://github.com/xuemian168/qqpet_automation/issues/3)）
+
 ## [1.3.2] - 2026-05-01
 
 ### 新增

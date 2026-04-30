@@ -1,6 +1,6 @@
 # QQ 宠物管家 (WorkBuddy)
 
-QQ 宠物（怀旧服 v1.2.4）的逆向分析与桌面移植项目（macOS / Windows），附带 OpenClaw Skill 实现宠物自动管理。
+QQ 宠物（怀旧服 v1.2.4）的逆向分析与桌面移植项目（macOS / Windows / Linux），附带 OpenClaw Skill 实现宠物自动管理。
 
 <img width="480" alt="QQ宠物" src="https://github.com/user-attachments/assets/7fa61a7a-b23f-483f-b071-d297dc393417" />
 
@@ -33,6 +33,8 @@ QQ 宠物（怀旧服 v1.2.4）的逆向分析与桌面移植项目（macOS / Wi
 | macOS (Apple Silicon) | `QQ宠物-x.x.x-arm64.dmg` | DMG 安装包 |
 | Windows (64位) | `QQ宠物 Setup x.x.x.exe` | NSIS 安装程序 |
 | Windows (64位) | `QQ宠物-x.x.x-portable.exe` | 免安装便携版 |
+| Linux (x86_64) | `qq-pet-x.x.x-x86_64.AppImage` / `qq-pet-x.x.x-x64.tar.gz` | AppImage 或 tar.gz |
+| Linux (arm64) | `qq-pet-x.x.x-arm64.AppImage` / `qq-pet-x.x.x-arm64.tar.gz` | AppImage 或 tar.gz |
 
 #### macOS 安装
 
@@ -57,6 +59,25 @@ QQ 宠物（怀旧服 v1.2.4）的逆向分析与桌面移植项目（macOS / Wi
 >
 > 应用未经 Microsoft 签名，首次运行时 SmartScreen 可能提示"Windows 已保护你的电脑"。
 > 点击 **"更多信息"** → **"仍要运行"** 即可。
+
+#### Linux 安装
+
+- **AppImage（推荐）**：
+  ```bash
+  chmod +x qq-pet-x.x.x-<arch>.AppImage
+  ./qq-pet-x.x.x-<arch>.AppImage
+  ```
+- **tar.gz**：解压后执行目录内的 `qq-pet` 二进制即可。
+
+> **⚠️ AppImage 依赖 libfuse2**
+>
+> 部分发行版（Ubuntu 22.04+ / Debian 12+）默认不带 `libfuse2`，需手动安装：
+>
+> ```bash
+> sudo apt install libfuse2
+> ```
+>
+> 也可解压 AppImage（`./qq-pet-*.AppImage --appimage-extract`）后运行 `squashfs-root/qq-pet` 绕开 fuse。
 
 #### 从源码运行
 
