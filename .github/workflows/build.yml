@@ -103,6 +103,7 @@ jobs:
           fi
 
       - name: Build Windows (x64)
+        shell: bash
         run: |
           cd qq-pet-macos
           npx electron-builder --win nsis portable --x64 -c.extraMetadata.version=${{ steps.ver.outputs.version }}
