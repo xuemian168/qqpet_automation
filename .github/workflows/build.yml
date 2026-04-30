@@ -118,8 +118,77 @@ jobs:
             !qq-pet-macos/dist/*__uninstaller*
           if-no-files-found: error
 
+  build-linux:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: x64
+            runner: ubuntu-latest
+          - arch: arm64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install AppImage build deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libarchive-tools fuse libfuse2 desktop-file-utils
+
+      - name: Download resources
+        run: |
+          cd qq-pet-macos
+          gh release download resources-v1 \
+            --pattern 'qq-pet-resources.tar.gz' \
+            --dir /tmp
+          tar xzf /tmp/qq-pet-resources.tar.gz
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        run: |
+          cd qq-pet-macos
+          npm install
+
+      - name: Resolve version from tag
+        id: ver
+        run: |
+          REF="${GITHUB_REF_NAME:-}"
+          if [[ "$REF" == v* ]]; then
+            echo "version=${REF#v}" >> "$GITHUB_OUTPUT"
+          else
+            echo "version=$(node -p "require('./qq-pet-macos/package.json').version")" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build Linux (${{ matrix.arch }})
+        run: |
+          cd qq-pet-macos
+          npx electron-builder --linux AppImage tar.gz --${{ matrix.arch }} \
+            -c.extraMetadata.version=${{ steps.ver.outputs.version }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USE_SYSTEM_FPM: 'true'
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: qq-pet-linux-${{ matrix.arch }}
+          path: |
+            qq-pet-macos/dist/*.AppImage
+            qq-pet-macos/dist/*.tar.gz
+          if-no-files-found: error
+
   release:
-    needs: [build-macos, build-windows]
+    needs: [build-macos, build-windows, build-linux]
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/v')
     permissions:
@@ -155,6 +224,11 @@ jobs:
             ### Windows 安装
             - **安装版**：下载 `QQ宠物 Setup x.x.x.exe`，双击安装
             - **便携版**：下载 `QQ宠物-x.x.x-portable.exe`，直接运行，无需安装
+
+            ### Linux 安装（x86_64 / arm64）
+            - **AppImage**（推荐）：下载 `qq-pet-x.x.x-<arch>.AppImage`，`chmod +x` 后双击或命令行运行
+            - **tar.gz**：下载 `qq-pet-x.x.x-<arch>.tar.gz`，解压后执行目录内 `qq-pet` 二进制
+            - 部分发行版需要 `libfuse2`（AppImage 依赖）：`sudo apt install libfuse2`
 
             > ⚠️ 应用未签名，macOS / Windows 可能弹出安全提示，请手动允许运行。
           files: artifacts/**/*
