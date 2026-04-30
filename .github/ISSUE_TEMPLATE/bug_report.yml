@@ -1,0 +1,112 @@
+name: Bug 报告
+description: 应用崩溃、行为异常、数据错乱等
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈。**安全漏洞请勿走这里**——请用 [Security Advisory](https://github.com/xuemian168/qqpet_automation/security/advisories/new)。
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: 问题描述
+      description: 一句话说清楚遇到了什么
+      placeholder: 例如：右键菜单点击"喂食"后应用立刻闪退
+    validations:
+      required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: 受影响组件
+      multiple: true
+      options:
+        - Electron 桌面端 (qq-pet-macos)
+        - Python CLI (src/qq_pet)
+        - 构建产物 (DMG/EXE/AppImage)
+        - CI/CD 工作流
+        - 文档
+        - 其他
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: 操作系统
+      options:
+        - macOS (Apple Silicon / arm64)
+        - macOS (Intel / x64)
+        - Windows 10
+        - Windows 11
+        - Linux (x64)
+        - Linux (arm64)
+        - 其他
+    validations:
+      required: true
+
+  - type: input
+    id: os-version
+    attributes:
+      label: 操作系统版本
+      placeholder: 例如：macOS 14.5 / Windows 11 23H2 / Ubuntu 22.04
+    validations:
+      required: true
+
+  - type: input
+    id: app-version
+    attributes:
+      label: 项目版本
+      description: Release tag（如 v1.3.1）或 commit hash（`git rev-parse HEAD` 的前 7 位）
+      placeholder: v1.3.1 或 99154ac
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 从干净状态开始，按顺序列出
+      placeholder: |
+        1. 启动应用
+        2. 在状态栏图标右键 → 选择"喂食"
+        3. 应用闪退
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期行为
+      placeholder: 弹出喂食成功提示，宠物饥饿值上升
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际行为
+      description: 包含错误信息、崩溃堆栈
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志或截图
+      description: |
+        粘贴终端输出、控制台错误、崩溃报告。截图可直接拖入。
+        日志文件位置参见 README "数据文件位置"。
+      render: shell
+
+  - type: checkboxes
+    id: prereq
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我已搜过现有 Issue 没有重复
+          required: true
+        - label: 这不是安全漏洞（如果是请走 Security Advisory）
+          required: true

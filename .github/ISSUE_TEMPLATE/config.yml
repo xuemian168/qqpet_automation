@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 安全漏洞 (Security vulnerability)
+    url: https://github.com/xuemian168/qqpet_automation/security/advisories/new
+    about: 不要在 public issue 报告漏洞，请走 Security Advisory
+  - name: 贡献指南 (Contributing)
+    url: https://github.com/xuemian168/qqpet_automation/blob/main/CONTRIBUTING.md
+    about: 提 PR 前请先看红线和约定
+  - name: 项目定位与免责声明 (Disclaimer)
+    url: https://github.com/xuemian168/qqpet_automation/blob/main/NOTICE.md
+    about: 与腾讯无关；非商业研究项目；权利人主张时立即下架

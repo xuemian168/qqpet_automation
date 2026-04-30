@@ -1,0 +1,94 @@
+name: 兼容性问题
+description: 系统签名提示、特定平台启动失败、Flash/WASM 加载异常等
+title: "[Compat] "
+labels: ["compatibility"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        提交前请先确认是否是已知现状：
+
+        - **macOS "已损坏，无法打开"**：应用未签名导致，参见 README 中 `xattr -rd com.apple.quarantine` 命令——这是已知现状，不是 Bug。
+        - **Windows SmartScreen**：未签名导致，点"更多信息"→"仍要运行"即可。
+        - **登录不上 / 连不上服务器**：腾讯官方服务器早已停服，本项目仅本地运行，**无法回连任何线上服务**。
+
+        如果上述都不是你的情况，再继续填表。
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: 操作系统
+      options:
+        - macOS (Apple Silicon / arm64)
+        - macOS (Intel / x64)
+        - Windows 10
+        - Windows 11
+        - Linux (x64)
+        - Linux (arm64)
+        - 其他
+    validations:
+      required: true
+
+  - type: input
+    id: os-version
+    attributes:
+      label: 操作系统版本
+      placeholder: 例如：macOS 14.5 / Windows 11 23H2 / Ubuntu 22.04
+    validations:
+      required: true
+
+  - type: input
+    id: app-version
+    attributes:
+      label: 项目版本
+      placeholder: v1.3.1 或 commit hash 前 7 位
+    validations:
+      required: true
+
+  - type: dropdown
+    id: install-method
+    attributes:
+      label: 安装方式
+      options:
+        - 官方 Release 安装包
+        - 从源码 npm install + npx electron .
+        - 自行 electron-builder 打包
+    validations:
+      required: true
+
+  - type: textarea
+    id: symptom
+    attributes:
+      label: 现象描述
+      description: 完整说出在哪一步、看到了什么
+      placeholder: |
+        在 Linux x64 (Ubuntu 22.04) 双击 AppImage 后，
+        终端报 `libfuse.so.2: cannot open shared object file`，进程退出。
+    validations:
+      required: true
+
+  - type: textarea
+    id: tried
+    attributes:
+      label: 已尝试的解决方案
+      placeholder: |
+        - 已执行 README 中给出的 xattr 命令
+        - 已重新下载安装包确认 SHA-256
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 错误日志或截图
+      render: shell
+
+  - type: checkboxes
+    id: prereq
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 已确认这不是 README 中已说明的"已知现状"
+          required: true
+        - label: 已搜过现有 Issue 没有重复
+          required: true
