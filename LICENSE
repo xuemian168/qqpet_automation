@@ -1,0 +1,59 @@
+MIT License
+
+Copyright (c) 2026 xuemian168
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+================================================================================
+
+SCOPE OF THIS LICENSE / 本许可证适用范围
+
+The MIT License above applies ONLY to the original work in this repository,
+specifically:
+
+  - Reverse engineering analysis and documentation (docs/, *.tex, *.pdf)
+  - Python management tooling (src/qq_pet/, tests/)
+  - macOS / Windows / Linux porting modifications applied to the Electron
+    application (qq-pet-macos/main.js and the patches authored by this project)
+  - Build configuration, CI workflows, and project metadata
+
+The MIT License DOES NOT cover, grant, or imply any rights to:
+
+  - The "QQ宠物" / "QQ Pet" name, trademark, character designs, artwork,
+    sprites, audio assets, or any other intellectual property of
+    Tencent Holdings Ltd. (腾讯控股有限公司). All such rights are reserved
+    by their respective owners.
+  - The original Electron application source code (recovered from a publicly
+    circulated build of "QQ宠物 怀旧服 v1.2.4" found on the public internet).
+    Copyright in that code remains with its original author(s); this project
+    redistributes modified portions for research, archival, and
+    interoperability purposes only.
+  - Bundled third-party binaries, libraries, or assets, which are governed
+    by their own licenses (see qq_pet_app/LICENSE.electron.txt,
+    qq_pet_app/LICENSES.chromium.html, and the licenses of npm / PyPI
+    dependencies).
+
+See the NOTICE.md file for the full third-party attribution and disclaimer.
+
+上述 MIT 许可仅适用于本仓库中由本项目原创的部分（逆向分析报告、Python 管理
+工具、跨平台移植所做的修改、构建脚本与文档）。"QQ宠物" 名称、商标、角色形
+象、美术资源、音频资源等知识产权均归 **腾讯控股有限公司** 及其关联方所有；
+原始 Electron 应用源代码源自公开网络上流传的 "QQ宠物怀旧服 v1.2.4" 构建，
+其著作权归原作者所有，本项目仅出于研究、存档与互操作目的对其进行修改与
+再分发。详见 NOTICE.md 文件。

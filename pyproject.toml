@@ -3,6 +3,8 @@ name = "qq-pet-manager"
 version = "0.1.0"
 description = "QQ宠物（怀旧服）OpenClaw Skill - 自动养护、状态监控、疾病诊断"
 requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "xuemian168" }]
 dependencies = [
     "pyyaml>=6.0",
     "pycryptodome>=3.20.0",
