@@ -6,9 +6,12 @@
 
 ## [Unreleased]
 
+## [1.3.2] - 2026-05-01
+
 ### 新增
 - Linux x64 / arm64 构建产物（AppImage + tar.gz）
-- 项目许可与社区文件：`LICENSE`（MIT）、`NOTICE.md`（第三方权利声明）、`CONTRIBUTING.md`、`SECURITY.md`
+- 项目许可与社区文件：`LICENSE`（MIT）、`NOTICE.md`（第三方权利声明）、`CONTRIBUTING.md`、`SECURITY.md`、`CHANGELOG.md`
+- GitHub Issue 表单模板：Bug 报告、兼容性问题、功能建议，含 IP 边界与已知现状提示
 
 ### 修复
 - Windows 构建步骤强制使用 bash，避免 PowerShell 解析 `-c.extraMetadata.version=VALUE` 时把 `=VALUE` 当文件路径
@@ -56,7 +59,8 @@
 - 禁用远程自动更新检查
 - 存储改为明文 JSON（方便审计与 CLI 读写）
 
-[Unreleased]: https://github.com/xuemian168/qqpet_automation/compare/v1.3.1...HEAD
+[Unreleased]: https://github.com/xuemian168/qqpet_automation/compare/v1.3.2...HEAD
+[1.3.2]: https://github.com/xuemian168/qqpet_automation/compare/v1.3.1...v1.3.2
 [1.3.1]: https://github.com/xuemian168/qqpet_automation/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/xuemian168/qqpet_automation/compare/v1.2.4-clean...v1.3.0
 [1.2.4-clean]: https://github.com/xuemian168/qqpet_automation/releases/tag/v1.2.4-clean

@@ -1,6 +1,6 @@
 {
   "name": "qq-pet-macos",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "QQ宠物 macOS 干净版 - 已移除遥测和设备指纹采集",
   "license": "SEE LICENSE IN ../LICENSE",
   "main": "main.js",
