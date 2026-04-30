@@ -37,10 +37,21 @@ jobs:
           cd qq-pet-macos
           npm install
 
+      - name: Resolve version from tag
+        id: ver
+        run: |
+          REF="${GITHUB_REF_NAME:-}"
+          if [[ "$REF" == v* ]]; then
+            echo "version=${REF#v}" >> "$GITHUB_OUTPUT"
+          else
+            echo "version=$(node -p "require('./qq-pet-macos/package.json').version")" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Build macOS (${{ matrix.arch }})
         run: |
           cd qq-pet-macos
-          npx electron-builder --mac dmg zip --${{ matrix.arch }}
+          npx electron-builder --mac dmg zip --${{ matrix.arch }} \
+            -c.extraMetadata.version=${{ steps.ver.outputs.version }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -80,10 +91,21 @@ jobs:
           cd qq-pet-macos
           npm install
 
+      - name: Resolve version from tag
+        id: ver
+        shell: bash
+        run: |
+          REF="${GITHUB_REF_NAME:-}"
+          if [[ "$REF" == v* ]]; then
+            echo "version=${REF#v}" >> "$GITHUB_OUTPUT"
+          else
+            echo "version=$(node -p "require('./qq-pet-macos/package.json').version")" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Build Windows (x64)
         run: |
           cd qq-pet-macos
-          npx electron-builder --win nsis portable --x64
+          npx electron-builder --win nsis portable --x64 -c.extraMetadata.version=${{ steps.ver.outputs.version }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
