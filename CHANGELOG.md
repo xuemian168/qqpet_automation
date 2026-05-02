@@ -8,6 +8,7 @@
 
 ### 修复
 - 「控制透明浏览器」(urlWindowOpen) 弹出窗口无法关闭：原代码显式调用了 `setClosable(false)` 禁用关闭按钮，改为可关闭，并监听 `closed` 事件联动关闭父控制面板，避免遗留孤儿窗口（[#3](https://github.com/xuemian168/qqpet_automation/issues/3)）
+- 「渔港」/「后室」iframe 内 `<embed src="*.swf">` 在 Windows 上回退到原生 Flash 插件失效：iframe 内文档（`indexOnLine.html`）未注入 Ruffle，外层 `app.html` 的 Ruffle 不会被 iframe 自动继承。改为在两个 `indexOnLine.html` 内直接加载 `../../js/ruffle/ruffle.js` 并配置 `RufflePlayer`，由 Ruffle polyfill `<embed>`（[#2](https://github.com/xuemian168/qqpet_automation/issues/2)）
 
 ## [1.3.2] - 2026-05-01
 
