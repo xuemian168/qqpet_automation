@@ -12,7 +12,7 @@ let html_main = {
   viewSwf_getFolder: (event) => ipcRenderer.send('viewSwf_get-folder', event),
 }
 
-contextBridge.exposeInMainWorld('electronAPI', {
+window.electronAPI = Object.assign(window.electronAPI || {}, {
   // 控制台打印
   viewSwf_setSay: (say) => ipcRenderer.send('viewSwf_set-say', say),
   // 主程序给html
