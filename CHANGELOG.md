@@ -6,6 +6,30 @@
 
 ## [Unreleased]
 
+## [1.5.1] - 2026-05-04
+
+### 性能优化（保持 Electron 路径下的体积/内存优化）
+
+- **Electron 升级**：28.0.0 → 33.4.11，electron-builder 24 → 25
+  - 拿到 V8 内存压缩（V8 sandbox）、更紧的 binary、原生 fetch
+- **electron-builder 配置精简**
+  - `compression: maximum`（lzma）+ `asar: true` + `electronLanguages: [zh_CN, en]`（剥离 ~30 个 macOS .lproj 本地化）
+  - 扩充 `files` 排除规则：tests / docs / .eslint / CHANGELOG / *.md / *.d.ts / .DS_Store
+  - macOS 加 `minimumSystemVersion: 10.15.0` + `NSHighResolutionCapable`
+- **Chromium 启动开关**（`main.js`）
+  - `--max-old-space-size=128 --max-semi-space-size=8`：每个 renderer V8 堆上限收紧
+  - `disable-features`: 关闭桌宠用不到的 `MediaRouter` / `GlobalMediaControls` / `Translate` / `OptimizationHints` / `Autofill` / `MediaSessionService` / `AcceptCHFrame` / `CertificateTransparencyComponentUpdater` / `HardwareMediaKeyHandling`
+  - `enable-features=MemoryPressureBasedSourceBufferGC`：内存压力下更激进 GC
+
+### 实测体积变化（macOS arm64）
+
+- DMG: 259.4 MB → 254.1 MB（-2.0%）
+- zip: 254.9 MB → 259.0 MB（+1.6%，Electron 33 binary 略大，被 lzma 抵消）
+
+### 备注
+
+应用 474 MB 里 200 MB 是 1341 个 SWF 资源（998 已 CWS 压缩），是不可压缩硬底。Electron runtime 本身已通过本次优化挤到极限。要继续减安装包体积，必须做 SWF → 现代格式的资源迁移，已超出"保持 Electron"范畴。
+
 ## [1.5.0] - 2026-05-04
 
 ### 新增
