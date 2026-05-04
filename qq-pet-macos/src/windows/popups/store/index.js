@@ -1,1 +1,92 @@
-(()=>{var e={},l=e=>{window.electronAPI.store_h_bus(e)};const t={data:()=>({petInfo:{},imgSrc:"",myStore:{tabValue:{v1:0,v2:0,tab:"",tabc:"",children:[]},tab:[{label:"装扮",value:"disguise",icon:"mall_24",icon1:"mall1_24",children:[{label:"背景",value:"background",width:"31px",icon:"mall_38",icon1:"mal_38"}]},{label:"喂养",value:"feed",icon:"mall_25",icon1:"mall1_25",children:[{label:"食品",value:"food",icon:"lmenu_30",icon1:"lsmenu1_30"},{label:"日用品",value:"commodity",icon:"lmenu_32",icon1:"lsmenu1_32"},{label:"药品",value:"medicine",icon:"lmenu_31",icon1:"lsmenu1_31"}]},{label:"功能",value:"function",icon:"mall_24",icon1:"mall1_24",children:[{label:"背景",value:"background",width:"31px",icon:"mall_38",icon1:"mal_38"}]},{label:"任务",value:"task",icon:"mall_24",icon1:"mall1_24",children:[{label:"背景",value:"background",width:"31px",icon:"mall_38",icon1:"mal_38"}]}],goods:[]}}),computed:{},created(){},mounted(){this.chooseMyStore(0,0),window.electronAPI.store_m_bus(((e,l)=>{"load"==l.type&&(this.petInfo=l.data,this.getImgSrc(),seeApp())})),window.electronAPI.store_m_petInfo(((e,l)=>{"info"==l.type&&(this.petInfo=l.data,this.getImgSrc())})),l({event:"mounted"})},methods:{chooseMyStore(e,l){this.myStore.tabValue.tab=this.myStore.tab[e].value,this.myStore.tabValue.v1=e,this.myStore.tabValue.v2=l||0,this.myStore.tabValue.tabc=this.myStore.tab[e].children[l||0].value,this.myStore.tabValue.children=JSON.parse(JSON.stringify(this.myStore.tab[e].children))},getImgSrc(){let e=1,l=this.petInfo.maxInfo.level;l>5&&l<10?e=2:l>=10&&(e=3),this.imgSrc="../assets/info/"+this.petInfo.info.sex+e+".svg"},closeWindow(){l({event:"close"})}}};Vue.createApp(t).mount("#app");var o=window;for(var a in e)o[a]=e[a];e.__esModule&&Object.defineProperty(o,"__esModule",{value:!0})})();
+(()=>{
+var e={},
+sendBus=p=>{window.electronAPI.store_h_bus(p)};
+
+const ICON_MAP = {
+  food: "🍖",
+  commodity: "🧴",
+  medicine: "💊",
+  background: "🖼️"
+};
+
+const app = {
+  data: () => ({
+    petInfo: {info:{yb:0}, maxInfo:{level:1}},
+    tabs: [
+      {label:"食品", value:"food"},
+      {label:"日用品", value:"commodity"},
+      {label:"药品", value:"medicine"}
+    ],
+    activeTab: "food",
+    cache: {food:[], commodity:[], medicine:[]},
+    loading: false,
+    error: "",
+    toast: "",
+    toastType: "info",
+    toastTimer: null
+  }),
+  computed: {
+    filteredItems(){
+      const list = this.cache[this.activeTab] || [];
+      return list
+        .filter(it => it && +it.price > 0)
+        .sort((a,b) => (+a.price) - (+b.price));
+    }
+  },
+  mounted(){
+    this.switchTab(this.activeTab);
+    window.electronAPI.store_m_bus((e,d)=>{
+      if(d.type === "load"){
+        this.petInfo = d.data || this.petInfo;
+        seeApp();
+      }
+    });
+    window.electronAPI.store_m_petInfo((e,d)=>{
+      if(d.type === "info") this.petInfo = d.data || this.petInfo;
+    });
+    window.electronAPI.store_m_goods((e,d)=>{
+      this.loading = false;
+      if(d.error){ this.error = d.error; return; }
+      this.error = "";
+      this.cache[d.type] = d.items || [];
+    });
+    window.electronAPI.store_m_buyResult((e,d)=>{
+      if(d.petInfo) this.petInfo = d.petInfo;
+      this.showToast(d.msg || (d.ok ? "购买成功" : "购买失败"), d.ok ? "ok" : "err");
+    });
+    sendBus({event:"mounted"});
+  },
+  methods: {
+    switchTab(value){
+      this.activeTab = value;
+      if(this.cache[value] && this.cache[value].length > 0) return;
+      this.loading = true;
+      this.error = "";
+      window.electronAPI.store_h_listGoods({type: value});
+    },
+    iconFor(item){
+      return ICON_MAP[item?.type] || "📦";
+    },
+    buy(item){
+      if(!item?.keyName || !item?.type) return;
+      const goodKey = item.type + "*" + item.keyName;
+      window.electronAPI.store_h_buy({goodKey});
+    },
+    showToast(msg, type){
+      this.toast = msg;
+      this.toastType = type === "ok" ? "ok" : (type === "err" ? "err" : "info");
+      if(this.toastTimer) clearTimeout(this.toastTimer);
+      this.toastTimer = setTimeout(()=>{ this.toast = ""; }, 2400);
+    },
+    closeWindow(){
+      sendBus({event:"close"});
+    }
+  }
+};
+
+Vue.createApp(app).mount("#app");
+
+var w=window;
+for(var k in e) w[k]=e[k];
+e.__esModule && Object.defineProperty(w,"__esModule",{value:!0});
+})();

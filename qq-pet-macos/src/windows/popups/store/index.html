@@ -1,38 +1,68 @@
 <div id="appMain">
-  <!-- <img src="../assets/shop/buy/137.svg" alt=""> -->
-  <div class="store notSelect">
-    <div class="storeHead fc">
-      商城
+  <div class="storeV2 notSelect">
+    <div class="sv2-head">
+      <div class="sv2-title">商城</div>
+      <div class="sv2-yb">
+        <span class="sv2-yb-icon">¥</span>
+        <span class="sv2-yb-num">{{petInfo?.info?.yb || 0}}</span>
+        <span class="sv2-yb-label">元宝</span>
+      </div>
+      <div class="sv2-close not_drag focusPress" @click="closeWindow">×</div>
     </div>
-    <div class="storeMain">
-      <div class="petBody fcc">
-        <div class="imgBody">
-          <img class="img" :src="imgSrc" alt="">
+
+    <div class="sv2-body">
+      <div class="sv2-tabs not_drag">
+        <div
+          v-for="(tab, idx) in tabs"
+          :key="idx"
+          class="sv2-tab focusPress"
+          :class="{active: activeTab === tab.value}"
+          @click="switchTab(tab.value)"
+        >
+          {{tab.label}}
         </div>
       </div>
-      <div class="myStore">
-        <div class="tab fc">
-          <div class="tabOnce focusPress not_drag" v-for='(item, index) in myStore.tab' :key='index'
-            :class="[index == myStore.tab.length-1 ? 'over':'']" :style="{backgroundImage: 'url(../assets/shop/store/images/menu/'
-    + (item.value == myStore.tabValue.tab ? item.icon1:item.icon) +'.gif)'}" @click="chooseMyStore(index)">
-          </div>
+
+      <div class="sv2-content">
+        <div v-if="loading" class="sv2-empty">加载中…</div>
+        <div v-else-if="error" class="sv2-empty">{{error}}</div>
+        <div v-else-if="filteredItems.length === 0" class="sv2-empty">
+          该分类暂无可购买商品<br/>
+          <small>（部分原版商品需通过任务/送礼获取）</small>
         </div>
-        <div class="goods" v-if="myStore?.tabValue?.children.length >0">
-          <div class="tab fc">
-            <div class="t_tabOnce focusPress not_drag" v-for='(item, index) in myStore.tabValue?.children' :key='index'
-              :style="{backgroundImage: 'url(../assets/shop/store/images/menu/'
-  + (item.value == myStore.tabValue.tabc ? item.icon1:item.icon) +'.gif)', width:item?.width || (item.label.length == 2 ? '44px':'59px')}"
-              @click="chooseMyStore(myStore.tabValue.v1, index)">
+        <div v-else class="sv2-grid not_drag">
+          <div
+            v-for="item in filteredItems"
+            :key="item.keyName"
+            class="sv2-card"
+          >
+            <div class="sv2-card-head">
+              <div class="sv2-card-icon">{{iconFor(item)}}</div>
+              <div class="sv2-card-name">{{item.name}}</div>
+            </div>
+            <div class="sv2-card-body">
+              <div v-if="item.starve" class="sv2-attr">饥饿 +{{item.starve}}</div>
+              <div v-if="item.clean" class="sv2-attr">清洁 +{{item.clean}}</div>
+              <div v-if="item.intel" class="sv2-attr">智力 +{{item.intel}}</div>
+              <div v-if="item.charm" class="sv2-attr">魅力 +{{item.charm}}</div>
+              <div v-if="item.strong" class="sv2-attr">武力 +{{item.strong}}</div>
+              <div v-if="item.desc" class="sv2-desc">{{item.desc}}</div>
+            </div>
+            <div class="sv2-card-foot">
+              <span class="sv2-price">¥ {{item.price}}</span>
+              <button
+                class="sv2-buy focusPress"
+                :disabled="(petInfo?.info?.yb || 0) < item.price"
+                @click="buy(item)"
+              >
+                购买
+              </button>
             </div>
           </div>
         </div>
-        <!-- {{myStore.tabValue.tabc}} -->
-        <div class="storeGoods">
-
-          
-        </div>
       </div>
     </div>
+
+    <div v-if="toast" class="sv2-toast" :class="toastType">{{toast}}</div>
   </div>
-</div>
 </div>
