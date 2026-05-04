@@ -106,12 +106,22 @@ if (process.platform === "win32") {
 
 app.commandLine.appendSwitch("disable-features", disabledFeatures.join(","));
 
-// V8 堆上限：renderer 也会继承该 switch，过紧会让 Ruffle/SWF 加载阶段 OOM 静默崩
-// (issue #10)。给 renderer 留出加载 200MB SWF + Ruffle WASM 的空间。
-app.commandLine.appendSwitch("js-flags", "--max-old-space-size=512");
-
 // 内存压力下更激进地回收
 app.commandLine.appendSwitch("enable-features", "MemoryPressureBasedSourceBufferGC");
+
+// renderer crash 诊断：把崩溃原因打到 stdout，便于 issue 报告时定位
+// （V8 OOM / SIGSEGV 等不会走 console，仅这里能看到）
+app.on("render-process-gone", (event, webContents, details) => {
+  try {
+    const url = webContents?.getURL?.() || "?";
+    console.error(`[RENDERER-GONE] reason=${details.reason} exitCode=${details.exitCode} url=${url}`);
+  } catch (_) {}
+});
+app.on("child-process-gone", (event, details) => {
+  try {
+    console.error(`[CHILD-GONE] type=${details.type} reason=${details.reason} exitCode=${details.exitCode}`);
+  } catch (_) {}
+});
 
 app.whenReady().then(() => {
   createWindow();
