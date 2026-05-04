@@ -72,7 +72,7 @@ const createWindow = async () => {
 app.commandLine.appendSwitch("disable-site-isolation-trials");
 
 // 内存优化：禁用桌宠用不到的 Chromium 子系统
-app.commandLine.appendSwitch("disable-features", [
+const disabledFeatures = [
   "HardwareMediaKeyHandling",
   "GlobalMediaControls",
   "MediaRouter",
@@ -83,10 +83,19 @@ app.commandLine.appendSwitch("disable-features", [
   "AcceptCHFrame",
   "AutofillServerCommunication",
   "CertificateTransparencyComponentUpdater",
-].join(","));
+];
 
-// V8 堆上限：桌宠所有窗口都不需要大堆，128MB 足够
-app.commandLine.appendSwitch("js-flags", "--max-old-space-size=128 --max-semi-space-size=8");
+// Windows: Electron 32+ 的 CalculateNativeWinOcclusion 会把 frameless+transparent
+// 桌宠窗口误判为被遮挡而停止合成，issue #10 复现的"窗口不显示"。
+if (process.platform === "win32") {
+  disabledFeatures.push("CalculateNativeWinOcclusion");
+}
+
+app.commandLine.appendSwitch("disable-features", disabledFeatures.join(","));
+
+// V8 堆上限：renderer 也会继承该 switch，过紧会让 Ruffle/SWF 加载阶段 OOM 静默崩
+// (issue #10)。给 renderer 留出加载 200MB SWF + Ruffle WASM 的空间。
+app.commandLine.appendSwitch("js-flags", "--max-old-space-size=512");
 
 // 内存压力下更激进地回收
 app.commandLine.appendSwitch("enable-features", "MemoryPressureBasedSourceBufferGC");
