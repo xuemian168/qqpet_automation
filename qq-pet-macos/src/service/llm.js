@@ -43,6 +43,18 @@ const DYNAMIC_PROMPTS = {
   levUp: (ctx) =>
     `宠物刚升级到 ${ctx.level} 级（${ctx.ageStage}阶段）！` +
     `说一句开心炫耀的话，体现里程碑感。`,
+  focusEye: (ctx) =>
+    `主人已经连续盯屏 ${ctx.activeMin} 分钟了。说一句关心眼睛的话，` +
+    `提醒远眺或休息，要温暖不说教。`,
+  sedentary: (ctx) =>
+    `主人坐着不动已经 ${ctx.sedentaryMin} 分钟了。` +
+    `说一句催促起身活动的话，可以撒娇或调皮，但要有真切的关心。`,
+  lateNight: (ctx) =>
+    `现在是${ctx.hour}点，深夜了主人还在工作。` +
+    `说一句劝主人早睡的话，要心疼但不啰嗦。`,
+  welcomeBack: (ctx) =>
+    `主人离开 ${ctx.awayMin} 分钟后刚刚回来。` +
+    `说一句开心的欢迎话，体现想念感和久别重逢。`,
 };
 
 function callDeepSeek(apiKey, messages) {
