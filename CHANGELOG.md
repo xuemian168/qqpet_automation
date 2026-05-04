@@ -6,6 +6,24 @@
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-05-04
+
+### 新增
+- 接入 DeepSeek LLM 生成宠物对话：仅替换 `smallTalk`（日常闲聊）和 `toHeartTolk`（互动撒娇）两类硬编码台词，其余事件反馈保持原样。设置面板新增「AI 对话」标签，提供启用开关、API Key 输入框（密码态）和测试连接按钮。
+  - 新增 `src/service/llm.js`：DeepSeek HTTPS 客户端 + 预取队列（每类最多缓存 3 条），异步预取、API 失败时自动降级到硬编码台词
+  - 设置 UI 增加 `input` 控件类型（`src/windows/popups/setup/index.html` + `index.css`）
+  - 启动时和每次取用后异步预取下一条，零延迟显示
+- LLM 扩展接入更多事件（按需调用，不预取）：
+  - **剪贴板文字评论**：复制文字时宠物会针对内容做俏皮评论（如识别代码/链接/邮件），>500 字自动截断；图片不发送 LLM。AI 关闭时回退到原文展示
+  - **god 模式（Ctrl+方向键）**：宠物的反应改为 LLM 现编（替换原来 3 句固定话术）
+  - **入场问候 (`enter`)**：每次启动时根据当前时间段（凌晨/早上/中午/...）和距上次登录的间隔（分钟/小时/天）生成个性化问候，替代 25+ 句固定话术
+  - **状态嘟囔（饿/脏）**：宠物喊饿/喊脏时根据具体数值（饥饿值/清洁值百分比）生成有节奏感的吐槽，替代 2-4 句循环
+  - **升级恭喜 (`levUp`)**：根据等级里程碑（蛋/幼年/成年阶段）生成个性化炫耀
+  - 新增 `LLMService.generateOnce(promptType, contextData, petInfo)` 同步式 API（Promise），失败自动回退硬编码
+  - 新增 `global._buildLLMCtx(kind)` 上下文构造工具（提取宠物当前状态、时间、登录间隔等数据供 LLM prompt 使用）
+- AI 对话设置面板增加「**模型名称**」配置项，支持自由切换 `deepseek-chat`（默认 V3）/ `deepseek-reasoner`（R1）/ 其他 DeepSeek 官方支持的模型 ID。留空 fallback 到 `deepseek-chat`
+- README 增加完整的「AI 对话（DeepSeek 接入）」章节：列出全部 7 个接入场景、启用步骤、模型对比、隐私声明、成本估算、失败回退说明
+
 ### 修复
 - 「控制透明浏览器」(urlWindowOpen) 弹出窗口无法关闭：原代码显式调用了 `setClosable(false)` 禁用关闭按钮，改为可关闭，并监听 `closed` 事件联动关闭父控制面板，避免遗留孤儿窗口（[#3](https://github.com/xuemian168/qqpet_automation/issues/3)）
 - 「渔港」/「后室」iframe 内 `<embed src="*.swf">` 在 Windows 上回退到原生 Flash 插件失效：iframe 内文档（`indexOnLine.html`）未注入 Ruffle，外层 `app.html` 的 Ruffle 不会被 iframe 自动继承。改为在两个 `indexOnLine.html` 内直接加载 `../../js/ruffle/ruffle.js` 并配置 `RufflePlayer`，由 Ruffle polyfill `<embed>`（[#2](https://github.com/xuemian168/qqpet_automation/issues/2)）

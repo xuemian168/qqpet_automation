@@ -105,6 +105,16 @@
               </div>
             </div>
           </div>
+          <div class="childrenIn fC slider" v-if="stem.type == 'input'">
+            <div class="label" cancel>{{stem.label}}：</div>
+            <input
+              class="apiInput not_drag"
+              :type="stem.inputType || 'text'"
+              :placeholder="stem.placeholder || ''"
+              v-model="sysData[stem.value]"
+              @change="setStting(stem)"
+            />
+          </div>
           <div class="childrenIn fC slider" v-if="stem.type == 'see'">
             <div>{{stem.label}}：</div>
             <div v-if="stem?.vType == 'html'" v-html="stem.value"></div>
