@@ -301,3 +301,24 @@
 .seeValues{
   font-size: 14px;
 }
+
+/* AI 配置输入框 */
+.apiInput {
+  width: calc(100% - 20px);
+  margin-top: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.75);
+  outline: none;
+  color: #333;
+  box-sizing: border-box;
+}
+.apiInput::placeholder {
+  color: #aaa;
+}
+.apiInput:focus {
+  border-color: rgba(80, 140, 220, 0.6);
+  background: rgba(255, 255, 255, 0.95);
+}

@@ -6,11 +6,12 @@ QQ 宠物（怀旧服 v1.2.4）的逆向分析与桌面移植项目（macOS / Wi
 
 ## 项目概述
 
-本项目完成了三件事：
+本项目完成了四件事：
 
 1. **逆向分析** — 完整分析了 QQ 宠物的通信架构（Express + WebSocket + RSA 上报）
 2. **桌面移植** — 提取 Electron 源码，移除遥测/指纹采集，用 Ruffle WASM 替代 Flash，适配 macOS 和 Windows
 3. **自动化管理** — Python CLI 直接读写 electron-store 数据文件，实现宠物状态监控与养护
+4. **AI 对话接入** — 桌宠对话从硬编码字典升级为 DeepSeek LLM 动态生成，宠物会感知时间、剪贴板内容、自身状态等上下文做出针对性反应
 
 <img width="320" height="334" alt="image" src="https://github.com/user-attachments/assets/457cf203-b00f-4108-a6f8-cf44d75fe315" />
 
@@ -224,6 +225,62 @@ workbuddy/
 ├── requirements.txt              # Python 依赖
 └── pyproject.toml
 ```
+
+## AI 对话（DeepSeek 接入）
+
+桌宠原本只能从硬编码字典里随机抽固定话术。本项目将其升级为**可选的 LLM 动态生成**：宠物会根据当前**时间、自身状态、剪贴板内容**等上下文，由 DeepSeek 现编对话。功能默认**关闭**，开启后失败会自动回退到硬编码，不影响基础体验。
+
+### 已接入的 7 个对话场景
+
+| 触发场景 | 替换的固定话术 | LLM 上下文 | 调用方式 |
+|---------|--------------|-----------|---------|
+| `smallTalk` 日常闲聊 | 100+ 句 | 宠物状态 | 预取队列（零延迟） |
+| `toHeartTolk` 互动撒娇 | 12 句 | 宠物状态 | 预取队列（零延迟） |
+| `enter` 入场问候 | 25+ 句 | 时间段 + 距上次登录间隔 | 按需（启动时）|
+| `state.eat` 饿了喊吃 | 3 句 | 当前饥饿百分比 | 按需 |
+| `state.clean` 脏了喊洗 | 4 句 | 当前清洁百分比 | 按需 |
+| `levUp` 升级炫耀 | 3 句 | 新等级 + 阶段（蛋/幼/成）| 按需 |
+| `clipboardText` 复制评论 | 仅显示原文 | 剪贴板文字（截断 500 字）| 按需 |
+| `godMode` 神秘按键 | 3 句 | 无 | 按需 |
+
+> 入场问候示例：早上 9 点启动 → "主人早上好，工作日加油！"；凌晨 2 点 → "[host]，深夜了快去睡呀，别熬坏身体~"
+
+### 启用步骤
+
+1. 申请 DeepSeek API Key：访问 [platform.deepseek.com/api_keys](https://platform.deepseek.com/api_keys)
+2. 启动桌宠 → 右键托盘图标 → **设置** → 切到 **「AI 对话」** 标签
+3. 配置 3 项：
+   - **启用 AI 对话**：开关
+   - **DeepSeek API Key**：粘贴 `sk-...`，回车保存（密码态显示）
+   - **模型名称**：留空 = `deepseek-chat`（V3，便宜又快），可改为 `deepseek-reasoner`（R1 思考模型）或任何 [DeepSeek 官方](https://api-docs.deepseek.com/zh-cn/quick_start/pricing/) 支持的模型 ID
+4. 点击 **「测试连接」** 按钮 → 宠物气泡显示「AI 连接成功！」即生效
+
+### 模型对比建议
+
+| 模型 ID | 适用场景 | 说明 |
+|---------|---------|------|
+| `deepseek-chat` | **默认推荐** | DeepSeek-V3，响应 1-2 秒，输入 ¥1/M tokens |
+| `deepseek-reasoner` | 想要更俏皮、有逻辑的回复 | R1 思考模型，响应 3-8 秒，价格更高 |
+
+### 隐私与安全
+
+- API Key 存储在本地 `~/Library/Application Support/qq-pet-macos/config-macos.json`（macOS）等同位置，**不上传任何远程服务器**
+- 剪贴板**文字**内容（截断到 500 字内）会发送到 DeepSeek 用于评论；**图片不发送**
+- 关闭「实时监听播报剪切板」即可彻底禁用剪贴板上行
+- 关闭「启用 AI 对话」开关，所有 LLM 调用立即停止，宠物回到原硬编码模式
+
+### 成本估算
+
+按 `deepseek-chat` 默认模型估算（输入 ¥1/M、输出 ¥2/M tokens）：
+
+- 单次对话约 200-300 tokens（输入 prompt + 输出回复）
+- 日常使用每天约 50-100 次对话 → **每天 ¥0.01-0.03**，每月 < ¥1
+
+### 失败回退
+
+任何环节失败（API Key 错、网络断、超时 8s、未启用），都会**自动回退**到原硬编码话术，不会让宠物"哑巴"。
+
+---
 
 ## 配置
 
