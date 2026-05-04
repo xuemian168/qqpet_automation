@@ -2,7 +2,7 @@
 
 QQ 宠物（怀旧服 v1.2.4）的逆向分析与桌面移植项目（macOS / Windows / Linux），附带 OpenClaw Skill 实现宠物自动管理。
 
-<img width="480" alt="QQ宠物" src="https://github.com/user-attachments/assets/7fa61a7a-b23f-483f-b071-d297dc393417" />
+<img width="540" height="824" alt="image" src="https://github.com/user-attachments/assets/6597c635-fb8a-45cc-b0cb-8a49ca5b1314" />
 
 ## 项目概述
 
@@ -148,7 +148,9 @@ pip install -r requirements.txt
 .venv/bin/python -m src.qq_pet.cli raw          # 查看原始数据（调试）
 ```
 
-## OpenClaw Skill
+## Agnet Skill
+
+<img width="280" alt="QQ宠物" src="https://github.com/user-attachments/assets/7fa61a7a-b23f-483f-b071-d297dc393417" />
 
 将 `skills/qq-pet/` 复制到 skill 目录后，AI 助手可通过自然语言管理宠物：
 
