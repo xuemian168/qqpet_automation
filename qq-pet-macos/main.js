@@ -71,6 +71,19 @@ const createWindow = async () => {
 // macOS: 不加载 PepFlash DLL（使用 Ruffle WASM 替代）
 app.commandLine.appendSwitch("disable-site-isolation-trials");
 
+// Windows: RDP / 终端服务会话下 GPU 合成不可用，transparent+frameless
+// 桌宠窗口会完全不渲染（issue #10 在远程桌面环境下的根因）。
+// 检测到远程会话时退化为 CPU 软件合成。
+if (process.platform === "win32") {
+  const sess = (process.env.SESSIONNAME || "").toUpperCase();
+  const isRemoteSession = sess.startsWith("RDP-") || !!process.env.CLIENTNAME;
+  if (isRemoteSession) {
+    app.disableHardwareAcceleration();
+    app.commandLine.appendSwitch("disable-gpu");
+    app.commandLine.appendSwitch("disable-gpu-compositing");
+  }
+}
+
 // 内存优化：禁用桌宠用不到的 Chromium 子系统
 const disabledFeatures = [
   "HardwareMediaKeyHandling",
