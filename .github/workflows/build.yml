@@ -234,4 +234,4 @@ jobs:
             > ⚠️ 应用未签名，macOS / Windows 可能弹出安全提示，请手动允许运行。
           files: artifacts/**/*
           draft: false
-          prerelease: false
+          prerelease: ${{ contains(github.ref_name, '-') }}
