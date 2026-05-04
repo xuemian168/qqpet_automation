@@ -29,13 +29,19 @@
   "author": "xuemian168",
   "repository": "https://github.com/xuemian168/qqpet_automation",
   "devDependencies": {
-    "electron": "^28.0.0",
-    "electron-builder": "^24.9.1"
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8"
   },
   "build": {
     "publish": null,
     "appId": "com.qqpet.desktop",
     "productName": "QQ宠物",
+    "compression": "maximum",
+    "asar": true,
+    "removePackageScripts": true,
+    "removePackageKeywords": true,
+    "buildDependenciesFromSource": false,
+    "nodeGypRebuild": false,
     "directories": {
       "output": "dist"
     },
@@ -43,32 +49,61 @@
       "main.js",
       "src/**/*",
       "!src/**/node_modules",
-      "!**/*.map"
+      "!**/*.map",
+      "!**/*.md",
+      "!**/.DS_Store",
+      "!**/*.{ts,tsx,d.ts}",
+      "!**/{test,tests,__tests__,__mocks__,docs,doc,example,examples}/**",
+      "!**/{.eslintrc,.eslintrc.json,.prettierrc,.prettierrc.json,.editorconfig,.gitignore,.gitattributes,.npmignore,.travis.yml,.appveyor.yml,tsconfig.json,jest.config.js,rollup.config.js,webpack.config.js}",
+      "!**/LICENSE*",
+      "!**/CHANGELOG*",
+      "!**/README*"
+    ],
+    "asarUnpack": [
+      "src/assets/Action/**",
+      "src/assets/game/**"
     ],
     "mac": {
       "category": "public.app-category.entertainment",
       "icon": "resources/icon.png",
+      "minimumSystemVersion": "10.15.0",
+      "extendInfo": {
+        "LSUIElement": false,
+        "NSHighResolutionCapable": true
+      },
       "target": [
         {
           "target": "dmg",
-          "arch": ["arm64"]
+          "arch": [
+            "arm64"
+          ]
         },
         {
           "target": "zip",
-          "arch": ["arm64"]
+          "arch": [
+            "arm64"
+          ]
         }
       ]
     },
+    "electronLanguages": [
+      "zh_CN",
+      "en"
+    ],
     "win": {
       "icon": "resources/icon.png",
       "target": [
         {
           "target": "nsis",
-          "arch": ["x64"]
+          "arch": [
+            "x64"
+          ]
         },
         {
           "target": "portable",
-          "arch": ["x64"]
+          "arch": [
+            "x64"
+          ]
         }
       ]
     },
@@ -79,11 +114,17 @@
       "target": [
         {
           "target": "AppImage",
-          "arch": ["x64", "arm64"]
+          "arch": [
+            "x64",
+            "arm64"
+          ]
         },
         {
           "target": "tar.gz",
-          "arch": ["x64", "arm64"]
+          "arch": [
+            "x64",
+            "arm64"
+          ]
         }
       ]
     },
@@ -103,8 +144,16 @@
     "dmg": {
       "title": "QQ宠物 ${version}",
       "contents": [
-        { "x": 130, "y": 220 },
-        { "x": 410, "y": 220, "type": "link", "path": "/Applications" }
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
       ]
     }
   }

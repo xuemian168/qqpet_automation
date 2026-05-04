@@ -71,6 +71,26 @@ const createWindow = async () => {
 // macOS: 不加载 PepFlash DLL（使用 Ruffle WASM 替代）
 app.commandLine.appendSwitch("disable-site-isolation-trials");
 
+// 内存优化：禁用桌宠用不到的 Chromium 子系统
+app.commandLine.appendSwitch("disable-features", [
+  "HardwareMediaKeyHandling",
+  "GlobalMediaControls",
+  "MediaRouter",
+  "DialMediaRouteProvider",
+  "Translate",
+  "OptimizationHints",
+  "MediaSessionService",
+  "AcceptCHFrame",
+  "AutofillServerCommunication",
+  "CertificateTransparencyComponentUpdater",
+].join(","));
+
+// V8 堆上限：桌宠所有窗口都不需要大堆，128MB 足够
+app.commandLine.appendSwitch("js-flags", "--max-old-space-size=128 --max-semi-space-size=8");
+
+// 内存压力下更激进地回收
+app.commandLine.appendSwitch("enable-features", "MemoryPressureBasedSourceBufferGC");
+
 app.whenReady().then(() => {
   createWindow();
 });
