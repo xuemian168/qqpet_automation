@@ -71,8 +71,23 @@ const createWindow = async () => {
 // macOS: 不加载 PepFlash DLL（使用 Ruffle WASM 替代）
 app.commandLine.appendSwitch("disable-site-isolation-trials");
 
+// Windows: 桌宠场景对 GPU 加速没有强需求，但 GPU 进程在虚拟机/老显卡/
+// 部分宿主环境下崩溃率高，连带让 main renderer 拿不到 GPU 通道而崩。
+// 全平台 Windows 强制走 CPU 软件合成换稳定性。
+// （之前仅 RDP 兜底的 SESSIONNAME 检测会漏过非标准远程会话名。）
+if (process.platform === "win32") {
+  app.disableHardwareAcceleration();
+  app.commandLine.appendSwitch("disable-gpu");
+  app.commandLine.appendSwitch("disable-gpu-compositing");
+  app.commandLine.appendSwitch("disable-gpu-sandbox");
+}
+
+// renderer sandbox 与 nodeIntegration:true 已是互斥关系，显式 no-sandbox
+// 避免 Electron 33 在某些场景下 sandbox 协商失败导致 renderer 启动 crash。
+app.commandLine.appendSwitch("no-sandbox");
+
 // 内存优化：禁用桌宠用不到的 Chromium 子系统
-app.commandLine.appendSwitch("disable-features", [
+const disabledFeatures = [
   "HardwareMediaKeyHandling",
   "GlobalMediaControls",
   "MediaRouter",
@@ -83,13 +98,43 @@ app.commandLine.appendSwitch("disable-features", [
   "AcceptCHFrame",
   "AutofillServerCommunication",
   "CertificateTransparencyComponentUpdater",
-].join(","));
+  // WASM trap handler 在 Windows 虚机/部分宿主上注册失败时，WASM trap
+  // 会直接触发 SIGSEGV 让 renderer 整进程崩。改走软件路径。
+  "WebAssemblyTrapHandler",
+  // nodeIntegration:true + site-per-process 在 Electron 33 已知冲突，
+  // Chromium 把跨 origin 放到不同 renderer 时 Node 注入失败 / renderer
+  // 进程协商 crash。本应用所有窗口都是 file:// 本地内容，不需要 site isolation。
+  "IsolateOrigins",
+  "site-per-process",
+];
 
-// V8 堆上限：桌宠所有窗口都不需要大堆，128MB 足够
-app.commandLine.appendSwitch("js-flags", "--max-old-space-size=128 --max-semi-space-size=8");
+// Windows: Electron 32+ 的 CalculateNativeWinOcclusion 会把 frameless+transparent
+// 桌宠窗口误判为被遮挡而停止合成，issue #10 复现的"窗口不显示"。
+if (process.platform === "win32") {
+  disabledFeatures.push("CalculateNativeWinOcclusion");
+}
+
+app.commandLine.appendSwitch("disable-features", disabledFeatures.join(","));
 
 // 内存压力下更激进地回收
 app.commandLine.appendSwitch("enable-features", "MemoryPressureBasedSourceBufferGC");
+
+// V8 层同步禁用 WASM trap handler（与上面 Chromium feature 双保险）
+app.commandLine.appendSwitch("js-flags", "--no-wasm-trap-handler");
+
+// renderer crash 诊断：把崩溃原因打到 stdout，便于 issue 报告时定位
+// （V8 OOM / SIGSEGV 等不会走 console，仅这里能看到）
+app.on("render-process-gone", (event, webContents, details) => {
+  try {
+    const url = webContents?.getURL?.() || "?";
+    console.error(`[RENDERER-GONE] reason=${details.reason} exitCode=${details.exitCode} url=${url}`);
+  } catch (_) {}
+});
+app.on("child-process-gone", (event, details) => {
+  try {
+    console.error(`[CHILD-GONE] type=${details.type} reason=${details.reason} exitCode=${details.exitCode}`);
+  } catch (_) {}
+});
 
 app.whenReady().then(() => {
   createWindow();
