@@ -96,6 +96,10 @@ const disabledFeatures = [
   "AcceptCHFrame",
   "AutofillServerCommunication",
   "CertificateTransparencyComponentUpdater",
+  // WASM trap handler 在 Windows 虚机/部分宿主上注册失败时，WASM trap 会
+  // 直接触发 SIGSEGV 让 renderer 整进程崩（issue #10 中 Ruffle 加载 SWF
+  // 时复现 reason=crashed exitCode=-36861）。改走软件路径。
+  "WebAssemblyTrapHandler",
 ];
 
 // Windows: Electron 32+ 的 CalculateNativeWinOcclusion 会把 frameless+transparent
@@ -108,6 +112,9 @@ app.commandLine.appendSwitch("disable-features", disabledFeatures.join(","));
 
 // 内存压力下更激进地回收
 app.commandLine.appendSwitch("enable-features", "MemoryPressureBasedSourceBufferGC");
+
+// V8 层同步禁用 WASM trap handler（与上面 Chromium feature 双保险）
+app.commandLine.appendSwitch("js-flags", "--no-wasm-trap-handler");
 
 // renderer crash 诊断：把崩溃原因打到 stdout，便于 issue 报告时定位
 // （V8 OOM / SIGSEGV 等不会走 console，仅这里能看到）
