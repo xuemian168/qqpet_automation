@@ -6,6 +6,16 @@
 
 ## [Unreleased]
 
+## [1.5.1-rc.1] - 2026-05-08
+
+### 修复
+- 基于 `v1.5.0` 稳定 Windows 运行栈修复宠物窗口不可见问题：屏幕尺寸不再简单累加多显示器宽高，改为按 Electron display work area 计算可见边界。
+- 启动和移动时夹取宠物窗口坐标，过滤异常坐标，避免旧配置或多屏布局变化后窗口落到屏幕外。
+
+### 验证
+- 保留 `v1.4.0` 引入的 DeepSeek AI 对话入口、设置页配置和失败回退逻辑。
+- 保留 `v1.5.0` 引入的商城入口、商品列表、购买 IPC 和 `Goods.buy()` 扣款入库逻辑。
+
 ## [1.5.0] - 2026-05-04
 
 ### 新增
@@ -92,7 +102,10 @@
 - 禁用远程自动更新检查
 - 存储改为明文 JSON（方便审计与 CLI 读写）
 
-[Unreleased]: https://github.com/xuemian168/qqpet_automation/compare/v1.3.2...HEAD
+[Unreleased]: https://github.com/xuemian168/qqpet_automation/compare/v1.5.1-rc.1...HEAD
+[1.5.1-rc.1]: https://github.com/xuemian168/qqpet_automation/compare/v1.5.0...v1.5.1-rc.1
+[1.5.0]: https://github.com/xuemian168/qqpet_automation/compare/v1.4.0...v1.5.0
+[1.4.0]: https://github.com/xuemian168/qqpet_automation/compare/v1.3.2...v1.4.0
 [1.3.2]: https://github.com/xuemian168/qqpet_automation/compare/v1.3.1...v1.3.2
 [1.3.1]: https://github.com/xuemian168/qqpet_automation/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/xuemian168/qqpet_automation/compare/v1.2.4-clean...v1.3.0
