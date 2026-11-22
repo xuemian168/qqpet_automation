@@ -2,9 +2,14 @@ const _require = eval("require");
 const https = _require("https");
 
 const DEEPSEEK_HOST = "api.deepseek.com";
-const DEFAULT_MODEL = "deepseek-chat";
+const DEFAULT_MODEL = "deepseek-flash";
 const MAX_QUEUE = 3;
 const TIMEOUT_MS = 8000;
+// 旧模型名不发 thinking 参数：deepseek-chat 本身不思考，deepseek-reasoner 只能思考
+const LEGACY_MODELS = new Set(["deepseek-chat", "deepseek-reasoner"]);
+// 思考模型的思维链也计入 max_tokens，80 个 token 不够它想完，正文会是空的
+const THINKING_MAX_TOKENS = 2048;
+const THINKING_TIMEOUT_MS = 30000;
 
 const SYSTEM_PROMPT = (petInfo) => {
   const info = petInfo?.info || {};
@@ -60,13 +65,18 @@ const DYNAMIC_PROMPTS = {
 function callDeepSeek(apiKey, messages) {
   return new Promise((resolve, reject) => {
     const model =
-      (typeof getSys === "function" && getSys("llmModel")) || DEFAULT_MODEL;
-    const body = JSON.stringify({
+      ((typeof getSys === "function" && getSys("llmModel")) || "").trim() ||
+      DEFAULT_MODEL;
+    const thinking = model === "deepseek-reasoner";
+    const payload = {
       model,
       messages,
-      max_tokens: 80,
+      max_tokens: thinking ? THINKING_MAX_TOKENS : 80,
       temperature: 0.9,
-    });
+    };
+    // deepseek-flash / deepseek-v4-pro 默认开启思考；台词只有 15 字，关掉省时省钱
+    if (!LEGACY_MODELS.has(model)) payload.thinking = { type: "disabled" };
+    const body = JSON.stringify(payload);
     const req = https.request(
       {
         hostname: DEEPSEEK_HOST,
@@ -87,6 +97,7 @@ function callDeepSeek(apiKey, messages) {
             if (parsed.error) return reject(new Error(parsed.error.message));
             const content = parsed.choices?.[0]?.message?.content || "";
             const cleaned = content.replace(/```json|```/g, "").trim();
+            if (!cleaned) return reject(new Error("模型没有返回内容"));
             resolve(JSON.parse(cleaned));
           } catch (e) {
             reject(e);
@@ -95,7 +106,7 @@ function callDeepSeek(apiKey, messages) {
       }
     );
     req.on("error", reject);
-    req.setTimeout(TIMEOUT_MS, () => {
+    req.setTimeout(thinking ? THINKING_TIMEOUT_MS : TIMEOUT_MS, () => {
       req.destroy();
       reject(new Error("timeout"));
     });
@@ -132,13 +143,14 @@ class LLMService {
       });
   }
 
+  // 返回 { ok, error }，让设置页能把 API 的报错（如模型不存在）显示出来
   test(apiKey, petInfo) {
     return callDeepSeek(apiKey, [
       { role: "system", content: SYSTEM_PROMPT(petInfo || {}) },
       { role: "user", content: "说一句简短的自我介绍。" },
     ])
-      .then((r) => !!r?.tolk)
-      .catch(() => false);
+      .then((r) => (r?.tolk ? { ok: true } : { ok: false, error: "返回格式不对" }))
+      .catch((e) => ({ ok: false, error: e?.message || String(e) }));
   }
 
   generateOnce(promptType, contextData, petInfo) {

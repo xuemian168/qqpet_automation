@@ -6,6 +6,9 @@
 
 ## [Unreleased]
 
+### 修复
+- **AI 对话无法使用 deepseek-flash / deepseek-v4-pro / deepseek-reasoner（#27）**：DeepSeek V4 系列默认开启思考，思维链占满 80 个输出 token 后正文为空，解析失败后静默回退到固定台词。现在对新模型关闭思考；`deepseek-reasoner` 放宽到 2048 token、30 秒超时；默认模型由已停用的 `deepseek-chat` 改为 `deepseek-flash`；模型名自动去掉首尾空格；「测试连接」失败时显示 API 返回的具体原因（如模型不存在）。
+
 ## [1.6.1] - 2026-10-30
 
 ### 变更
