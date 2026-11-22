@@ -284,15 +284,18 @@ workbuddy/
 3. 配置 3 项：
    - **启用 AI 对话**：开关
    - **DeepSeek API Key**：粘贴 `sk-...`，回车保存（密码态显示）
-   - **模型名称**：留空 = `deepseek-chat`（V3，便宜又快），可改为 `deepseek-reasoner`（R1 思考模型）或任何 [DeepSeek 官方](https://api-docs.deepseek.com/zh-cn/quick_start/pricing/) 支持的模型 ID
+   - **模型名称**：留空 = `deepseek-flash`（便宜又快），可改为 `deepseek-v4-pro` 或任何 [DeepSeek 官方](https://api-docs.deepseek.com/zh-cn/quick_start/pricing/) 支持的模型 ID
 4. 点击 **「测试连接」** 按钮 → 宠物气泡显示「AI 连接成功！」即生效
 
 ### 模型对比建议
 
 | 模型 ID | 适用场景 | 说明 |
 |---------|---------|------|
-| `deepseek-chat` | **默认推荐** | DeepSeek-V3，响应 1-2 秒，输入 ¥1/M tokens |
-| `deepseek-reasoner` | 想要更俏皮、有逻辑的回复 | R1 思考模型，响应 3-8 秒，价格更高 |
+| `deepseek-flash` | **默认推荐** | DeepSeek V4.1 Flash，输入 ¥1-2/M、输出 ¥4-8/M tokens（空闲/高峰时段） |
+| `deepseek-v4-pro` | 想要文笔更好的回复 | DeepSeek V4 Pro，价格约为 Flash 的 3-4 倍 |
+| `deepseek-chat` / `deepseek-reasoner` | 旧模型名，不建议 | DeepSeek 已宣布 2026-07-24 停用，能否调用以官方为准；`deepseek-reasoner` 是思考模型，响应最长要等 30 秒 |
+
+> 桌宠台词只有十几个字，用不上"思考"，所以对 `deepseek-flash` / `deepseek-v4-pro` 会自动关闭思考模式，响应更快也更省钱。
 
 ### 隐私与安全
 
@@ -303,14 +306,14 @@ workbuddy/
 
 ### 成本估算
 
-按 `deepseek-chat` 默认模型估算（输入 ¥1/M、输出 ¥2/M tokens）：
+按 `deepseek-flash` 默认模型、高峰时段价格估算（输入 ¥2/M、输出 ¥8/M tokens，空闲时段减半）：
 
 - 单次对话约 200-300 tokens（输入 prompt + 输出回复）
-- 日常使用每天约 50-100 次对话 → **每天 ¥0.01-0.03**，每月 < ¥1
+- 日常使用每天约 50-100 次对话 → **每天 ¥0.02-0.07**，每月约 ¥2 以内
 
 ### 失败回退
 
-任何环节失败（API Key 错、网络断、超时 8s、未启用），都会**自动回退**到原硬编码话术，不会让宠物"哑巴"。
+任何环节失败（API Key 错、网络断、超时 8 秒（`deepseek-reasoner` 为 30 秒）、未启用），都会**自动回退**到原硬编码话术，不会让宠物"哑巴"。
 
 ---
 
